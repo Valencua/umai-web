@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=4">
+    <title>Document</title>
+</head>
+<body class="bg-body"> 
+
+
+   <header>
+    <nav class="barra-navegacion">
+        <div class="logo">
+            <h1>LOGO</h1>
+        </div>
+        
+        {% include 'nav_botones.html' %}
+
+    </nav>
+</header>
+
+
+
+
+<section class="seccion-principal-reservas">
+    
+    <div class="info-reserva">
+        <h2>Hacé tu reserva</h2>
+        <p class="descripcion">
+            Asegurá tu lugar en UMAI! en pocos pasos. Recibirás un QR de confirmación en tu email que deberás presentar al llegar.
+        </p>
+        
+        <ul class="lista-detalles">
+            <li><span>📍</span> Av. Alicia Moreau de Justo 1890, Buenos Aires</li>
+            <li><span>🕦</span> Noche: 18:30 – 01:00 hs</li>
+            <li><span>📞</span> +54 11 4000-1234</li>
+            <li><span>📧</span> reservas@umaisushi.com.ar</li>
+            <li><span>🗓️</span> Abierto todos los días del año</li>
+        </ul>
+    </div>
+
+
+</section>
+</body>
+</html>
