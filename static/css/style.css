@@ -1,0 +1,49 @@
+
+.bg-body{
+
+    background-color: #36322F;
+}
+
+/* --- Contenedor principal de la barra --- */
+.barra-navegacion {
+    display: flex;
+    justify-content: space-around; 
+    align-items: center; 
+    padding: 0px 40px;
+    background-color: #111214; 
+    height: 80px;
+    margin: 0;
+}
+
+.logo{
+    color: aliceblue;
+}
+
+/* --- Lista de enlaces --- */
+.enlaces {
+    display: flex; 
+    gap: 30px; 
+    list-style: none; 
+    margin: 0; 
+    padding: 0;
+}
+
+/* --- Limpieza básica de los textos --- */
+.enlaces a {
+    text-decoration: none; 
+    font-weight: bold; 
+}
+
+.enlaces a:hover {
+   background-color: #FF7A41; 
+   color: white;
+   border-radius: 10px;
+}
+
+/* --- El botón que simula estar activo ("INICIO") --- */
+.boton-activo {
+    padding: 8px 16px; 
+    font-size: 20px;
+    color: #FF7A41;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
