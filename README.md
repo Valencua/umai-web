@@ -56,3 +56,23 @@ A continuación se detallan los prefijos permitidos y cuándo utilizar cada uno:
 
 2. **Mensajes concisos:** La primera línea no debería superar los 72 caracteres.
 3. **Commits atómicos:** Intentá que cada commit resuelva una sola cosa a la vez. ¡Facilita mucho el `git revert` si algo sale mal!
+
+
+
+# Comandos iniciales!
+sudo apt install curl -y
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+source ~/.bashrc
+nvm install --lts
+nvm alias default 22.14.0
+
+... si hay un warning al final:
+
+nvm alias default v24.16.0
+
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+
+y **finalmente**: python3 -m app
