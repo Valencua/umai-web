@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=4">
-    <title>Interfaz Cliente</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=15">
+    <title>UMAI</title>
 </head>
 <body class="bg-body"> 
 
    <header>
     <nav class="barra-navegacion">
         <div class="logo">
-            <h1>LOGO</h1>
+            <img src="{{ url_for('static', filename='img/Logo.png') }}" alt="Logo UMAI">
         </div>
         {% include 'nav_botones.html' %}
     </nav>
