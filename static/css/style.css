@@ -168,80 +168,46 @@ header {
     margin: 0;
 }
 
-
+/*El PREDETERMINADO TAMAÑO es computadora de tamaño grande.*/
 /* Media Queries para hacer el diseño responsive!!!!!!!!!*/
-@media (max-width: 992px) {
+
+@media(max-width: 390px) { /* para pantallas pequeñas, como celulares */
     header {
-        min-height: 130px;
+        min-height: 185px;
     }
 
     .barra-navegacion {
+        flex-direction: column; /* hace que los elementos de la barra de navegación se apilen verticalmente en lugar de horizontalmente, para que se ajusten mejor a la pantalla pequeña */
         justify-content: center;
-        gap: 12px;
-        padding: 12px 20px;
-    }
-
-    .seccion-base {
-        scroll-margin-top: 145px;
-    }
-
-    .enlaces {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 14px;
-    }
-
-    .boton-activo {
-        font-size: 14px;
-        padding: 6px 10px;
-    }
-
-    .logo img {
-        width: 180px;
-    }
-
-    .footer-content {
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-    }
-
-    .footer-logo img {
-        width: 120px;
-    }
-}
-
-@media (max-width: 600px) {
-    header {
-        min-height: 150px;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 10px;
     }
 
     .bg-body::before {
-        background-size: 360px auto;
+        background-size: 320px auto;
         transform: rotate(180deg);
-    }
-
-
-    .seccion-base {
-        scroll-margin-top: 165px;
     }
 
     .logo h1 {
         margin: 0;
-        font-size: 22px;
+        font-size: 18px;
     }
 
     .logo img {
-        width: 150px;
+        width: 130px;
     }
 
     .enlaces {
         width: 100%;
-        gap: 8px;
+        justify-content: center; 
+        flex-wrap: wrap;
+        gap: 8px 10px;
     }
 
     .boton-activo {
-        font-size: 12px;
-        padding: 6px 8px;
+        font-size: 11px;
+        padding: 4px 6px;
     }
 
     .footer-content {
