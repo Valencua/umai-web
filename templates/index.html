@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=20">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=24">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <title>UMAI</title>
 </head>
 <body class="bg-body"> 
@@ -11,7 +12,7 @@
    <header>
     <nav class="barra-navegacion">
         <div class="logo">
-            <img src="{{ url_for('static', filename='img/Logo.png') }}" alt="Logo UMAI">
+            <img src="{{ url_for('static', filename='img/LOGO-NAVBAR.png') }}" alt="Logo UMAI">
         </div>
         {% include 'nav_botones.html' %}
     </nav>
@@ -39,6 +40,34 @@
         <br><br><br><br><br><br><br><br><br><br><br>
     </section>
 </main>
+
+<footer class="footer-umai">
+    <div class="footer-content">
+        <div class="footer-logo">
+            <img src="{{ url_for('static', filename='img/LOGO-FOOTER.png') }}" alt="Logo UMAI">
+        </div>
+        
+        <div class="footer-redes">
+            <a href="https://instagram.com/umai.ba" target="_blank"><i class="fa-brands fa-instagram"></i> @umai.ba</a>
+            <a href="https://tiktok.com/@bs_umai" target="_blank"><i class="fa-brands fa-tiktok"></i> @bs_umai</a>
+        </div>
+        
+        <div class="footer-info">
+            <div class="footer-ubicacion">
+                <p><strong>📍 Ubicación</strong></p>
+                <p>Av. Alicia Moreau de Justo 210</p>
+            </div>
+            <div class="footer-horarios">
+                <p><strong>🕕 Horarios</strong></p>
+                <p>Lun - Dom: 18:30 hs a 1:00 hs</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p><i class="fa-solid fa-copyright"></i> 2026 UMAI. Todos los derechos reservados</p>
+    </div>
+</footer>
 
 
 </body>

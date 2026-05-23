@@ -19,7 +19,7 @@
     content: ""; /*necesario para que el pseudo elemento se muestre, aunque no tenga contenido visible*/
     position: fixed;
     inset: 0; /* top: 0, right: 0, bottom: 0, left: 0 (es lo mismo), ahce que ocupe toda la pantalla*/
-    background-image: url('/static/img/Fondo.png');
+    background-image: url("/static/img/FONDO-INDEX.png");
     background-repeat: repeat; /*hace que la imagen se repita tanto horizontal como verticalmente, para crear un patrón de fondo*/
     background-size: 620px auto; /*ajusta el tamaño del fondo, el ancho es de 620px y el alto se ajusta automáticamente para mantener la proporción*/
     opacity: 0.06;
@@ -90,6 +90,84 @@ header {
     font-family: inherit;
 }
 
+/*FOOTER!!*/
+.footer-umai{
+    background-color:black;
+    border-top: 1px solid rgba(255, 122, 65, 0.2);
+    padding: 40px 20px 20px; /* espacio interno: 40px arriba, 20px a los lados y 20px abajo, para que el contenido del footer no quede pegado al borde y tenga un poco de aire */
+    color:white;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr; /* tres columnas, la primera para el logo, la segunda para las redes sociales y la tercera para la ubicación y horarios, que es más ancha porque tiene más contenido */
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto 30px; /*centrado horizontalmente y con un margen inferior para separar del borde del footer*/
+    align-items: start; /* hace que el contenido de cada columna se alinee al inicio (top) de la columna, en lugar de centrarse verticalmente, para que quede más ordenado y profesional, ademas de limpito */
+}
+
+.footer-logo img {
+    width: 150px;
+    height: auto;
+    display: block; /* hace que la imagen se comporte como un bloque, ocupando todo el ancho disponible y manteniendo su proporción, ademas de evitar problemas de alineación con otros elementos del footer */
+}
+
+.footer-redes {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-redes a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.footer-redes a:hover {
+    color: #FF7A41;
+}
+.footer-redes i {
+    margin-right: 8px;
+    font-size: 25px;
+}
+
+.footer-info { 
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.footer-ubicacion,
+.footer-horarios {
+    font-size: 13px;
+    line-height: 1.6; /*aumenta el espacio entre líneas para mejorar la legibilidad, especialmente en dispositivos móviles donde el texto puede ser más chiqutito*/
+}
+
+.footer-ubicacion p,
+.footer-horarios p {
+    margin: 4px 0;
+}
+
+.footer-ubicacion strong,
+.footer-horarios strong { /* resalta los títulos "Ubicación" y "Horarios" para que se destaquen del resto del texto, haciendo que el diseño sea más claro y fácil de leer */
+    color: #FF7A41;
+}
+
+.footer-bottom { /*el copyright o aviso legal que va al final del footer, separado del resto del contenido por una línea, con un tamaño de fuente más pequeño y un color más claro para que no compita visualmente con el contenido principal del footer, pero que siga siendo legible y profesional */
+    text-align: center;
+    padding-top: 20px;
+    font-size: 12px;
+    color: #6d6c6c;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
 
 /* Media Queries para hacer el diseño responsive!!!!!!!!!*/
 @media (max-width: 992px) {
@@ -120,6 +198,15 @@ header {
 
     .logo img {
         width: 180px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .footer-logo img {
+        width: 120px;
     }
 }
 
@@ -155,5 +242,28 @@ header {
     .boton-activo {
         font-size: 12px;
         padding: 6px 8px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .footer-logo img {
+        width: 100px;
+    }
+
+    .footer-redes {
+        gap: 8px;
+    }
+
+    .footer-info {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .footer-ubicacion,
+    .footer-horarios {
+        font-size: 12px;
     }
 }
