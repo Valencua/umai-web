@@ -30,7 +30,7 @@ nvm alias default v24.16.0
 Luego crea el entorno virtual de Python e instala dependencias:
 
 ```bash
-python -m venv venv
+python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 ```
@@ -53,7 +53,15 @@ python3 -m app
 git clone URL
 ```
 
-### 2. Ir a la rama base
+### 2. Cambiar a donde clonamos el repositorio
+
+En caso de que sigamos en el Home “~”
+
+```bash
+cd umai-web
+```
+
+### 3. Ir a la rama base
 
 Esta es la rama donde suele estar la base HTML de la interfaz.
 
@@ -61,7 +69,7 @@ Esta es la rama donde suele estar la base HTML de la interfaz.
 git switch develop-cleinte
 ```
 
-### 3. Crear una rama nueva
+### 4. Crear una rama nueva
 
 Elegí un nombre corto y descriptivo para lo que vas a trabajar.
 
@@ -76,14 +84,14 @@ Si preferís hacerlo en un solo paso, también podés usar:
 git switch -c RAMA_A_CREAR
 ```
 
-### 4. Guardar cambios
+### 5. Guardar cambios
 
 ```bash
 git add .
 git commit -m "tipo(alcance): descripcion en minusculas"
 ```
 
-### 5. Subir la rama
+### 6. Subir la rama
 
 ```bash
 git push
@@ -93,6 +101,26 @@ Si la rama es nueva y todavía no tiene upstream, usá:
 
 ```bash
 git push -u origin RAMA_A_CREAR
+```
+
+# 📂 Estructura del Front
+
+```bash
+📦 umai-web
+┣ 📂 static
+┣ 📂 templates
+┣ 📂 umai
+┃ ┣ 📂 routes
+┃ ┣ 📂 services
+┃ ┣ 📂 validators
+┃ ┣ 📜 utils.py
+┃ ┗ 📜 constants.py
+┣ 📜 .gitignore
+┣ 📜 LICENSE
+┣ 📜 README.md
+┣ 📜 app.py
+┣ 📜 package-lock.json
+┗ 📜 requirements.txt
 ```
 
 ## Convenciones de commits
