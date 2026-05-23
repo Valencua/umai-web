@@ -1,78 +1,138 @@
-# 🚀 Convenciones de Commits y Repositorio
+# UMAI Web
 
-Para mantener un historial de Git limpio, legible y automatizable, en este proyecto utilizamos la especificación de **Conventional Commits**. 
+Guia rapida para levantar el proyecto en local y trabajar con Git sin perder orden.
 
-Cada mensaje de commit debe seguir la siguiente estructura básica:
-`tipo(alcance_opcional): descripción en minúsculas`
+## Requisitos previos
 
----
+- `curl`
+- `nvm`
+- `Python 3`
+- `pip`
 
-## 📋 Tipos de Commits
+## Instalacion inicial
 
-A continuación se detallan los prefijos permitidos y cuándo utilizar cada uno:
+Segui estos pasos en orden:
 
-| Tipo | Descripción |
-| :--- | :--- |
-| ✨ **`feat`** | Una nueva característica o funcionalidad para el usuario. |
-| 🐛 **`fix`** | Corrección de un error o bug en el código. |
-| 🎨 **`style`** | Cambios que no afectan la lógica (CSS, formateo, linter, espacios). |
-| ⚡ **`refactor`** | Cambios en el código que ni arreglan un bug ni añaden una función (rendimiento, limpieza). |
-| 🛠️ **`chore`** | Tareas de mantenimiento: actualizar dependencias, configs, herramientas de build. |
-| 📝 **`docs`** | Cambios exclusivos en la documentación (archivos `.md`, comentarios). |
-| 🧪 **`test`** | Añadir, modificar o corregir pruebas unitarias o de integración. |
-
----
-
-## 💡 Ejemplos de Uso
-
-> [!TIP]
-> Intenten usar el **alcance (scope)** entre paréntesis siempre que el cambio sea específico de un módulo, componente o página para dar más contexto.
-
-* **Nueva funcionalidad:**
-  `feat(auth): add google login button`
-
-* **Corrección de errores:**
-  `fix(navbar): center logo on mobile devices`
-
-* **Estilos y formato:**
-  `style(buttons): change padding and hover color`
-
-* **Refactorización:**
-  `refactor(hooks): migrate useFetch to react-query`
-
-* **Mantenimiento:**
-  `chore: install tailwindcss`
-
-* **Documentación:**
-  `docs: update setup instructions in readme`
-
-* **Pruebas:**
-  `test(login): add unit test for email validation`
-
----
-
-## 🛠️ Buenas Prácticas Generales
-
-
-2. **Mensajes concisos:** La primera línea no debería superar los 72 caracteres.
-3. **Commits atómicos:** Intentá que cada commit resuelva una sola cosa a la vez. ¡Facilita mucho el `git revert` si algo sale mal!
-
-
-
-# Comandos iniciales!
+```bash
 sudo apt install curl -y
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 source ~/.bashrc
 nvm install --lts
 nvm alias default 22.14.0
+```
 
-... si hay un warning al final:
+Si el instalador de `nvm` termina con un warning sobre la version por defecto, usa:
 
+```bash
 nvm alias default v24.16.0
+```
 
+Luego crea el entorno virtual de Python e instala dependencias:
+
+```bash
 python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
+```
+
+## Ejecutar la aplicacion
+
+Para levantar el proyecto:
+
+```bash
+python3 -m app
+```
 
 
-y **finalmente**: python3 -m app
+
+## Flujo de trabajo con Git (TUTORIAL)
+
+### 1. Clonar el repositorio
+
+```bash
+git clone URL
+```
+
+### 2. Ir a la rama base
+
+Esta es la rama donde suele estar la base HTML de la interfaz.
+
+```bash
+git switch develop-cleinte
+```
+
+### 3. Crear una rama nueva
+
+Elegí un nombre corto y descriptivo para lo que vas a trabajar.
+
+```bash
+git branch RAMA_A_CREAR
+git switch RAMA_A_CREAR
+```
+
+Si preferís hacerlo en un solo paso, también podés usar:
+
+```bash
+git switch -c RAMA_A_CREAR
+```
+
+### 4. Guardar cambios
+
+```bash
+git add .
+git commit -m "tipo(alcance): descripcion en minusculas"
+```
+
+### 5. Subir la rama
+
+```bash
+git push
+```
+
+Si la rama es nueva y todavía no tiene upstream, usá:
+
+```bash
+git push -u origin RAMA_A_CREAR
+```
+
+## Convenciones de commits
+
+Para mantener un historial limpio, legible y automatizable, en este proyecto usamos **Conventional Commits**.
+
+La estructura base es:
+
+```text
+tipo(alcance_opcional): descripcion en minusculas
+```
+
+### Tipos permitidos
+
+| Tipo | Descripcion |
+| :--- | :--- |
+| `feat` | Nueva funcionalidad para el usuario. |
+| `fix` | Correccion de un error o bug. |
+| `style` | Cambios de estilo o formato que no afectan la logica. |
+| `refactor` | Reordenamiento o limpieza de codigo sin cambiar comportamiento. |
+| `chore` | Tareas de mantenimiento, configs o dependencias. |
+| `docs` | Cambios en documentacion. |
+| `test` | Alta o ajuste de pruebas. |
+
+### Ejemplos
+
+```bash
+feat(auth): add google login button
+fix(navbar): center logo on mobile devices
+style(buttons): change padding and hover color
+refactor(hooks): migrate useFetch to react-query
+chore: install tailwindcss
+docs: update setup instructions in readme
+test(login): add unit test for email validation
+```
+
+## Buenas practicas
+
+- Usar scope cuando el cambio afecte a un modulo o componente especifico.
+- Mantener los mensajes cortos y claros.
+- No mezclar cambios no relacionados en un mismo commit.
+- Si la rama no tiene upstream, publicarla con `git push -u origin RAMA_A_CREAR`.
+
