@@ -1,0 +1,70 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+
+.imagen-inicio img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 12px;
+}
+
+.imagen-inicio {
+    max-width: 950px;
+    height: 400px;
+    overflow: visible;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    right: 250px;
+    position: relative;
+}
+
+.imagen-inicio-overlay {
+    position: absolute;
+    right: -400px;
+    top: 0;
+    bottom: 0;
+    width: 900px;
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.99) 0%, rgba(0, 0, 0, 0.99) 48%, rgba(0, 0, 0, 0.75) 68%, rgba(0, 0, 0, 0.35) 82%, rgba(0, 0, 0, 0.12) 92%, rgba(0, 0, 0, 0) 100%);
+    border-radius: 0 12px 12px 0;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.imagen-inicio h1 {
+    position: absolute;
+    left: 80%;
+    top: 36%;
+    transform: translateY(-50%);
+    z-index: 3;
+    margin: 0;
+    width: 500px;
+    font-size: 3rem;
+    line-height: 1.05;
+    font-weight: 700;
+    color: #FF7A41;
+    text-align: left;
+    text-shadow: 0 4px 16px rgba(0, 0, 0, 0.75);
+}
+.imagen-inicio p {
+    position: absolute;
+    left: 80%;
+    top: 50%;
+    transform: translateY(40%);
+    z-index: 3;
+    margin: 0;
+    width: 500px;
+    font-size: 1.25rem;
+    color: white;
+    text-align: left;
+    text-shadow: 0 4px 16px rgba(0, 0, 0, 0.75);
+}

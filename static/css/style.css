@@ -98,6 +98,8 @@ header {
     color:white;
 }
 
+
+
 .footer-content {
     display: grid;
     grid-template-columns: 1fr 1fr 2fr; /* tres columnas, la primera para el logo, la segunda para las redes sociales y la tercera para la ubicación y horarios, que es más ancha porque tiene más contenido */

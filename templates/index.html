@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=24">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style-inicio.css') }}?v=24">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"/>
     <title>UMAI</title>
 </head>
 <body class="bg-body"> 
@@ -20,8 +22,13 @@
 
 <main>
     <section id="inicio" class="seccion-base">
-        <h1>BIENVENIDO A UMAI</h1>
-        <br><br><br><br><br><br><br><br><br><br><br>
+        <div class="imagen-inicio">
+            <img src="{{ url_for('static', filename='img/FOTO-INICIO.png') }}" alt="Imagen de inicio">
+            <div class="imagen-inicio-overlay" aria-hidden="true"></div>
+            <h1>El Arte de la Perfección Japonesa</h1>
+            <p>Una experiencia de sabor auténtico creada para redefinir el concepto del sushi tradicional.</p>
+                
+        </div>
     </section>
     <section id="menu" class="seccion-base">
         <h1>MENÚ</h1>
