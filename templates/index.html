@@ -1,74 +1,121 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=24">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}?v=24"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+    />
     <title>UMAI</title>
-</head>
-<body class="bg-body"> 
-
-   <header>
-    <nav class="barra-navegacion">
+  </head>
+  <body class="bg-body">
+    <header>
+      <nav class="barra-navegacion">
         <div class="logo">
-            <img src="{{ url_for('static', filename='img/LOGO-NAVBAR.png') }}" alt="Logo UMAI">
+          <img
+            src="{{ url_for('static', filename='img/LOGO-NAVBAR.png') }}"
+            alt="Logo UMAI"
+          />
         </div>
         {% include 'nav_botones.html' %}
-    </nav>
-</header>
+      </nav>
+    </header>
 
-<main>
-    <section id="inicio" class="seccion-base">
+    <main>
+      <section id="inicio" class="seccion-base">
         <h1>BIENVENIDO A UMAI</h1>
-        <br><br><br><br><br><br><br><br><br><br><br>
-    </section>
-    <section id="menu" class="seccion-base">
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+      </section>
+      <section id="menu" class="seccion-base">
         <h1>MENÚ</h1>
-        <br><br><br><br><br><br><br><br><br><br><br>
-    </section>
-    <section id="resenas" class="seccion-base">
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+      </section>
+      <section id="resenas" class="seccion-base">
         <h1>RESEÑAS</h1>
-        <br><br><br><br><br><br><br><br><br><br><br>
-    </section>
-    <section id="reservas" class="seccion-base">
+        <div
+          id="resena-1"
+          class="max-w-md rounded-2xl overflow-hidden shadow-lg text-white"
+        >
+          <div class="flex items-center ml-5 mt-5">
+            <i id="avatar" class="rounded-full fa-solid fa-user"></i>
+            <div class="text-sm">
+              <p class="text-white leading-none font-bold text-lg">McLovin</p>
+              <p class="texto-resenia ">04/05/2026</p>
+            </div>
+          </div>
+          <div class="px-6 py-4">
+            <div class="font-bold text-xl mb-2">estrellitas</div>
+            <p class="texto-resenia ">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Voluptatibus quia, nulla! Maiores et perferendis eaque,
+              exercitationem praesentium nihil.
+            </p>
+          </div>
+          <div class="px-6 pt-4 pb-2">
+            <span
+              class="inline-block rounded-full px-3 py-1 border-2 border-orange-700 text-sm font-semibold text-orange-700 mr-2 mb-2"
+              >Reseña verificada</span
+            >
+          </div>
+        </div>
+
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+      </section>
+      <section id="reservas" class="seccion-base">
         <h1>RESERVAS</h1>
-        <br><br><br><br><br><br><br><br><br><br><br>
-    </section>
-    <section id="sobre-nosotros" class="seccion-base">
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+      </section>
+      <section id="sobre-nosotros" class="seccion-base">
         <h1>SOBRE NOSOTROS</h1>
-        <br><br><br><br><br><br><br><br><br><br><br>
-    </section>
-</main>
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+      </section>
+    </main>
 
-<footer class="footer-umai">
-    <div class="footer-content">
+    <footer class="footer-umai">
+      <div class="footer-content">
         <div class="footer-logo">
-            <img src="{{ url_for('static', filename='img/LOGO-FOOTER.png') }}" alt="Logo UMAI">
+          <img
+            src="{{ url_for('static', filename='img/LOGO-FOOTER.png') }}"
+            alt="Logo UMAI"
+          />
         </div>
-        
+
         <div class="footer-redes">
-            <a href="https://instagram.com/umai.ba" target="_blank"><i class="fa-brands fa-instagram"></i> @umai.ba</a>
-            <a href="https://tiktok.com/@bs_umai" target="_blank"><i class="fa-brands fa-tiktok"></i> @bs_umai</a>
+          <a href="https://instagram.com/umai.ba" target="_blank"
+            ><i class="fa-brands fa-instagram"></i> @umai.ba</a
+          >
+          <a href="https://tiktok.com/@bs_umai" target="_blank"
+            ><i class="fa-brands fa-tiktok"></i> @bs_umai</a
+          >
         </div>
-        
+
         <div class="footer-info">
-            <div class="footer-ubicacion">
-                <p><strong>📍 Ubicación</strong></p>
-                <p>Av. Alicia Moreau de Justo 210</p>
-            </div>
-            <div class="footer-horarios">
-                <p><strong>🕕 Horarios</strong></p>
-                <p>Lun - Dom: 18:30 hs a 1:00 hs</p>
-            </div>
+          <div class="footer-ubicacion">
+            <p><strong>📍 Ubicación</strong></p>
+            <p>Av. Alicia Moreau de Justo 210</p>
+          </div>
+          <div class="footer-horarios">
+            <p><strong>🕕 Horarios</strong></p>
+            <p>Lun - Dom: 18:30 hs a 1:00 hs</p>
+          </div>
         </div>
-    </div>
-    
-    <div class="footer-bottom">
-        <p><i class="fa-solid fa-copyright"></i> 2026 UMAI. Todos los derechos reservados</p>
-    </div>
-</footer>
+      </div>
 
-
-</body>
+      <div class="footer-bottom">
+        <p>
+          <i class="fa-solid fa-copyright"></i> 2026 UMAI. Todos los derechos
+          reservados
+        </p>
+      </div>
+    </footer>
+  </body>
 </html>

@@ -1,5 +1,10 @@
 /*importo la fuente de google fonts, es importante que esto esté al principio del CSS para que se aplique a todo el documento, aunque también se podría importar en el HTML, pero así queda más ordenado y centralizado en el CSS*/
 @import url('https://fonts.googleapis.com/css2?family=Sen:wght@400;500;700;800&display=swap');
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
 
 * {
     font-family: 'Sen', sans-serif;
@@ -48,6 +53,19 @@ header {
     min-height: 80px;
     height: auto;
     margin: 0;
+}
+
+#resena-1 {
+    background-color: #36322F;
+}
+
+#avatar {
+    font-size: 45px;
+    margin-right: 16px;
+}
+
+.texto-resenia {
+    color: #77716C;
 }
 
 .seccion-base {
