@@ -1,0 +1,180 @@
+{% extends "base_empleado.html" %}
+
+{% block title %}UMAi! Menú{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="menu-layout">
+
+  <!-- Columna izquierda -->
+  <div class="card platos-card">
+    <div class="platos-header">
+      <h3 class="platos-title">🍣 Platos del menú</h3>
+      <button class="btn-nuevo" onclick="abrirModal()">+ Nuevo plato</button>
+    </div>
+
+    <div class="platos-scroll">
+
+      <div class="plato-item">
+        <div class="plato-img"></div>
+        <div class="plato-info">
+          <h4 class="plato-nombre">Dragon Roll</h4>
+          <p class="plato-desc">Langostinos tempura, palta, pepino, cubierto con salmón.</p>
+          <div class="plato-badges">
+            <span class="badge badge-sintacc">Sin TACC</span>
+          </div>
+        </div>
+        <button class="btn-delete">🗑️</button>
+      </div>
+
+      <div class="plato-item">
+        <div class="plato-img"></div>
+        <div class="plato-info">
+          <h4 class="plato-nombre">Spicy Tuna Roll</h4>
+          <p class="plato-desc">Atún roja, mayo picante, pepino, sésamo tostado.</p>
+          <div class="plato-badges">
+            <span class="badge badge-spicy">Spicy</span>
+            <span class="badge badge-sintacc">Sin TACC</span>
+          </div>
+        </div>
+        <button class="btn-delete">🗑️</button>
+      </div>
+
+      <div class="plato-item">
+        <div class="plato-img"></div>
+        <div class="plato-info">
+          <h4 class="plato-nombre">Veggie Roll</h4>
+          <p class="plato-desc">Palta, pepino, zanahoria, queso crema, sésamo negro.</p>
+          <div class="plato-badges">
+            <span class="badge badge-veggie">Veggie</span>
+            <span class="badge badge-sintacc">Sin TACC</span>
+          </div>
+        </div>
+        <button class="btn-delete">🗑️</button>
+      </div>
+
+      <div class="plato-item">
+        <div class="plato-img"></div>
+        <div class="plato-info">
+          <h4 class="plato-nombre">Sashimi Premium</h4>
+          <p class="plato-desc">Selección de 12 piezas de salmón, atún y hachomi.</p>
+          <div class="plato-badges">
+            <span class="badge badge-sintacc">Sin TACC</span>
+          </div>
+        </div>
+        <button class="btn-delete">🗑️</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Columna derecha -->
+  <div class="columna-derecha">
+
+    <div class="card stats-card">
+      <h3 class="stats-title">📊 Estadísticas del menú</h3>
+      <div class="stat-item">
+        <span class="stat-label">Total de platos activos</span>
+        <span class="stat-value">4</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Platos sin TACC</span>
+        <span class="stat-value">4</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Platos vegetarianos</span>
+        <span class="stat-value">1</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Platos picantes</span>
+        <span class="stat-value">1</span>
+      </div>
+      <div class="stat-precio">
+        <span class="stat-label">Precio promedio</span>
+        <span class="stat-precio-valor">$3.000</span>
+      </div>
+    </div>
+
+    <div class="card etiquetas-card">
+      <h3 class="stats-title">Etiquetas</h3>
+      <div class="etiqueta-item">
+        <span class="badge badge-spicy">Spicy</span>
+        <span class="etiqueta-desc">Pieza picante</span>
+      </div>
+      <div class="etiqueta-item">
+        <span class="badge badge-sintacc">Sin TACC</span>
+        <span class="etiqueta-desc">Pieza libre de gluten</span>
+      </div>
+      <div class="etiqueta-item">
+        <span class="badge badge-veggie">Veggie</span>
+        <span class="etiqueta-desc">Pieza vegetariana</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal nuevo plato -->
+<div class="modal-overlay" id="modalOverlay" onclick="cerrarModal(event)">
+  <div class="modal">
+    <h2 class="modal-title">Nuevo plato</h2>
+    <p class="modal-subtitle">¿Qué plato delicioso tenemos pensado agregar?</p>
+
+    <div class="form-group">
+      <label class="form-label">Nombre</label>
+      <input type="text" class="form-input" placeholder="Ej: Dragon Roll">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Descripción</label>
+      <textarea class="form-textarea" placeholder="Ingredientes y descripción del plato..."></textarea>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Precio ($)</label>
+        <input type="number" class="form-input" placeholder="3500">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Foto del plato</label>
+        <div class="foto-upload">
+          <span class="foto-icon">📷</span>
+          <span class="foto-text">Subir imagen</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Etiquetas</label>
+      <div class="etiquetas-selector">
+        <span class="badge badge-spicy badge-toggle">Spicy</span>
+        <span class="badge badge-sintacc badge-toggle">Sin TACC</span>
+        <span class="badge badge-veggie badge-toggle">Veggie</span>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-cancelar" onclick="cerrarModal()">Cancelar</button>
+      <button class="btn-guardar">Guardar plato</button>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  function abrirModal() {
+    document.getElementById('modalOverlay').classList.add('active');
+  }
+  function cerrarModal(e) {
+    if (!e || e.target === document.getElementById('modalOverlay')) {
+      document.getElementById('modalOverlay').classList.remove('active');
+    }
+  }
+</script>
+{% endblock %}

@@ -1,0 +1,366 @@
+/* ── Layout principal ── */
+.menu-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 20px;
+  padding: 32px;
+  align-items: start;
+}
+
+/* ── Platos card ── */
+.platos-card {
+  background-color: #2C2825;
+  border-radius: 14px;
+  padding: 20px;
+}
+
+.platos-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.platos-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #FFF5EA;
+}
+
+.btn-nuevo {
+  background-color: #FF7A41;
+  color: #1D1A18;
+  border: none;
+  border-radius: 20px;
+  padding: 7px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Sen', sans-serif;
+  transition: opacity 0.2s;
+}
+
+.btn-nuevo:hover {
+  opacity: 0.85;
+}
+
+/* ── Scroll de platos ── */
+.platos-scroll {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 500px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #5B534E #36322F;
+}
+
+.platos-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.platos-scroll::-webkit-scrollbar-track {
+  background: #36322F;
+  border-radius: 10px;
+}
+
+.platos-scroll::-webkit-scrollbar-thumb {
+  background-color: #5B534E;
+  border-radius: 10px;
+}
+
+/* ── Plato item ── */
+.plato-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background-color: #36322F;
+  border-radius: 10px;
+  padding: 14px;
+  position: relative;
+}
+
+.plato-img {
+  width: 72px;
+  height: 72px;
+  background-color: #5B534E;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.plato-info {
+  flex: 1;
+}
+
+.plato-nombre {
+  font-size: 14px;
+  font-weight: 700;
+  color: #FFF5EA;
+  margin-bottom: 4px;
+}
+
+.plato-desc {
+  font-size: 12px;
+  color: #5B534E;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.plato-badges {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.btn-delete {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+  align-self: flex-end;
+}
+
+.btn-delete:hover {
+  opacity: 1;
+}
+
+/* ── Columna derecha ── */
+.columna-derecha {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Stats card ── */
+.stats-card {
+  background-color: #2C2825;
+  border-radius: 14px;
+  padding: 20px;
+}
+
+.stats-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #FFF5EA;
+  margin-bottom: 16px;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #36322F;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #5B534E;
+}
+
+.stat-value {
+  font-size: 13px;
+  font-weight: 700;
+  color: #FFF5EA;
+}
+
+.stat-precio {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 14px;
+}
+
+.stat-precio-valor {
+  font-size: 16px;
+  font-weight: 800;
+  color: #FF7A41;
+}
+
+/* ── Etiquetas card ── */
+.etiquetas-card {
+  background-color: #2C2825;
+  border-radius: 14px;
+  padding: 20px;
+}
+
+.etiqueta-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #36322F;
+}
+
+.etiqueta-item:last-child {
+  border-bottom: none;
+}
+
+.etiqueta-desc {
+  font-size: 12px;
+  color: #FFF5EA;
+}
+
+/* ── Badges ── */
+.badge {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.badge-spicy   { background-color: #b71c1c; color: #ef9a9a; }
+.badge-sintacc { background-color: #2e7d32; color: #a5d6a7; }
+.badge-veggie  { background-color: #1b5e20; color: #c8e6c9; }
+
+/* ── Modal ── */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal {
+  background-color: #2C2825;
+  border-radius: 16px;
+  padding: 36px;
+  width: 480px;
+  max-width: 90vw;
+}
+
+.modal-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #FF7A41;
+  margin-bottom: 6px;
+}
+
+.modal-subtitle {
+  font-size: 13px;
+  color: #5B534E;
+  margin-bottom: 24px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #FFF5EA;
+  margin-bottom: 6px;
+}
+
+.form-input {
+  width: 100%;
+  background-color: #36322F;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #FFF5EA;
+  font-family: 'Sen', sans-serif;
+  font-size: 13px;
+  outline: none;
+}
+
+.form-textarea {
+  width: 100%;
+  background-color: #36322F;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #FFF5EA;
+  font-family: 'Sen', sans-serif;
+  font-size: 13px;
+  outline: none;
+  height: 90px;
+  resize: none;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.foto-upload {
+  background-color: #36322F;
+  border-radius: 8px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  gap: 4px;
+}
+
+.foto-icon { font-size: 20px; }
+
+.foto-text {
+  font-size: 11px;
+  color: #5B534E;
+}
+
+.etiquetas-selector {
+  display: flex;
+  gap: 8px;
+}
+
+.badge-toggle {
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.badge-toggle:hover {
+  opacity: 1;
+}
+
+/* ── Modal actions ── */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.btn-cancelar {
+  background: none;
+  border: none;
+  color: #FFF5EA;
+  font-family: 'Sen', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+.btn-guardar {
+  background-color: #FF7A41;
+  color: #1D1A18;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Sen', sans-serif;
+  transition: opacity 0.2s;
+}
+
+.btn-guardar:hover {
+  opacity: 0.85;
+}
