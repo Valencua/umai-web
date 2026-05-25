@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Sen:wght@400;500;600;700;800&display=swap');
+
+
+body {
+  background-color: #1D1A18;
+  font-family: 'Sen', sans-serif;
+  color: #FFF5EA;
+  min-height: 100vh;
+  padding: 32px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
+
+/* ── Card principal ── */
+.historial-card {
+  background-color: #2C2825;
+  border-radius: 14px;
+  padding: 28px;
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+/* ── Header ── */
+.historial-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.historial-icon {
+  font-size: 20px;
+}
+
+.historial-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #FFF5EA;
+}
+
+/* ── Filtros ── */
+.filtros {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.filtro-input,
+.filtro-select {
+  background-color: #36322F;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  color: #5B534E;
+  font-family: 'Sen', sans-serif;
+  font-size: 13px;
+  outline: none;
+  cursor: pointer;
+}
+
+.filtro-select {
+  appearance: none;
+  padding-right: 32px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%235B534E' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+
+/* ── Tabla con scroll ── */
+.tabla-scroll {
+  max-height: 420px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #5B534E #36322F;
+}
+
+.tabla-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.tabla-scroll::-webkit-scrollbar-track {
+  background: #36322F;
+  border-radius: 10px;
+}
+
+.tabla-scroll::-webkit-scrollbar-thumb {
+  background-color: #5B534E;
+  border-radius: 10px;
+}
+
+/* ── Tabla ── */
+.historial-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.historial-table thead th {
+  text-align: left;
+  font-size: 12px;
+  font-weight: 700;
+  color: #5B534E;
+  padding: 10px 14px;
+  border-bottom: 1px solid #36322F;
+  position: sticky;
+  top: 0;
+  background-color: #2C2825;
+  z-index: 1;
+}
+
+.historial-table td {
+  padding: 13px 14px;
+  font-size: 13px;
+  color: #FFF5EA;
+  border-bottom: 1px solid #36322F;
+}
+
+.historial-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ── Badges ── */
+.badge {
+  display: inline-block;
+  padding: 4px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge-green  { background-color: #2e7d32; color: #a5d6a7; }
+.badge-red    { background-color: #b71c1c; color: #ef9a9a; }
+.badge-purple { background-color: #4527a0; color: #ce93d8; }

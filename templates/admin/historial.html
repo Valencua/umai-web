@@ -1,0 +1,160 @@
+{% extends "base_empleado.html" %}
+
+{% block title %}UMAi! Historial{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/historial.css') }}">
+{% endblock %}
+
+{% block content %}
+
+  <div class="historial-card">
+
+    <div class="historial-header">
+      <span class="historial-icon">📅</span>
+      <h2 class="historial-title">Historial completo de reservas</h2>
+    </div>
+
+    <div class="filtros">
+      <input type="text" class="filtro-input" placeholder="Buscar por nombre o email">
+      <input type="text" class="filtro-input" placeholder="dd/mm/aaaa">
+      <select class="filtro-select">
+        <option>Todos los estados</option>
+        <option>Visitó</option>
+        <option>Pendiente</option>
+        <option>Canceló</option>
+      </select>
+    </div>
+
+    <div class="tabla-scroll">
+      <table class="historial-table">
+        <thead>
+          <tr>
+            <th>Comensal</th>
+            <th>Email</th>
+            <th>Fecha</th>
+            <th>Horario</th>
+            <th>Pers.</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tomas Bilbao</td>
+            <td>Tbilbao@gmail.com</td>
+            <td>12/06/2025</td>
+            <td>12:00</td>
+            <td>3</td>
+            <td><span class="badge badge-green">Visitó</span></td>
+          </tr>
+          <tr>
+            <td>Hernan Leclerc</td>
+            <td>Hernilec@yahoo.com.ar</td>
+            <td>22/08/2026</td>
+            <td>22:00</td>
+            <td>4</td>
+            <td><span class="badge badge-purple">Pendiente</span></td>
+          </tr>
+          <tr>
+            <td>Jimena Narvaez</td>
+            <td>Jimenarva@gmail.com</td>
+            <td>14/03/2027</td>
+            <td>11:00</td>
+            <td>1</td>
+            <td><span class="badge badge-red">Canceló</span></td>
+          </tr>
+          <tr>
+            <td>Lucas Cetani</td>
+            <td>Cetanilucas@gmail.com</td>
+            <td>17/01/2027</td>
+            <td>12:00</td>
+            <td>5</td>
+            <td><span class="badge badge-green">Visitó</span></td>
+          </tr>
+          <tr>
+            <td>Thiago Nuñez</td>
+            <td>Tk9@gmail.com</td>
+            <td>20/10/2026</td>
+            <td>13:00</td>
+            <td>6</td>
+            <td><span class="badge badge-purple">Pendiente</span></td>
+          </tr>
+          <tr>
+            <td>Facundo Riolo</td>
+            <td>Rivestman@gmail.com</td>
+            <td>12/06/2026</td>
+            <td>20:00</td>
+            <td>3</td>
+            <td><span class="badge badge-red">Canceló</span></td>
+          </tr>
+          <tr>
+            <td>Aela Iriarte</td>
+            <td>Aliri@hotmail.com</td>
+            <td>14/02/2027</td>
+            <td>19:00</td>
+            <td>2</td>
+            <td><span class="badge badge-green">Visitó</span></td>
+          </tr>
+          <tr>
+            <td>Francisco Panei</td>
+            <td>Franpan@gmail.com</td>
+            <td>05/09/2026</td>
+            <td>21:00</td>
+            <td>3</td>
+            <td><span class="badge badge-purple">Pendiente</span></td>
+          </tr>
+          <tr>
+            <td>Daniel Suñavi</td>
+            <td>Danisuña@gmail.com</td>
+            <td>08/10/2026</td>
+            <td>23:00</td>
+            <td>5</td>
+            <td><span class="badge badge-red">Canceló</span></td>
+          </tr>
+          <tr>
+            <td>Barbara Ribas</td>
+            <td>Barbriv@yahoo.com</td>
+            <td>15/03/2027</td>
+            <td>09:00</td>
+            <td>7</td>
+            <td><span class="badge badge-green">Visitó</span></td>
+          </tr>
+          <tr>
+            <td>Sebastian Prato</td>
+            <td>Persprat@yahoo.com</td>
+            <td>12/06/2026</td>
+            <td>07:00</td>
+            <td>2</td>
+            <td><span class="badge badge-purple">Pendiente</span></td>
+          </tr>
+          <tr>
+            <td>Lucio Vitale</td>
+            <td>Vitalelucio@gmail.com</td>
+            <td>12/06/2026</td>
+            <td>12:00</td>
+            <td>3</td>
+            <td><span class="badge badge-red">Canceló</span></td>
+          </tr>
+          <tr>
+            <td>Carlos Sainz</td>
+            <td>Csainz@gmail.com</td>
+            <td>06/12/2026</td>
+            <td>12:00</td>
+            <td>22</td>
+            <td><span class="badge badge-red">Canceló</span></td>
+          </tr>
+          <tr>
+            <td>Jonathan Joestar</td>
+            <td>Jojoestar@yahoo.com</td>
+            <td>04/04/2027</td>
+            <td>18:00</td>
+            <td>12</td>
+            <td><span class="badge badge-red">Canceló</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+{% endblock %}
