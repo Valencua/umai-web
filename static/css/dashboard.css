@@ -1,12 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Sen:wght@400;500;600;700;800&display=swap');
 
-
 body {
   background-color: #1D1A18;
   font-family: 'Sen', sans-serif;
   color: #FFF5EA;
   min-height: 100vh;
-  padding: 0px;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -81,6 +79,11 @@ body {
 
 #barChart {
   min-width: 100%;
+}
+
+/* ── Desactivar cursor pointer en barras ── */
+#barChart .apexcharts-bar-series .apexcharts-series path {
+  cursor: default !important;
 }
 
 /* ── Donut ── */
