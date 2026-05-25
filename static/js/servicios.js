@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const desc = document.getElementById('input-desc').value.trim();
     const icono = document.getElementById('input-icono').value.trim();
     const error = document.getElementById('form-error');
+    const disponible = document.getElementById('input-disponibilidad').value === 'disponible';
 
     if (!nombre || !desc) {
       error.classList.add('visible');
@@ -29,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
       <div class="servicio-controles">
         <label class="toggle">
-          <input type="checkbox" checked>
+          <input type="checkbox" ${disponible ? 'checked' : ''}>
           <span class="toggle-slider"></span>
         </label>
         <button class="btn-delete">🗑️</button>
@@ -45,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('input-nombre').value = '';
     document.getElementById('input-desc').value = '';
     document.getElementById('input-icono').value = '';
+    document.getElementById('input-disponibilidad').value = 'disponible';
   });
 
   document.getElementById('input-nombre').addEventListener('input', () => {
