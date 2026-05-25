@@ -100,7 +100,7 @@ header {
     align-items: stretch;
     justify-content: space-between;
     width: 100vw;
-    height: 798px;
+    height: 650px;
     margin: 0;
     background-color: transparent;
     box-sizing: border-box;
@@ -129,7 +129,7 @@ header {
 }
 
 .sobre-nosotros-text p {
-    font-size: 30px;
+    font-size: 20px;
     font-weight: 400;     
     line-height: 1.4; 
     margin-bottom: 25px;
@@ -157,7 +157,6 @@ header {
     object-fit: cover; 
     object-position: center; /* centra la imagen dentro del contenedor, especialmente útil si el contenedor es más grande que la imagen debido al object-fit: contain, para que la imagen no quede alineada a un lado y se vea más equilibrada */
     display: block; /* hace que la imagen se comporte como un bloque, ocupando todo el ancho disponible y evitando problemas de alineación con otros elementos del contenedor */
-    transform: scale(1.15);
 }
 
 /*FOOTER!!*/

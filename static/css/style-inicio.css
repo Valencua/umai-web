@@ -108,7 +108,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 165px;
+    gap: 140px;
     margin-top: 3rem;
     padding: 0 16px;
     width: 100%;
@@ -241,7 +241,7 @@
 @media (max-width: 1365px) and (min-width: 1200px) {
     .imagen-inicio {
         /* reducir el desplazamiento lateral para pantallas tipo laptop */
-        right: 0;
+        right: 5px;
         width: min(100%, 950px);
         height: auto;
         aspect-ratio: 950 / 400;
