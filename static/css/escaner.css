@@ -1,0 +1,285 @@
+/* ── Página escáner ── */
+.escaner-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 64px);
+}
+
+.escaner-card {
+  background-color: #2C2825;
+  border-radius: 14px;
+  padding: 28px 32px 32px;
+  width: 100%;
+  max-width: 520px;
+}
+
+.escaner-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #FFF5EA;
+  margin: 0 0 20px;
+}
+
+/* ── Viewport del escáner ── */
+.scanner-viewport {
+  position: relative;
+  background-color: #36322F;
+  border-radius: 10px;
+  min-height: 280px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.scanner-frame {
+  position: relative;
+  width: 100%;
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#qr-reader {
+  width: 100%;
+  min-height: 280px;
+  display: none;
+}
+
+#qr-reader.scanner-active {
+  display: block;
+}
+
+#qr-reader video {
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+#qr-reader__scan_region {
+  background: transparent !important;
+}
+
+#qr-reader__dashboard_section_csr button {
+  background-color: #FF7A41 !important;
+  color: #1D1A18 !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-family: 'Sen', sans-serif !important;
+  font-weight: 600 !important;
+}
+
+/* Esconder UI extra de la librería; usamos nuestro botón */
+#qr-reader__dashboard_section,
+#qr-reader__header_message {
+  display: none !important;
+}
+
+.scanner-corners {
+  position: absolute;
+  inset: 24px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.scanner-corners span {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-color: #FF7A41;
+  border-style: solid;
+}
+
+.corner-tl {
+  top: 0;
+  left: 0;
+  border-width: 3px 0 0 3px;
+  border-radius: 4px 0 0 0;
+}
+
+.corner-tr {
+  top: 0;
+  right: 0;
+  border-width: 3px 3px 0 0;
+  border-radius: 0 4px 0 0;
+}
+
+.corner-bl {
+  bottom: 0;
+  left: 0;
+  border-width: 0 0 3px 3px;
+  border-radius: 0 0 0 4px;
+}
+
+.corner-br {
+  bottom: 0;
+  right: 0;
+  border-width: 0 3px 3px 0;
+  border-radius: 0 0 4px 0;
+}
+
+.scanner-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 280px;
+  color: #5B534E;
+  z-index: 1;
+}
+
+.scanner-placeholder.hidden {
+  display: none;
+}
+
+.camera-icon {
+  font-size: 36px;
+  opacity: 0.7;
+}
+
+/* ── Botones ── */
+.btn-activar-camara {
+  width: 100%;
+  padding: 14px 20px;
+  background-color: #FF7A41;
+  color: #1D1A18;
+  border: none;
+  border-radius: 10px;
+  font-family: 'Sen', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.btn-activar-camara:hover:not(:disabled) {
+  background-color: #ff8f5c;
+}
+
+.btn-activar-camara:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn-detener-camara {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px 16px;
+  background-color: transparent;
+  color: #77716C;
+  border: 1px solid #5B534E;
+  border-radius: 10px;
+  font-family: 'Sen', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: none;
+}
+
+.btn-detener-camara.visible {
+  display: block;
+}
+
+.btn-detener-camara:hover {
+  color: #FFF5EA;
+  border-color: #77716C;
+}
+
+/* ── Búsqueda manual ── */
+.manual-divider {
+  text-align: center;
+  font-size: 13px;
+  color: #77716C;
+  margin: 22px 0 14px;
+}
+
+.codigo-input {
+  width: 100%;
+  padding: 13px 16px;
+  background-color: #1D1A18;
+  border: 1px solid #5B534E;
+  border-radius: 10px;
+  color: #FFF5EA;
+  font-family: 'Sen', sans-serif;
+  font-size: 14px;
+  box-sizing: border-box;
+  margin-bottom: 12px;
+}
+
+.codigo-input::placeholder {
+  color: #5B534E;
+}
+
+.codigo-input:focus {
+  outline: none;
+  border-color: #FF7A41;
+}
+
+.btn-buscar-reserva {
+  width: 100%;
+  padding: 12px 20px;
+  background-color: #36322F;
+  color: #FFF5EA;
+  border: 1px solid #5B534E;
+  border-radius: 10px;
+  font-family: 'Sen', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-buscar-reserva:hover:not(:disabled) {
+  background-color: #42403c;
+  border-color: #77716C;
+}
+
+.btn-buscar-reserva:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Resultado ── */
+.resultado-mensaje {
+  margin-top: 20px;
+  padding: 16px 18px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+  display: none;
+}
+
+.resultado-mensaje.visible {
+  display: block;
+}
+
+.resultado-mensaje.exito {
+  background-color: rgba(76, 175, 80, 0.15);
+  color: #81c784;
+  border: 1px solid #4CAF50;
+}
+
+.resultado-mensaje.error {
+  background-color: rgba(229, 57, 53, 0.12);
+  color: #ef9a9a;
+  border: 1px solid #e53935;
+}
+
+.resultado-mensaje.info {
+  background-color: rgba(255, 122, 65, 0.12);
+  color: #FF7A41;
+  border: 1px solid #FF7A41;
+}
+
+.mensaje-camara-error {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #ef9a9a;
+  text-align: center;
+  display: none;
+}
+
+.mensaje-camara-error.visible {
+  display: block;
+}

@@ -1,0 +1,68 @@
+{% extends "base_empleado.html" %}
+
+{% block title %}UMAi! Escanear QR{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/escaner.css') }}">
+{% endblock %}
+
+{% block content %}
+
+  <div class="escaner-page">
+    <div class="escaner-card">
+
+      <h2 class="escaner-title">Escanear QR de reserva</h2>
+
+      <div class="scanner-viewport">
+        <div class="scanner-frame">
+          <div class="scanner-corners" aria-hidden="true">
+            <span class="corner-tl"></span>
+            <span class="corner-tr"></span>
+            <span class="corner-bl"></span>
+            <span class="corner-br"></span>
+          </div>
+
+          <div id="scanner-placeholder" class="scanner-placeholder">
+            <span class="camera-icon" aria-hidden="true">📷</span>
+          </div>
+
+          <div id="qr-reader"></div>
+        </div>
+      </div>
+
+      <button type="button" id="btn-activar-camara" class="btn-activar-camara">
+        Activar cámara del dispositivo
+      </button>
+
+      <button type="button" id="btn-detener-camara" class="btn-detener-camara">
+        Detener cámara
+      </button>
+
+      <p id="mensaje-camara-error" class="mensaje-camara-error" role="alert"></p>
+
+      <p class="manual-divider">-o buscá manualmente-</p>
+
+      <input
+        type="text"
+        id="codigo-manual"
+        class="codigo-input"
+        placeholder="Código del QR (tal como figura en la reserva)"
+        autocomplete="off"
+        spellcheck="false"
+      >
+
+      <button type="button" id="btn-buscar-reserva" class="btn-buscar-reserva">
+        Buscar reserva
+      </button>
+
+      <div id="resultado-mensaje" class="resultado-mensaje" role="status" aria-live="polite"></div>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+<script src="{{ url_for('static', filename='js/escaner.js') }}"></script>
+{% endblock %}
