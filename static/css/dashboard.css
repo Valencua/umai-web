@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Sen:wght@400;500;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #1D1A18;
+  font-family: 'Sen', sans-serif;
+  color: #FFF5EA;
+  min-height: 100vh;
+  padding: 0px;
+}
+
+/* ── Dashboard layout ── */
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ── Card base ── */
+.card {
+  background-color: #2C2825;
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+
+/* ── Stat cards grid ── */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.card-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #FFF5EA;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.card-icon {
+  font-size: 18px;
+}
+
+.card-value {
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.card-value.red    { color: #e53935; }
+.card-value.blue   { color: #5c6bc0; }
+.card-value.orange { color: #FF7A41; }
+.card-value.yellow { color: #FFD600; }
+
+/* ── Charts grid ── */
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.chart-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #FFF5EA;
+  margin-bottom: 20px;
+}
+
+#barChart {
+  min-width: 100%;
+}
+
+/* ── Donut ── */
+.donut-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.donut-container {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  flex-shrink: 0;
+}
+
+.donut-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  pointer-events: none;
+}
+
+.donut-number {
+  display: block;
+  font-size: 22px;
+  font-weight: 800;
+  color: #FFF5EA;
+}
+
+.donut-label {
+  display: block;
+  font-size: 10px;
+  color: #5B534E;
+}
+
+/* ── Donut legend ── */
+.donut-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legend-dot.green  { background-color: #4CAF50; }
+.legend-dot.red    { background-color: #e53935; }
+.legend-dot.orange { background-color: #FF7A41; }
+
+.legend-text {
+  font-size: 12px;
+  font-weight: 600;
+  min-width: 80px;
+}
+
+.legend-text.green-text  { color: #4CAF50; }
+.legend-text.red-text    { color: #e53935; }
+.legend-text.orange-text { color: #FF7A41; }
+
+.legend-value {
+  font-size: 12px;
+  margin-left: auto;
+}
+
+.legend-value.green-val  { color: #4CAF50; }
+.legend-value.red-val    { color: #e53935; }
+.legend-value.orange-val { color: #FF7A41; }
+
+/* ── Table ── */
+.table-card {
+  margin-top: 8px;
+}
+
+.table-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #FFF5EA;
+  margin-bottom: 16px;
+}
+
+.reservas-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.reservas-table th {
+  text-align: left;
+  font-size: 12px;
+  font-weight: 700;
+  color: #FFF5EA;
+  padding: 8px 12px;
+  border-bottom: 1px solid #36322F;
+}
+
+.reservas-table td {
+  padding: 14px 12px;
+  font-size: 13px;
+  color: #FFF5EA;
+  border-bottom: 1px solid #36322F;
+}
+
+.reservas-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ── Badges ── */
+.badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge-green  { background-color: #2e7d32; color: #a5d6a7; }
+.badge-red    { background-color: #b71c1c; color: #ef9a9a; }
+.badge-purple { background-color: #4527a0; color: #ce93d8; }

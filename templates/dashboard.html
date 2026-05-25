@@ -1,0 +1,132 @@
+{% extends "base_empleado.html" %}
+
+{% block title %}UMAi! Dashboard{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+
+  <div class="dashboard">
+
+    <!-- Stat Cards -->
+    <div class="cards-grid">
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-label">RESERVAS HOY</span>
+          <span class="card-icon">📅</span>
+        </div>
+        <span class="card-value red">18</span>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-label">PERSONAS HOY</span>
+          <span class="card-icon">👥</span>
+        </div>
+        <span class="card-value blue">24</span>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-label">CANCELACIONES HOY</span>
+          <span class="card-icon">❌</span>
+        </div>
+        <span class="card-value orange">23</span>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-label">RATING PROMEDIO</span>
+          <span class="card-icon">⭐</span>
+        </div>
+        <span class="card-value yellow">4.7</span>
+      </div>
+
+    </div>
+
+    <!-- Charts -->
+    <div class="charts-grid">
+
+      <div class="card chart-card">
+        <h3 class="chart-title">Reservas últimos 7 días</h3>
+        <div id="barChart"></div>
+      </div>
+
+      <div class="card chart-card">
+        <h3 class="chart-title">Reservas totales</h3>
+        <div class="donut-wrapper">
+          <div class="donut-container">
+            <div id="donutChart"></div>
+            <div class="donut-center">
+              <span class="donut-number">128</span>
+              <span class="donut-label">reservas</span>
+            </div>
+          </div>
+          <div class="donut-legend">
+            <div class="legend-item">
+              <span class="legend-dot green"></span>
+              <span class="legend-text green-text">Visitaron</span>
+              <span class="legend-value green-val">87 — 68%</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-dot red"></span>
+              <span class="legend-text red-text">Canceladas</span>
+              <span class="legend-value red-val">23 — 18%</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-dot orange"></span>
+              <span class="legend-text orange-text">Pendientes</span>
+              <span class="legend-value orange-val">18 — 14%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Table -->
+    <div class="card table-card">
+      <h3 class="table-title">Últimas reservas</h3>
+      <table class="reservas-table">
+        <thead>
+          <tr>
+            <th>Comensal</th>
+            <th>Email</th>
+            <th>Pers.</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tomas Bilbao</td>
+            <td>Tbilbao@gmail.com</td>
+            <td>3</td>
+            <td><span class="badge badge-green">Visitó</span></td>
+          </tr>
+          <tr>
+            <td>Hernan Leclerc</td>
+            <td>Hernilec@yahoo.com.ar</td>
+            <td>6</td>
+            <td><span class="badge badge-red">Canceló</span></td>
+          </tr>
+          <tr>
+            <td>Jimena Narvaez</td>
+            <td>valencuavasula@gmail.com</td>
+            <td>2</td>
+            <td><span class="badge badge-purple">Pendiente</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}

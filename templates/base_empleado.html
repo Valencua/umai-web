@@ -1,16 +1,74 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Supabase Bucket Example{% endblock %}</title>
-    {% block extra_css %}{% endblock %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}UMAi!{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base_empleado.css') }}">
+  {% block extra_css %}{% endblock %}
 </head>
 <body>
+  <aside class="sidebar">
 
-    <main class="main">
-        {% block content %}{% endblock %}
-    </main>
+    <div class="sidebar-logo">
+      <img src="{{ url_for('static', filename='img/Logo.svg') }}">
+      <span class="logo-sub">Panel Administrador</span>
+    </div>
 
+    <nav class="sidebar-nav">
+
+      <div class="nav-section">
+        <span class="section-label">PRINCIPAL</span>
+        <ul>
+          <li class="nav-item">
+            <span class="nav-icon">🖼️</span>
+            <span class="nav-text">Dashboard</span>
+          </li>
+          <li class="nav-item">
+            <span class="nav-icon">📋</span>
+            <span class="nav-text">Historial</span>
+          </li>
+        </ul>
+      </div>
+
+      <hr class="nav-divider">
+
+      <div class="nav-section">
+        <span class="section-label">ABM</span>
+        <ul>
+          <li class="nav-item">
+            <span class="nav-icon">🍣</span>
+            <span class="nav-text">Menu</span>
+          </li>
+          <li class="nav-item">
+            <span class="nav-icon">⭐</span>
+            <span class="nav-text">Reseñas</span>
+          </li>
+          <li class="nav-item">
+            <span class="nav-icon">♿</span>
+            <span class="nav-text">Servicios extras</span>
+          </li>
+        </ul>
+      </div>
+
+      <hr class="nav-divider">
+
+      <div class="nav-section">
+        <ul>
+          <li class="nav-item">
+            <span class="nav-icon">📷</span>
+            <span class="nav-text">Escanear QR</span>
+          </li>
+        </ul>
+      </div>
+
+    </nav>
+  </aside>
+
+  <div class="main-content">
+    {% block content %}{% endblock %}
+  </div>
+
+  {% block extra_js %}{% endblock %}
 </body>
 </html>
