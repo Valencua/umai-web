@@ -360,6 +360,20 @@
   outline: 2px solid #FFF5EA;
 }
 
+/* ── Error de validación ── */
+.form-error {
+  display: none;
+  color: #FF7A41;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.form-error.visible {
+  display: block;
+}
+
 .modal-actions {
   display: flex;
   justify-content: center;
