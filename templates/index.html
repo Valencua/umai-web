@@ -41,8 +41,37 @@
                 <button id="boton-reservas" class="bg-grey-500 font-semibold py-2 px-4 rounded-full transition-colors duration-300 hover:bg-white">
                     Reserva ya! <i class="fa-solid fa-chevron-right"></i>
                 </button>
-
             </a>
+        </div>
+
+        <div class="portadas-cards">
+            <div class="portadas-card full-rounded overflow-hidden">
+                <img src="{{ url_for('static', filename='img/PORTADA_CARD_1.png') }}" alt="portada 1" class="w-full h-full object-cover">
+                <div class="portadas-card-overlay" aria-hidden="true"></div>
+                <div class="numero-card">
+                    <button type="button" class="numero-card-etiqueta">01</button>
+                </div>
+                <h1 class="titulo-card"><span class="titulo-card-line">Menú</span><span class="titulo-card-line">ejecutivo</span></h1>
+                <p class="descripcion-card"><span class="descripcion-card-line">La alta cocina japonesa</span><span class="descripcion-card-line">a tu alcance</span></p>
+            </div>
+            <div class="portadas-card full-rounded overflow-hidden">
+                <img src="{{ url_for('static', filename='img/PORTADA_CARD_2.png') }}" alt="portada 2" class="w-full h-full object-cover">
+                <div class="portadas-card-overlay" aria-hidden="true"></div>
+                <div class="numero-card">
+                    <button type="button" class="numero-card-etiqueta">02</button>
+                </div>
+                <h1 class="titulo-card"><span class="titulo-card-line">Barra de</span><span class="titulo-card-line">sushi</span></h1>
+                <p class="descripcion-card"><span class="descripcion-card-line">El escenario donde nace</span><span class="descripcion-card-line">la perfección técnica</span></p>
+            </div>
+            <div class="portadas-card full-rounded overflow-hidden">
+                <img src="{{ url_for('static', filename='img/PORTADA_CARD_3.png') }}" alt="portada 3" class="w-full h-full object-cover">
+                <div class="portadas-card-overlay" aria-hidden="true"></div>
+                <div class="numero-card">
+                    <button type="button" class="numero-card-etiqueta">03</button>
+                </div>
+                <h1 class="titulo-card"><span class="titulo-card-line">Cocktails &</span><span class="titulo-card-line">Rolls</span></h1>
+                <p class="descripcion-card"><span class="descripcion-card-line">Armonía perfecta entre</span><span class="descripcion-card-line">la barra y cocina</span></p>
+            </div>
         </div>
     </section>
     <section id="menu" class="seccion-base">

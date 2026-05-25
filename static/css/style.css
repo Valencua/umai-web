@@ -52,7 +52,7 @@ header {
 
 .seccion-base {
     min-height: 100vh;
-    scroll-margin-top: 110px;
+    padding-top: 60px; /* reducir espacio superior para acercar el inicio a la navbar */
 }
 
 .logo img {
