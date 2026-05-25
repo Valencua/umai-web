@@ -1,12 +1,16 @@
 /**
- * Demo sin backend: códigos válidos hardcodeados.
- * Cuando conecten Flask, reemplazar validarCodigo() por un fetch al servidor.
+ * Demo sin backend. Cuando conecten Flask, validarCodigo() debe hacer fetch
+ * con el uuid_codigo (o el uuid extraído de qr_url) contra Supabase.
  */
 const CODIGOS_VALIDOS = new Set([
+  '871aa243-d64f-4832-bbc3-8e3c84538b27',
   'UMAI-2025-ABC123',
   'UMAI-RES-001',
   'RESERVA-DEMO-OK',
 ]);
+
+const UUID_RE =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
 let html5QrCode = null;
 let camaraActiva = false;
@@ -19,7 +23,6 @@ const els = {
   inputCodigo: document.getElementById('codigo-manual'),
   btnBuscar: document.getElementById('btn-buscar-reserva'),
   resultado: document.getElementById('resultado-mensaje'),
-  errorCamara: document.getElementById('mensaje-camara-error'),
 };
 
 function marcarNavActivo() {
@@ -31,12 +34,21 @@ function marcarNavActivo() {
   });
 }
 
-function normalizarCodigo(valor) {
-  return valor.trim().toUpperCase();
+/** Acepta UUID crudo o URL tipo https://umai.example/qr/{uuid} */
+function extraerCodigoReserva(valor) {
+  const trimmed = valor.trim();
+  const desdeUrl = trimmed.match(/\/qr\/([0-9a-f-]{36})/i);
+  if (desdeUrl) return desdeUrl[1].toLowerCase();
+  if (UUID_RE.test(trimmed)) return trimmed.toLowerCase();
+  return trimmed.toUpperCase();
 }
 
 function validarCodigo(codigo) {
-  return CODIGOS_VALIDOS.has(normalizarCodigo(codigo));
+  const normalizado = extraerCodigoReserva(codigo);
+  if (UUID_RE.test(normalizado)) {
+    return CODIGOS_VALIDOS.has(normalizado);
+  }
+  return CODIGOS_VALIDOS.has(normalizado);
 }
 
 function mostrarResultado(tipo, texto) {
@@ -47,16 +59,6 @@ function mostrarResultado(tipo, texto) {
 function limpiarResultado() {
   els.resultado.className = 'resultado-mensaje';
   els.resultado.textContent = '';
-}
-
-function ocultarErrorCamara() {
-  els.errorCamara.classList.remove('visible');
-  els.errorCamara.textContent = '';
-}
-
-function mostrarErrorCamara(mensaje) {
-  els.errorCamara.textContent = mensaje;
-  els.errorCamara.classList.add('visible');
 }
 
 function procesarCodigo(codigo) {
@@ -74,14 +76,20 @@ function procesarCodigo(codigo) {
   mostrarResultado('error', 'Código no válido. Revisá el QR e intentá de nuevo.');
 }
 
-async function detenerCamara() {
-  if (!html5QrCode || !camaraActiva) return;
-
-  try {
-    await html5QrCode.stop();
-    await html5QrCode.clear();
-  } catch (_) {
-    /* ignorar si ya estaba detenida */
+async function resetVistaEscaner() {
+  if (html5QrCode && camaraActiva) {
+    try {
+      await html5QrCode.stop();
+    } catch (_) {
+      /* ya detenida */
+    }
+  }
+  if (html5QrCode) {
+    try {
+      await html5QrCode.clear();
+    } catch (_) {
+      /* sin instancia activa */
+    }
   }
 
   camaraActiva = false;
@@ -94,14 +102,52 @@ async function detenerCamara() {
   els.btnBuscar.disabled = false;
 }
 
+async function detenerCamara() {
+  await resetVistaEscaner();
+}
+
+async function elegirCamara() {
+  const devices = await Html5Qrcode.getCameras();
+  if (!devices || !devices.length) {
+    throw new Error('NO_CAMERA');
+  }
+  const trasera = devices.find((d) =>
+    /back|rear|environment|trasera/i.test(d.label)
+  );
+  return trasera ? trasera.id : devices[0].id;
+}
+
+function mensajeErrorCamara(err) {
+  if (!window.isSecureContext) {
+    return 'La cámara requiere HTTPS o http://127.0.0.1 / localhost. Usá búsqueda manual o abrí el panel en localhost.';
+  }
+  if (err && err.message === 'NO_CAMERA') {
+    return 'No hay cámara disponible en este dispositivo. Usá la búsqueda manual.';
+  }
+  if (err && (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError')) {
+    return 'Permiso de cámara denegado. Permitilo en el navegador (ícono de candado en la barra de direcciones).';
+  }
+  if (err && err.name === 'NotFoundError') {
+    return 'No se encontró ninguna cámara. Usá la búsqueda manual.';
+  }
+  return 'No se pudo activar la cámara. Probá la búsqueda manual.';
+}
+
 async function iniciarCamara() {
   if (camaraActiva) return;
 
   limpiarResultado();
-  ocultarErrorCamara();
+
+  if (!window.isSecureContext) {
+    mostrarResultado(
+      'error',
+      'La cámara no funciona en esta URL. Abrí el panel en http://127.0.0.1:5000 o usá búsqueda manual.'
+    );
+    return;
+  }
 
   if (typeof Html5Qrcode === 'undefined') {
-    mostrarErrorCamara('No se pudo cargar el lector QR. Revisá tu conexión.');
+    mostrarResultado('error', 'No se pudo cargar el lector QR. Revisá tu conexión.');
     return;
   }
 
@@ -118,8 +164,9 @@ async function iniciarCamara() {
   const config = { fps: 10, qrbox: { width: 220, height: 220 } };
 
   try {
+    const cameraId = await elegirCamara();
     await html5QrCode.start(
-      { facingMode: 'environment' },
+      cameraId,
       config,
       (decodedText) => {
         procesarCodigo(decodedText);
@@ -131,13 +178,8 @@ async function iniciarCamara() {
     camaraActiva = true;
     mostrarResultado('info', 'Apuntá la cámara al código QR de la reserva.');
   } catch (err) {
-    await detenerCamara();
-    const msg =
-      err && err.name === 'NotAllowedError'
-        ? 'Permiso de cámara denegado. Activá el acceso en el navegador o usá la búsqueda manual.'
-        : 'No se pudo activar la cámara. Probá la búsqueda manual.';
-    mostrarErrorCamara(msg);
-    mostrarResultado('error', msg);
+    await resetVistaEscaner();
+    mostrarResultado('error', mensajeErrorCamara(err));
   }
 }
 
@@ -148,12 +190,10 @@ function initEscaner() {
   els.btnDetener.addEventListener('click', () => {
     detenerCamara();
     limpiarResultado();
-    ocultarErrorCamara();
   });
 
   els.btnBuscar.addEventListener('click', () => {
     limpiarResultado();
-    ocultarErrorCamara();
     procesarCodigo(els.inputCodigo.value);
   });
 
