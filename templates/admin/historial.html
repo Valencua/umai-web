@@ -16,13 +16,13 @@
     </div>
 
     <div class="filtros">
-      <input type="text" class="filtro-input" placeholder="Buscar por nombre o email">
-      <input type="text" class="filtro-input" placeholder="dd/mm/aaaa">
-      <select class="filtro-select">
-        <option>Todos los estados</option>
-        <option>Visitó</option>
-        <option>Pendiente</option>
-        <option>Canceló</option>
+      <input type="text" class="filtro-input" id="filtro-texto" placeholder="Buscar por nombre o email">
+      <input type="text" class="filtro-input" id="filtro-fecha" placeholder="dd/mm/aaaa">
+      <select class="filtro-select" id="filtro-estado">
+        <option value="">Todos los estados</option>
+        <option value="Visitó">Visitó</option>
+        <option value="Pendiente">Pendiente</option>
+        <option value="Canceló">Canceló</option>
       </select>
     </div>
 
@@ -157,4 +157,8 @@
 
   </div>
 
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/historial.js') }}"></script>
 {% endblock %}
