@@ -59,6 +59,10 @@ header {
     background-color: #36322F;
 }
 
+#check {
+    margin-right: 1rem;
+}
+
 #avatar {
     font-size: 45px;
     margin-right: 16px;
