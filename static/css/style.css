@@ -52,7 +52,7 @@ header {
 
 .seccion-base {
     min-height: 100vh;
-    scroll-margin-top: 110px;
+    padding-top: 60px; /* reducir espacio superior para acercar el inicio a la navbar */
 }
 
 .logo img {
@@ -97,6 +97,8 @@ header {
     padding: 40px 20px 20px; /* espacio interno: 40px arriba, 20px a los lados y 20px abajo, para que el contenido del footer no quede pegado al borde y tenga un poco de aire */
     color:white;
 }
+
+
 
 .footer-content {
     display: grid;
