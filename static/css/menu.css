@@ -216,7 +216,10 @@
 .badge-sintacc { background-color: #2e7d32; color: #a5d6a7; }
 .badge-veggie  { background-color: #1b5e20; color: #c8e6c9; }
 
-/* ── Modal ── */
+/* ══════════════════════════════════════ */
+/* ══              MODAL              ══ */
+/* ══════════════════════════════════════ */
+
 .modal-overlay {
   display: none;
   position: fixed;
@@ -234,26 +237,26 @@
 .modal {
   background-color: #2C2825;
   border-radius: 16px;
-  padding: 36px;
-  width: 480px;
+  padding: 40px;
+  width: 520px;
   max-width: 90vw;
 }
 
 .modal-title {
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 800;
   color: #FF7A41;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .modal-subtitle {
   font-size: 13px;
   color: #5B534E;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 }
 
 .form-group {
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 .form-label {
@@ -261,11 +264,10 @@
   font-size: 13px;
   font-weight: 600;
   color: #FFF5EA;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .form-input {
-  width: 100%;
   background-color: #36322F;
   border: none;
   border-radius: 8px;
@@ -274,10 +276,25 @@
   font-family: 'Sen', sans-serif;
   font-size: 13px;
   outline: none;
+  width: 90%;
+}
+
+.form-group-nombre .form-input {
+  width: 35%;
+}
+
+.form-input[type="number"]::-webkit-inner-spin-button,
+.form-input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.form-input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 .form-textarea {
-  width: 100%;
+  width: 95%;
   background-color: #36322F;
   border: none;
   border-radius: 8px;
@@ -286,32 +303,39 @@
   font-family: 'Sen', sans-serif;
   font-size: 13px;
   outline: none;
-  height: 90px;
+  height: 100px;
   resize: none;
 }
 
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 50px;
+  margin-bottom: 18px;
+}
+
+.form-row .form-group {
+  margin-bottom: 0;
 }
 
 .foto-upload {
   background-color: #36322F;
   border-radius: 8px;
-  height: 80px;
+  min-height: 120px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  gap: 4px;
+  gap: 8px;
 }
 
-.foto-icon { font-size: 20px; }
+.foto-icon {
+  font-size: 36px;
+}
 
 .foto-text {
-  font-size: 11px;
+  font-size: 13px;
   color: #5B534E;
 }
 
@@ -322,20 +346,25 @@
 
 .badge-toggle {
   cursor: pointer;
-  opacity: 0.6;
-  transition: opacity 0.2s;
+  opacity: 0.4;
+  transition: opacity 0.2s, transform 0.1s;
 }
 
 .badge-toggle:hover {
-  opacity: 1;
+  opacity: 0.7;
 }
 
-/* ── Modal actions ── */
+.badge-toggle.badge-selected {
+  opacity: 1;
+  transform: scale(1.05);
+  outline: 2px solid #FFF5EA;
+}
+
 .modal-actions {
   display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-  margin-top: 24px;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 28px;
 }
 
 .btn-cancelar {

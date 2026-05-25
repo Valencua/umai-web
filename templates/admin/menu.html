@@ -124,7 +124,7 @@
     <h2 class="modal-title">Nuevo plato</h2>
     <p class="modal-subtitle">¿Qué plato delicioso tenemos pensado agregar?</p>
 
-    <div class="form-group">
+    <div class="form-group form-group-nombre">
       <label class="form-label">Nombre</label>
       <input type="text" class="form-input" placeholder="Ej: Dragon Roll">
     </div>
@@ -167,14 +167,5 @@
 {% endblock %}
 
 {% block extra_js %}
-<script>
-  function abrirModal() {
-    document.getElementById('modalOverlay').classList.add('active');
-  }
-  function cerrarModal(e) {
-    if (!e || e.target === document.getElementById('modalOverlay')) {
-      document.getElementById('modalOverlay').classList.remove('active');
-    }
-  }
-</script>
+<script src="{{ url_for('static', filename='js/menu.js') }}"></script>
 {% endblock %}
