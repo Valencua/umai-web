@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UMAi! — Panel Administrador</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}?v=9">
+</head>
+<body>
+    <div class="login-shell">
+        <div class="login-card">
+            <section class="login-form-panel" aria-labelledby="login-heading">
+                <header class="login-brand">
+                    <div class="login-brand__logo">
+                        <img
+                            class="login-brand__logo-img"
+                            src="{{ url_for('static', filename='img/Logo.svg') }}"
+                            alt="UMAi! うまい"
+                            width="586"
+                            height="110"
+                        >
+                    </div>
+                    <p class="login-brand__subtitle">Panel Administrador</p>
+                </header>
+
+                <h1 class="login-heading" id="login-heading">¡Bienvenido de nuevo! 👋</h1>
+
+                <form class="login-form" method="post" action="{{ url_for('admin.login.auth') }}" novalidate>
+                    <div class="field">
+                        <label class="field__label" for="usuario">Usuario</label>
+                        <div class="field__control">
+                            <span class="field__icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="9" cy="8" r="3.5" stroke="#5b9fd4" stroke-width="1.6"/>
+                                    <circle cx="17" cy="9" r="2.5" stroke="#5b9fd4" stroke-width="1.6"/>
+                                    <path d="M3.5 19c0-3 3-5 5.5-5s5.5 2 5.5 5M14 14c2.2 0 6.5 1.5 6.5 5" stroke="#5b9fd4" stroke-width="1.6" stroke-linecap="round"/>
+                                </svg>
+                            </span>
+                            <input
+                                class="field__input"
+                                type="text"
+                                id="usuario"
+                                name="usuario"
+                                placeholder="Usuario"
+                                autocomplete="username"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="field__label" for="contrasena">Contraseña</label>
+                        <div class="field__control">
+                            <span class="field__icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="5" y="11" width="14" height="10" rx="2" stroke="#8a8278" stroke-width="1.6"/>
+                                    <path d="M8 11V8a4 4 0 1 1 8 0v3" stroke="#8a8278" stroke-width="1.6" stroke-linecap="round"/>
+                                </svg>
+                            </span>
+                            <input
+                                class="field__input"
+                                type="password"
+                                id="contrasena"
+                                name="password"
+                                placeholder="Contraseña"
+                                autocomplete="current-password"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <button type="submit" class="login-submit">
+                        Ingresar <span aria-hidden="true">→</span>
+                    </button>
+                </form>
+            </section>
+
+            <aside class="login-visual-panel" aria-label="Ilustración del panel">
+                <img
+                    class="login-visual-panel__img"
+                    src="{{ url_for('static', filename='img/panel_login.png') }}"
+                    alt="Local UMAi! — acceso seguro para administradores"
+                >
+            </aside>
+        </div>
+    </div>
+</body>
+</html>
