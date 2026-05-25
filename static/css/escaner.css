@@ -185,6 +185,11 @@
   border-color: #77716C;
 }
 
+/* ── Formulario confirmación (POST, sin fetch) ── */
+.form-confirmar-reserva {
+  margin: 0;
+}
+
 /* ── Búsqueda manual ── */
 .manual-divider {
   text-align: center;

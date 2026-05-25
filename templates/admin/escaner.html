@@ -38,22 +38,38 @@
         Detener cámara
       </button>
 
-      <p class="manual-divider">-o buscá manualmente-</p>
-
-      <input
-        type="text"
-        id="codigo-manual"
-        class="codigo-input"
-        placeholder="UUID o URL del QR (ej. 871aa243-d64f-4832-...)"
-        autocomplete="off"
-        spellcheck="false"
+      <form
+        id="form-confirmar-reserva"
+        class="form-confirmar-reserva"
+        method="post"
+        action="{{ url_for('admin.escaner.escan') }}"
       >
+        <p class="manual-divider">-o buscá manualmente-</p>
 
-      <button type="button" id="btn-buscar-reserva" class="btn-buscar-reserva">
-        Buscar reserva
-      </button>
+        <input
+          type="text"
+          name="codigo"
+          id="codigo-manual"
+          class="codigo-input"
+          placeholder="UUID o URL del QR (ej. 871aa243-d64f-4832-...)"
+          value="{{ codigo or '' }}"
+          autocomplete="off"
+          spellcheck="false"
+          required
+        >
 
+        <button type="submit" id="btn-buscar-reserva" class="btn-buscar-reserva">
+          Buscar reserva
+        </button>
+      </form>
+
+      {% if mensaje %}
+      <div class="resultado-mensaje visible {{ tipo_mensaje }}" role="status">
+        {{ mensaje }}
+      </div>
+      {% else %}
       <div id="resultado-mensaje" class="resultado-mensaje" role="status" aria-live="polite"></div>
+      {% endif %}
 
     </div>
   </div>

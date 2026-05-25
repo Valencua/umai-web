@@ -1,21 +1,13 @@
-/**
- * Demo sin backend. Cuando conecten Flask, validarCodigo() debe hacer fetch
- * con el uuid_codigo (o el uuid extraído de qr_url) contra Supabase.
- */
-const CODIGOS_VALIDOS = new Set([
-  '871aa243-d64f-4832-bbc3-8e3c84538b27',
-  'UMAI-2025-ABC123',
-  'UMAI-RES-001',
-  'RESERVA-DEMO-OK',
-]);
 
 const UUID_RE =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
 let html5QrCode = null;
 let camaraActiva = false;
+let enviandoFormulario = false;
 
 const els = {
+  form: document.getElementById('form-confirmar-reserva'),
   qrReader: document.getElementById('qr-reader'),
   placeholder: document.getElementById('scanner-placeholder'),
   btnCamara: document.getElementById('btn-activar-camara'),
@@ -40,40 +32,34 @@ function extraerCodigoReserva(valor) {
   const desdeUrl = trimmed.match(/\/qr\/([0-9a-f-]{36})/i);
   if (desdeUrl) return desdeUrl[1].toLowerCase();
   if (UUID_RE.test(trimmed)) return trimmed.toLowerCase();
-  return trimmed.toUpperCase();
-}
-
-function validarCodigo(codigo) {
-  const normalizado = extraerCodigoReserva(codigo);
-  if (UUID_RE.test(normalizado)) {
-    return CODIGOS_VALIDOS.has(normalizado);
-  }
-  return CODIGOS_VALIDOS.has(normalizado);
+  return trimmed;
 }
 
 function mostrarResultado(tipo, texto) {
+  if (!els.resultado) return;
   els.resultado.className = `resultado-mensaje visible ${tipo}`;
   els.resultado.textContent = texto;
 }
 
 function limpiarResultado() {
+  if (!els.resultado) return;
   els.resultado.className = 'resultado-mensaje';
   els.resultado.textContent = '';
 }
 
-function procesarCodigo(codigo) {
-  if (!codigo || !codigo.trim()) {
-    mostrarResultado('error', 'Ingresá un código de reserva.');
+function enviarCodigoAlServidor(codigo) {
+  if (enviandoFormulario || !els.form) return;
+
+  const normalizado = extraerCodigoReserva(codigo);
+  if (!normalizado) {
+    mostrarResultado('error', 'Código no reconocido. Escaneá de nuevo o ingresalo manualmente.');
     return;
   }
 
-  if (validarCodigo(codigo)) {
-    detenerCamara();
-    mostrarResultado('exito', 'Reserva confirmada');
-    return;
-  }
-
-  mostrarResultado('error', 'Código no válido. Revisá el QR e intentá de nuevo.');
+  enviandoFormulario = true;
+  els.inputCodigo.value = normalizado;
+  els.inputCodigo.disabled = false;
+  els.form.submit();
 }
 
 async function resetVistaEscaner() {
@@ -98,8 +84,8 @@ async function resetVistaEscaner() {
   els.btnCamara.disabled = false;
   els.btnCamara.textContent = 'Activar cámara del dispositivo';
   els.btnDetener.classList.remove('visible');
-  els.inputCodigo.disabled = false;
-  els.btnBuscar.disabled = false;
+  if (els.inputCodigo) els.inputCodigo.disabled = false;
+  if (els.btnBuscar) els.btnBuscar.disabled = false;
 }
 
 async function detenerCamara() {
@@ -141,7 +127,7 @@ async function iniciarCamara() {
   if (!window.isSecureContext) {
     mostrarResultado(
       'error',
-      'La cámara no funciona en esta URL. Abrí el panel en http://127.0.0.1:5000 o usá búsqueda manual.'
+      'La cámara no funciona en esta URL. Abrí el panel en http://127.0.0.1:5001 o usá búsqueda manual.'
     );
     return;
   }
@@ -169,14 +155,14 @@ async function iniciarCamara() {
       cameraId,
       config,
       (decodedText) => {
-        procesarCodigo(decodedText);
+        enviarCodigoAlServidor(decodedText);
       },
       () => {
-        /* sin QR en frame: no hacer nada */
+        /* sin QR en frame */
       }
     );
     camaraActiva = true;
-    mostrarResultado('info', 'Apuntá la cámara al código QR de la reserva.');
+    mostrarResultado('info', 'Apuntá la cámara al código QR. Al leerlo se confirmará la reserva.');
   } catch (err) {
     await resetVistaEscaner();
     mostrarResultado('error', mensajeErrorCamara(err));
@@ -192,16 +178,8 @@ function initEscaner() {
     limpiarResultado();
   });
 
-  els.btnBuscar.addEventListener('click', () => {
-    limpiarResultado();
-    procesarCodigo(els.inputCodigo.value);
-  });
-
-  els.inputCodigo.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      els.btnBuscar.click();
-    }
+  els.form.addEventListener('submit', () => {
+    els.inputCodigo.value = extraerCodigoReserva(els.inputCodigo.value);
   });
 }
 
