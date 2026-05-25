@@ -1,0 +1,281 @@
+/* ── Layout ── */
+.servicios-layout {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 20px;
+  padding: 32px;
+  align-items: start;
+}
+
+/* ── Servicios card ── */
+.servicios-card {
+  background-color: #2C2825;
+  border-radius: 14px;
+  padding: 24px;
+}
+
+.servicios-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #FFF5EA;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+/* ── Lista de servicios ── */
+.servicios-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 520px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #5B534E #2C2825;
+}
+
+.servicios-lista::-webkit-scrollbar {
+  width: 6px;
+}
+
+.servicios-lista::-webkit-scrollbar-track {
+  background: #2C2825;
+}
+
+.servicios-lista::-webkit-scrollbar-thumb {
+  background-color: #5B534E;
+  border-radius: 3px;
+}
+
+/* ── Servicio item ── */
+.servicio-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background-color: #36322F;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.servicio-icono {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+  background-color: #5B534E;
+}
+
+.servicio-info {
+  flex: 1;
+}
+
+.servicio-nombre {
+  font-size: 14px;
+  font-weight: 700;
+  color: #FFF5EA;
+  margin-bottom: 4px;
+}
+
+.servicio-desc {
+  font-size: 12px;
+  color: #5B534E;
+  line-height: 1.4;
+}
+
+/* ── Controles (toggle + delete) ── */
+.servicio-controles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* ── Toggle switch ── */
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  inset: 0;
+  background-color: #e53935;
+  border-radius: 24px;
+  transition: background-color 0.2s;
+}
+
+.toggle-slider::before {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  left: 3px;
+  top: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+
+.toggle input:checked + .toggle-slider {
+  background-color: #4CAF50;
+}
+
+.toggle input:checked + .toggle-slider::before {
+  transform: translateX(20px);
+}
+
+/* ── Delete button ── */
+.btn-delete {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.btn-delete:hover {
+  opacity: 1;
+}
+
+/* ══════════════════════ */
+/* ══  AGREGAR CARD   ══ */
+/* ══════════════════════ */
+
+.agregar-card {
+  background-color: #2C2825;
+  border-radius: 14px;
+  padding: 24px;
+}
+
+.agregar-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #FFF5EA;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.agregar-plus {
+  color: #4CAF50;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+/* ── Form ── */
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #FFF5EA;
+  margin-bottom: 6px;
+}
+
+.form-input {
+  width: 90%;
+  background-color: #36322F;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #FFF5EA;
+  font-family: 'Sen', sans-serif;
+  font-size: 13px;
+  outline: none;
+}
+
+.form-input::placeholder {
+  color: #5B534E;
+}
+
+.form-textarea {
+  width: 90%;
+  background-color: #36322F;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #FFF5EA;
+  font-family: 'Sen', sans-serif;
+  font-size: 13px;
+  outline: none;
+  height: 90px;
+  resize: none;
+}
+
+.form-textarea::placeholder {
+  color: #5B534E;
+}
+
+/* ── Select ── */
+.select-wrapper {
+  position: relative;
+}
+
+.form-select {
+  width: 100%;
+  background-color: #36322F;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 40px 10px 14px;
+  color: #FFF5EA;
+  font-family: 'Sen', sans-serif;
+  font-size: 13px;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%235B534E' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+}
+
+/* ── Mensaje de error ── */
+.form-error {
+  display: none;
+  color: #FF7A41;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.form-error.visible {
+  display: block;
+}
+
+/* ── Botón agregar ── */
+.btn-agregar {
+  width: 100%;
+  background-color: #FF7A41;
+  color: #1D1A18;
+  border: none;
+  border-radius: 20px;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Sen', sans-serif;
+  transition: opacity 0.2s;
+  margin-top: 8px;
+}
+
+.btn-agregar:hover {
+  opacity: 0.85;
+}
