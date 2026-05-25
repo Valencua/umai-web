@@ -8,7 +8,14 @@
   {% block extra_css %}{% endblock %}
 </head>
 <body>
-  <aside class="sidebar">
+
+  <!-- Botón hamburguesa (solo mobile) -->
+  <button class="hamburger" id="hamburger" onclick="toggleSidebar()">☰</button>
+
+  <!-- Overlay oscuro al abrir sidebar en mobile -->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+  <aside class="sidebar" id="sidebar">
 
     <div class="sidebar-logo">
       <img src="{{ url_for('static', filename='img/Logo.svg') }}">
@@ -20,13 +27,17 @@
       <div class="nav-section">
         <span class="section-label">PRINCIPAL</span>
         <ul>
-          <li class="nav-item">
-            <span class="nav-icon">🖼️</span>
-            <span class="nav-text">Dashboard</span>
+          <li class="nav-item {% if '/dashboard' in request.path %}active{% endif %}">
+            <a href="{{ url_for('admin.dashboard.index') }}">
+              <span class="nav-icon">🖼️</span>
+              <span class="nav-text">Dashboard</span>
+            </a>
           </li>
-          <li class="nav-item">
-            <span class="nav-icon">📋</span>
-            <span class="nav-text">Historial</span>
+          <li class="nav-item {% if '/historial' in request.path %}active{% endif %}">
+            <a href="{{ url_for('admin.historial.index') }}">
+              <span class="nav-icon">📋</span>
+              <span class="nav-text">Historial</span>
+            </a>
           </li>
         </ul>
       </div>
@@ -36,17 +47,23 @@
       <div class="nav-section">
         <span class="section-label">ABM</span>
         <ul>
-          <li class="nav-item">
-            <span class="nav-icon">🍣</span>
-            <span class="nav-text">Menu</span>
+          <li class="nav-item {% if '/menu' in request.path %}active{% endif %}">
+            <a href="{{ url_for('admin.menu.index') }}">
+              <span class="nav-icon">🍣</span>
+              <span class="nav-text">Menu</span>
+            </a>
           </li>
-          <li class="nav-item">
-            <span class="nav-icon">⭐</span>
-            <span class="nav-text">Reseñas</span>
+          <li class="nav-item {% if '/reseñas' in request.path or '/resenas' in request.path %}active{% endif %}">
+            <a href="{{ url_for('admin.reseñas.index') }}">
+              <span class="nav-icon">⭐</span>
+              <span class="nav-text">Reseñas</span>
+            </a>
           </li>
-          <li class="nav-item">
-            <span class="nav-icon">♿</span>
-            <span class="nav-text">Servicios extras</span>
+          <li class="nav-item {% if '/servicios' in request.path %}active{% endif %}">
+            <a href="{{ url_for('admin.servicios.auth') }}">
+              <span class="nav-icon">♿</span>
+              <span class="nav-text">Servicios extras</span>
+            </a>
           </li>
         </ul>
       </div>
@@ -55,9 +72,11 @@
 
       <div class="nav-section">
         <ul>
-          <li class="nav-item">
-            <span class="nav-icon">📷</span>
-            <span class="nav-text">Escanear QR</span>
+          <li class="nav-item {% if '/escaner' in request.path %}active{% endif %}">
+            <a href="{{ url_for('admin.escaner.escan') }}">
+              <span class="nav-icon">📷</span>
+              <span class="nav-text">Escanear QR</span>
+            </a>
           </li>
         </ul>
       </div>
@@ -66,7 +85,16 @@
   </aside>
 
   <div class="main-content">
-  {% block content %}{% endblock %}
-  {% block extra_js %}{% endblock %}
+    {% block content %}{% endblock %}
+    {% block extra_js %}{% endblock %}
+  </div>
+
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
+      document.getElementById('sidebarOverlay').classList.toggle('active');
+    }
+  </script>
+
 </body>
 </html>

@@ -1,3 +1,7 @@
+/**
+ * Sin fetch: la cámara solo lee el QR y envía el formulario HTML (POST al servidor Flask).
+ * Flask llama a umai-api: PATCH /reservas/{uuid_codigo} con {"funcion": "confirmar"}.
+ */
 
 const UUID_RE =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -92,31 +96,83 @@ async function detenerCamara() {
   await resetVistaEscaner();
 }
 
-async function elegirCamara() {
-  const devices = await Html5Qrcode.getCameras();
-  if (!devices || !devices.length) {
-    throw new Error('NO_CAMERA');
+const CONFIG_ESCANER = { fps: 10, qrbox: { width: 220, height: 220 } };
+
+/** facingMode dispara el permiso del navegador; getCameras() solo suele fallar sin permiso previo */
+const PREFERENCIAS_CAMARA = [{ facingMode: 'environment' }, { facingMode: 'user' }];
+
+function callbacksEscaneo() {
+  return {
+    onDecode: (decodedText) => enviarCodigoAlServidor(decodedText),
+    onError: () => {
+      /* frame sin QR */
+    },
+  };
+}
+
+async function iniciarConPreferencias() {
+  const { onDecode, onError } = callbacksEscaneo();
+  let ultimoError = null;
+
+  for (const config of PREFERENCIAS_CAMARA) {
+    try {
+      await html5QrCode.start(config, CONFIG_ESCANER, onDecode, onError);
+      return;
+    } catch (err) {
+      ultimoError = err;
+    }
   }
-  const trasera = devices.find((d) =>
-    /back|rear|environment|trasera/i.test(d.label)
-  );
-  return trasera ? trasera.id : devices[0].id;
+
+  try {
+    const devices = await Html5Qrcode.getCameras();
+    if (devices && devices.length) {
+      const trasera = devices.find((d) =>
+        /back|rear|environment|trasera/i.test(d.label)
+      );
+      const id = trasera ? trasera.id : devices[0].id;
+      await html5QrCode.start(id, CONFIG_ESCANER, onDecode, onError);
+      return;
+    }
+    ultimoError = ultimoError || new Error('NO_CAMERA');
+  } catch (err) {
+    ultimoError = err;
+  }
+
+  throw ultimoError || new Error('NO_CAMERA');
 }
 
 function mensajeErrorCamara(err) {
   if (!window.isSecureContext) {
-    return 'La cámara requiere HTTPS o http://127.0.0.1 / localhost. Usá búsqueda manual o abrí el panel en localhost.';
+    return (
+      `La cámara no está permitida en "${window.location.host}". ` +
+      'Abrí http://127.0.0.1:5001/admin/escaner/ (no uses la IP de la red).'
+    );
+  }
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    return 'Tu navegador no soporta acceso a la cámara. Probá Chrome o Edge actualizado.';
   }
   if (err && err.message === 'NO_CAMERA') {
-    return 'No hay cámara disponible en este dispositivo. Usá la búsqueda manual.';
+    return (
+      'No se detectó ninguna cámara. Si estás en una VM sin webcam, usá la búsqueda manual ' +
+      'o probá desde tu PC con http://127.0.0.1:5001.'
+    );
   }
-  if (err && (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError')) {
-    return 'Permiso de cámara denegado. Permitilo en el navegador (ícono de candado en la barra de direcciones).';
+  if (
+    err &&
+    (err.name === 'NotAllowedError' ||
+      err.name === 'PermissionDeniedError' ||
+      /permission/i.test(String(err.message)))
+  ) {
+    return 'Permiso de cámara denegado. Tocá el candado en la barra de direcciones → Cámara → Permitir → recargá.';
   }
-  if (err && err.name === 'NotFoundError') {
-    return 'No se encontró ninguna cámara. Usá la búsqueda manual.';
+  if (err && (err.name === 'NotFoundError' || err.name === 'DevicesNotFoundError')) {
+    return 'No hay cámara conectada o el sistema no la reconoce. Usá la búsqueda manual.';
   }
-  return 'No se pudo activar la cámara. Probá la búsqueda manual.';
+  if (err && err.name === 'NotReadableError') {
+    return 'La cámara está en uso por otra app (Zoom, Teams, etc.). Cerrala e intentá de nuevo.';
+  }
+  const detalle = err && err.message ? ` (${err.message})` : '';
+  return `No se pudo activar la cámara${detalle}. Probá http://127.0.0.1:5001 o la búsqueda manual.`;
 }
 
 async function iniciarCamara() {
@@ -147,20 +203,8 @@ async function iniciarCamara() {
   els.inputCodigo.disabled = true;
   els.btnBuscar.disabled = true;
 
-  const config = { fps: 10, qrbox: { width: 220, height: 220 } };
-
   try {
-    const cameraId = await elegirCamara();
-    await html5QrCode.start(
-      cameraId,
-      config,
-      (decodedText) => {
-        enviarCodigoAlServidor(decodedText);
-      },
-      () => {
-        /* sin QR en frame */
-      }
-    );
+    await iniciarConPreferencias();
     camaraActiva = true;
     mostrarResultado('info', 'Apuntá la cámara al código QR. Al leerlo se confirmará la reserva.');
   } catch (err) {
