@@ -234,11 +234,9 @@ header {
     }
 }
 
-/* ================= MENU ================= */
+/* ELEMENTOS DEL MENU */
 
 #menu{
-    padding: 140px 40px;
-
     overflow: hidden;
 }
 
@@ -375,11 +373,13 @@ header {
 .card-menu p{
     color: #d8d8d8;
 
-    padding-right: 80px;
+    font-size: 13px;
 
-    font-size: 15px;
+    width: 58%;
 
-    line-height: 1.5;
+    line-height: 1.4;
+
+    margin-bottom: 50px;
 }
 
 /* FOOTER CARD */
@@ -387,17 +387,21 @@ header {
 .card-footer{
     position: absolute;
 
-    bottom: 20px;
+    bottom: 18px;
 
-    left: 20px;
+    left: 18px;
 
-    right: 20px;
+    right: 18px;
 
     display: flex;
 
     justify-content: space-between;
 
     align-items: center;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
 }
 
 /* PRECIO */
@@ -416,6 +420,10 @@ header {
     display: flex;
 
     gap: 6px;
+
+    flex-wrap: wrap;
+
+    justify-content: flex-end;
 }
 
 .tag{
