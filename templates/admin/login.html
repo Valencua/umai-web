@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UMAi! — Panel Administrador</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}?v=9">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}?v=11">
 </head>
 <body>
     <div class="login-shell">
@@ -26,7 +26,7 @@
                 <h1 class="login-heading" id="login-heading">¡Bienvenido de nuevo! 👋</h1>
 
                 <form class="login-form" method="post" action="{{ url_for('admin.login.auth') }}" novalidate>
-                    <div class="field">
+                    <div class="field field--usuario">
                         <label class="field__label" for="usuario">Usuario</label>
                         <div class="field__control">
                             <span class="field__icon" aria-hidden="true">
@@ -43,12 +43,11 @@
                                 name="usuario"
                                 placeholder="Usuario"
                                 autocomplete="username"
-                                required
                             >
                         </div>
                     </div>
 
-                    <div class="field">
+                    <div class="field field--contrasena">
                         <label class="field__label" for="contrasena">Contraseña</label>
                         <div class="field__control">
                             <span class="field__icon" aria-hidden="true">
@@ -61,14 +60,15 @@
                                 class="field__input"
                                 type="password"
                                 id="contrasena"
-                                name="password"
+                                name="contrasena"
                                 placeholder="Contraseña"
                                 autocomplete="current-password"
-                                required
                             >
                         </div>
                     </div>
-
+                    <div class="login-alerts-slot">
+                        <ul id="login-errores" class="login-flashes" role="alert" hidden></ul>
+                    </div>
                     <button type="submit" class="login-submit">
                         Ingresar <span aria-hidden="true">→</span>
                     </button>
@@ -84,5 +84,6 @@
             </aside>
         </div>
     </div>
+    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
 </body>
 </html>
