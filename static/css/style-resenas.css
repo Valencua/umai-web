@@ -1,0 +1,34 @@
+/*contenedor de estrellas*/
+.rating-estrellas{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;/*aliniea a la izquierda*/
+    gap: 0.5rem; /*espacio entre cada estrella*/
+    width: max-content;
+}
+/*se oculta inputs radio del HTML, usamos labels como botones visuales*/
+.rating-estrellas input[type="radio"]{
+    display: none;
+}
+.rating-estrellas label {
+    cursor: pointer;
+    color: #4b4b4b; /*color apagado por defector*/
+    font-size: 2rem;
+    transition: color 0.15s;/*anicamcion al cambiar de color*/
+}
+/*Al hacer hover, se ilumina la estrella y el resto*/
+.rating-estrellas label:hover{
+    color: #FF7A41 !important;
+}
+.rating-estrellas input[type="radio"]:checked + label,
+.rating-estrellas input[type="radio"]:checked ~ input ~ label{
+    color:#FF7A41;
+}
+/*ilumina todas las estrellas hasta la que es seleccionada*/
+.rating-estrellas input[type="radio"]:checked ~ label {
+    color:#FF7A41 !important;
+}
+/*hover progresivo, ilumina estrellas anteriores*/
+.rating-estrellas label:hover ~ label {
+    color:#FF7A41 !important;
+}
