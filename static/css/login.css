@@ -72,35 +72,34 @@ body {
 }
 
 .login-alerts-slot {
-    min-height: 50px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    margin-bottom: 0;
+    transition: max-height 220ms ease, opacity 180ms ease, margin-bottom 220ms ease;
+}
+
+.login-alerts-slot.is-visible {
+    max-height: 80px;
+    opacity: 1;
     margin-bottom: 16px;
-    display: flex;
-    align-items: flex-start;
-    margin-right: 50px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
 }
 
 .login-flashes {
     list-style: none;
     margin: 0;
+    padding: 0;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
 }
 
 .login-flashes li {
     font-size: 0.85rem;
-    padding: 10px 6px;
+    padding: 10px 14px;
     border-radius: 10px;
     background: rgba(255, 80, 80, 0.12);
     border: 1px solid rgba(255, 100, 100, 0.25);
     color: #ffb4b4;
+    text-align: center;
 }
 
 .login-flashes li.success {

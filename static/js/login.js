@@ -1,19 +1,21 @@
 function mostrarErroresLogin(errores) {
   const lista = document.getElementById('login-errores');
-  if (!lista) return;
+  const slot = document.getElementById('login-alerts-slot');
+  if (!lista || !slot) return;
 
   lista.innerHTML = errores.map(function (texto) {
     return '<li>' + texto + '</li>';
   }).join('');
-  lista.hidden = false;
+  slot.classList.add('is-visible');
 }
 
 function ocultarErroresLogin() {
   const lista = document.getElementById('login-errores');
-  if (!lista) return;
+  const slot = document.getElementById('login-alerts-slot');
+  if (!lista || !slot) return;
 
   lista.innerHTML = '';
-  lista.hidden = true;
+  slot.classList.remove('is-visible');
 }
 
 function marcarCampoLogin(campo, invalido) {
