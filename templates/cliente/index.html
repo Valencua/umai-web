@@ -445,8 +445,15 @@
         </a>
         
       </section>
+      <section id="reservas" class="seccion-principal-reservas">
 
-        <section id="resenas" class="seccion-base">
+          
+          {% include 'cliente/info_reservas.html' %}
+
+          {% include 'cliente/form_reserva.html' %}
+
+      </section>
+      <section id="resenas" class="seccion-base">
         <h1 class="flex justify-center mb-6 text-4xl text-orange-700">
           RESEÑAS
         </h1>
@@ -646,16 +653,7 @@
         </div>
       </section>
 
-      <section id="reservas" class="seccion-principal-reservas">
-
-          
-          {% include 'cliente/info_reservas.html' %}
-
-          {% include 'cliente/form_reserva.html' %}
-
-      </section>
-
-      <section id="sobre-nosotros" class="seccion-base">
+      <section id="sobre-nosotros" class="seccion-base seccion-aboutus">
         <div class="sobre-nosotros-content">
           <div class="sobre-nosotros-text">
             <h2>SOBRE NOSOTROS</h2>
