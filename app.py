@@ -47,7 +47,6 @@ def dev_test_mail_reserva():
         fecha='27/05/2026',
         hora='20:00',
         cantidad_personas=2,
-        qr_url='https://via.placeholder.com/180',
         uuid_codigo='00000000-0000-4000-8000-000000000001',
     )
     return jsonify({'ok': True, 'mensaje': f'Mail enviado a {MAIL_USERNAME}'})
