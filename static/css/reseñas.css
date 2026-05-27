@@ -32,13 +32,13 @@
 /* Tarjeta Pendientes */
 .tarjeta-pendientes,
 .tarjeta-reseñas-pendientes {
-    width: 714px;
+    width: 62%;
     height: 388px; 
 }
 
 /* Tarjeta Estadísticas */
 .tarjeta-estadisticas {
-    width: 447px;
+    width: 38%;
     height: 388px;
     display: flex;
     flex-direction: column;
@@ -49,7 +49,7 @@
 
 /* Tarjeta Publicadas */
 .tarjeta-publicadas {
-    width: 1205px;
+    width: 100%;
     height: 545px;
 }
 
