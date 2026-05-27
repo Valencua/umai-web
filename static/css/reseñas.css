@@ -1,0 +1,223 @@
+/* CONTENEDOR Y LAYOUT PRINCIPAL */
+.contenedor-principal-reseñas {
+    background-color: #1D1A18; /* Fondo de la página principal */
+    padding: 40px;
+    font-family: 'Sen', sans-serif;
+    color: #FFFFFF;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.fila-superior {
+    display: flex;
+    gap: 44px;
+    margin-bottom: 30px;
+}
+
+.fila-inferior {
+    width: 100%;
+}
+
+/* TARJETAS (Estructura Base y Tamaños) */
+.tarjeta-base {
+    background-color: #36322F; 
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+/* Tarjeta Pendientes */
+.tarjeta-pendientes,
+.tarjeta-reseñas-pendientes {
+    width: 714px;
+    height: 388px; 
+}
+
+/* Tarjeta Estadísticas */
+.tarjeta-estadisticas {
+    width: 447px;
+    height: 388px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 0 0 0;
+    box-sizing: border-box;
+}
+
+/* Tarjeta Publicadas */
+.tarjeta-publicadas {
+    width: 1205px;
+    height: 545px;
+}
+
+/* LÓGICA DE LISTAS Y SCROLL */
+.tarjeta-con-lista {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 25px 20px 20px 30px;
+    overflow: hidden;
+}
+
+.header-tarjeta {
+    margin-bottom: 20px;
+    flex-shrink: 0;
+}
+
+.header-tarjeta h2,
+.encabezado-tarjeta h2 {
+    color: #FFFFFF;
+    font-size: 25px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.titulo-publicadas {
+    color: #16D733 !important; 
+}
+
+/* Configuración de la barra de scroll */
+.lista-reseñas,
+.lista-con-scroll {
+    flex-grow: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-right: 15px;
+}
+
+.lista-con-scroll::-webkit-scrollbar {
+    width: 10px;
+}
+.lista-con-scroll::-webkit-scrollbar-track {
+    background: #2A2724; 
+    border-radius: 10px;
+}
+.lista-con-scroll::-webkit-scrollbar-thumb {
+    background: #77716C; 
+    border-radius: 10px;
+}
+
+/* CAJAS DE RESEÑAS INDIVIDUALES */
+.caja-reseña {
+    background-color: #5B534E; 
+    border-radius: 15px;
+    padding: 20px 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-shrink: 0; 
+}
+
+.nombre-cliente {
+    font-weight: 700;
+    font-size: 16px;
+    color: #FFFFFF; 
+}
+
+.fecha-reserva {
+    font-size: 16px;
+    color: #77716C; 
+}
+
+.texto-reseña {
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 5px 0 10px 0;
+    color: #E0E0E0; 
+}
+
+.estrellas {
+    color: #FF7A41;
+    font-size: 16px;
+}
+
+/* Botones Aprobar/Rechazar */
+.acciones-reseña {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.acciones-reseña button {
+    border: none;
+    padding: 8px 25px;
+    border-radius: 20px;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: filter 0.2s;
+}
+
+.acciones-reseña button:hover {
+    filter: brightness(1.2);
+}
+
+.boton-aprobar {
+    background-color: #173F12;
+    color: #06BA36;
+}
+
+.boton-rechazar {
+    background-color: #3F1212;
+    color: #E81919; 
+}
+
+/* PANEL DE PROMEDIO DE ESTRELLAS */
+.promedio-estrellas {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 10px;
+}
+
+.estrellas-promedio {
+    font-size: 40px; 
+    font-weight: 700;
+    color: #FF7A41; 
+    line-height: 1;
+}
+
+.estrellas-graficas {
+    color: #FF7A41; 
+    font-size: 40px; 
+    display: flex;
+    gap: 5px;
+}
+
+.detalles-estadisticas {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+    margin-bottom: 25px;
+}
+
+.fila-estadistica {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 15px 40px;
+    border-top: 2px solid #23201E;
+}
+
+.fila-estadistica:last-child {
+    border-bottom: 2px solid #23201E;
+}
+
+.etiqueta-estadistica {
+    color: #A09B97;
+}
+
+.valor-pendientes {
+    color: #E2C541; 
+}
+
+.valor-publicadas {
+    color: #16D733; 
+}

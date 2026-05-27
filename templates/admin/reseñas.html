@@ -1,0 +1,145 @@
+{% extends "base_empleado.html" %}
+
+{% block title %}UMAi! Reseñas{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/reseñas.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="pestaña-reseñas">
+
+    <div class= "fila-superior">
+        <div class="tarjeta-base tarjeta-reseñas-pendientes tarjeta-con-lista">
+            <div class="header-tarjeta">
+                <h2>⏳ Pendientes de aprobación</h2>
+            </div>
+
+            <div class="lista-reseñas lista-con-scroll">
+                <div class="caja-reseña">
+
+                    <div class="header-reseña">
+                        <span class="nombre-cliente">Chaves Leonel</span>
+                        <div class="estrellas">
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+
+                    <span class="fecha-reserva">04/05/2026</span>    
+                    <p class="texto-reseña">"desastre de pagina."</p>
+                    <div class="acciones-reseña">
+                        <button class="boton-aprobar">Aprobar</button>
+                        <button class="boton-rechazar">Rechazar</button>
+                    </div>
+
+                </div>
+            
+                <div class="caja-reseña">
+                    <div class="header-reseña">
+                        <span class="nombre-cliente">Gabriela Moreno</span>
+                        <div class="estrellas">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+
+                    <span class="fecha-reserva">10/05/2026</span>  
+                    <p class="texto-reseña">“El Dragon Roll es una obra de arte. El servicio fue impecable y el ambiente es increíble.”</p>
+                    <div class="acciones-reseña">
+                        <button class="boton-aprobar">Aprobar</button>
+                        <button class="boton-rechazar">Rechazar</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>         
+
+        <div class="tarjeta-base tarjeta-estadisticas">
+            <div class="promedio-estrellas">
+                <div class="estrellas-promedio">4.7</div>
+                <div class="estrellas-graficas">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                </div>
+            </div>
+
+            <div class="detalles-estadisticas">
+                <div class="fila-estadistica">
+                    <span class="etiqueta-estadistica">pendientes</span>
+                    <span class="valor-estadistica valor-pendientes">2</span>
+                </div>
+
+                <div class="fila-estadistica">
+                    <span class="etiqueta-estadistica">aprobadas</span>
+                    <span class="valor-estadistica valor-publicadas">38</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fila-inferior">
+        <div class="tarjeta-base tarjeta-publicadas tarjeta-con-lista">
+            <div class="header-tarjeta">
+                <h2 class="titulo-publicadas">✅ Publicadas</h2>
+            </div>
+
+            <div class="lista-reseñas lista-con-scroll">
+                <div class="caja-reseña">
+                    <div class="header-reseña">
+                        <span class="nombre-cliente">Gabriela Moreno</span>
+                        <div class="estrellas">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                    <span class="fecha-reserva">10/05/2026</span>  
+                    <p class="texto-reseña">“El Dragon Roll es una obra de arte. El servicio fue impecable y el ambiente es increíble.”</p>
+                </div>
+   
+                <div class="caja-reseña">
+                    <div class="header-reseña">
+                        <span class="nombre-cliente">Gabriela Moreno</span>
+                        <div class="estrellas">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                    <span class="fecha-reserva">Reserva: 10/05/2026</span>
+                    <p class="texto-reseña">El Dragon Roll es una obra de arte. El servicio fue impecable y el ambiente es increíble."</p>
+                </div>
+
+                <div class="caja-reseña">
+                    <div class="header-reseña">
+                        <span class="nombre-cliente">Gabriela Moreno</span>
+                        <div class="estrellas">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                    <span class="fecha-reserva">Reserva: 10/05/2026</span>
+                    <p class="texto-reseña">El Dragon Roll es una obra de arte. El servicio fue impecable y el ambiente es increíble."</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/reseñas.js') }}"></script>
+{% endblock %}
