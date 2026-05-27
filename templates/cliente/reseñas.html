@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=24">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style-resenas.css') }}?v=24">
+    <title>UMAI - Dejar Reseña</title>
+
+</head>
+<body class="bg-body"> 
+
+   <header>
+    <nav class="barra-navegacion">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='img/LOGO-NAVBAR.png') }}" alt="Logo UMAI">
+        </div>
+        {% include 'cliente/nav_botones.html' %}
+    </nav>
+</header>
+
+<main class="main-resenas">
+    
+    <div class="contenedor-principal">
+
+        <div class="encabezado-resena">
+            <h2 class="titulo-resena">Tu reseña</h2>
+            <p class="descripcion-resena">Describe y valorizá tu experiencia en UMAI!</p>
+            <hr class="linea-resena"> 
+        </div>
+
+        <div class="contenedor-resena">
+
+         {% if not enviado %}
+
+            <form action="/resenas/crear" method="POST">
+
+                
+                <div class="usuario-resena">
+                    <div class="icono-usuario">
+                        <i class="fa-regular fa-circle-user"></i>
+                    </div>
+                    <div class="info-publica">
+                        <span>El contenido será publico</span>
+                        <i class="fa-solid fa-circle-info text-gray-500"></i>
+                    </div>
+                </div>
+                
+                <div class="contenedor-estrellas">
+                    <div class="rating-estrellas">
+
+                        <input type="radio" id="estrellas1" name="rating" value="1" required />
+                        <label for="estrellas1"><i class="fa-solid fa-star"></i></label>
+
+                        <input type="radio" id="estrellas2" name="rating" value="2" />
+                        <label for="estrellas2"><i class="fa-solid fa-star"></i></label>
+
+                        <input type="radio" id="estrellas3" name="rating" value="3" />
+                        <label for="estrellas3"><i class="fa-solid fa-star"></i></label>
+
+                        <input type="radio" id="estrellas4" name="rating" value="4" />
+                        <label for="estrellas4"><i class="fa-solid fa-star"></i></label>
+
+                        <input type="radio" id="estrellas5" name="rating" value="5" />
+                        <label for="estrellas5"><i class="fa-solid fa-star"></i></label>
+                    </div>
+                </div>
+
+                <div class="contenedor-formulario">
+                    <label class="label-experiencia">Cuéntenos su experiencia...</label>
+                    <textarea
+                    name="descripcion"
+                    rows="5"
+                    required
+                    placeholder="Comparte detalles de la experiencia de su visita!"
+                    class="textarea-resena"
+                    ></textarea>
+                </div>
+
+                <div class="contenedor-boton">
+                    <button
+                       type="submit"
+                       class="boton-enviar-resena"
+                    >
+                        Enviar Reseña
+                        <i class="fa-solid fa-paper-plane text-xs"></i>
+                    </button> 
+                </div>
+            </form>
+
+            {% else %}
+
+            <div class="resena-enviada">
+
+                <div class="mensaje-enviado">
+                    <h3 class="titulo-enviado">
+                        Reseña Enviada
+                    </h3>
+                </div>
+
+                <div class="verificacion-mensaje">
+                    <p>
+                        Tu reseña ha sido enviada a verificacion de contenido apto para todo público, con el fin de mantener una comunidad de UMAI sana.
+                    </p>
+                    <div class="icono-alerta">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                    </div>
+                </div>
+
+                <div class="contenedor-volver">
+                    <a href="/" class="boton-volver">
+                       Volver al Inicio
+                    </a>
+                </div> 
+            </div>    
+            {% endif %}
+        </div>
+    </div>      
+</main> 
+
+<footer class="footer-umai">
+    <div class="footer-content">
+        <div class="footer-logo">
+            <img src="{{ url_for('static', filename='img/LOGO-FOOTER.png') }}" alt="Logo UMAI">
+        </div>
+        
+        <div class="footer-redes">
+            <a href="https://instagram.com/umai.ba" target="_blank"><i class="fa-brands fa-instagram"></i> @umai.ba</a>
+            <a href="https://tiktok.com/@bs_umai" target="_blank"><i class="fa-brands fa-tiktok"></i> @bs_umai</a>
+        </div>
+        
+        <div class="footer-info">
+            <div class="footer-ubicacion">
+                <p><strong>📍 Ubicación</strong></p>
+                <p>Av. Alicia Moreau de Justo 210</p>
+            </div>
+            <div class="footer-horarios">
+                <p><strong>🕕 Horarios</strong></p>
+                <p>Lun - Dom: 18:30 hs a 1:00 hs</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p><i class="fa-solid fa-copyright"></i> 2026 UMAI. Todos los derechos reservados</p>
+    </div>
+</footer>
+
+
+</body>
+</html>

@@ -9,7 +9,7 @@ from umai.routes.admin.escaner import escaner_bp
 
 admin_bp = Blueprint('admin', __name__)
 
-admin_bp.register_blueprint(login_bp, url_prefix=f'/')
+admin_bp.register_blueprint(login_bp)
 admin_bp.register_blueprint(dashboard_bp, url_prefix=f'/dashboard')
 admin_bp.register_blueprint(historial_bp, url_prefix=f'/historial')
 admin_bp.register_blueprint(abm_menu_bp, url_prefix=f'/menu')

@@ -8,7 +8,7 @@ app = Flask(__name__,
             static_folder='static')
 
 app.register_blueprint(cliente_bp) 
-app.register_blueprint(admin_bp, url_prefix=USUARIO_URL) 
+app.register_blueprint(admin_bp, url_prefix=USUARIO_URL)       
 
 
 if __name__ == '__main__':

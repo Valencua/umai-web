@@ -1,0 +1,222 @@
+/*ocupa toda la pantalla y centra el contenido vertical y horizontal*/
+.main-resenas{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 16px;
+    padding-top: 48px;
+}
+/*limita ancho del contenido*/
+.contenedor-principal{
+    max-width: 1024px;
+    width: 100%;
+    padding: 0 16px;
+}
+/*agrupa titulo, descripcion, linea*/
+.encabezado-resena{
+    margin-bottom: 24px;
+    text-align: left;
+}
+.titulo-resena{
+    color:#FF7A41;
+    font-size: 45px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+.descripcion-resena{
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: 300;
+    opacity: 0.85;
+}
+.linea-resena{
+    border: none;
+    border-top: 2px solid #FF7A41;
+    width: 64px;
+    margin-top: 6px;
+}
+.contenedor-resena{
+    width: 100%;
+    padding: 32px;
+    background-color: #38332f;
+    border-radius: 20px;
+    border: 1px solid #3f3f46;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+.usuario-resena{
+    display: flex;
+    align-items: flex-end; /*alinea texto con la parte de abajo del icono*/
+    gap: 12px;
+    margin-bottom: 24px;
+    margin-top: 8px;
+}
+.icono-usuario{
+    color: white;
+    font-size: 48px;
+}
+.info-publica{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #9ca3af;
+}
+/*agrupa estrellas con margen inferior*/
+.contenedor-estrellas{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+}
+/*contenedor de estrellas*/
+.rating-estrellas{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;/*aliniea a la izquierda*/
+    gap: 8px; /*espacio entre cada estrella*/
+    width: max-content;
+}
+.rating-estrellas input[type="radio"]{
+    display: none;
+}
+.rating-estrellas label {
+    cursor: pointer;
+    color: #4b4b4b; /*color apagado por defector*/
+    font-size: 32px;
+    transition: color 0.15s;/*anicamcion al cambiar de color*/
+}
+/*Al hacer hover, se ilumina la estrella y el resto*/
+.rating-estrellas label:hover{
+    color: #FF7A41 !important;
+}
+.rating-estrellas input[type="radio"]:checked + label,
+.rating-estrellas input[type="radio"]:checked ~ input ~ label{
+    color:#FF7A41;
+}
+/*ilumina todas las estrellas hasta la que es seleccionada*/
+.rating-estrellas input[type="radio"]:checked ~ label {
+    color:#FF7A41 !important;
+}
+/*hover progresivo, ilumina estrellas anteriores*/
+.rating-estrellas label:hover ~ label {
+    color:#FF7A41 !important;
+}
+.contenedor-formulario{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+}
+.label-experiencia{
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #d1d5db;
+    font-weight: 500;
+}
+.textarea-resena{
+    background-color: #1D1A18;
+    border: 1px solid rgba(255, 122, 65, 0.4);
+    border-radius: 12px;
+    padding: 12px 16px;
+    resize: none;
+    color: white;
+    font-size: 16px;
+    font-family: inherit;
+    transition: border-color 0.2s;
+}
+.textarea-resena:focus{
+    outline: none;
+    border-color: #FF7A41;
+}
+.contenedor-boton{
+    display: flex;
+    justify-content: center;
+    padding-top: 8px;
+}
+.boton-enviar-resena{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    border-radius: 9999px;
+    padding: 12px 32px;
+    background-color: #FF7A41;
+    color: #FFF5EA;
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.boton-enviar-resena:hover{
+    background-color: #ea580c;
+}
+.resena-enviada{
+    width: 100%;
+    padding: 48px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 24px;
+}
+.mensaje-enviado{
+    width: 100%;
+    max-width: 600px;
+    background-color: #58534e;
+    border-radius: 9999px;
+    padding: 24px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.titulo-enviado{
+    color: white;
+    font-size: 30px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.verificacion-mensaje{
+    max-width: 448px;
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.verificacion-mensaje p{
+    color: #9ca3af;
+    font-size: 12px;
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+.icono-alerta{
+    color: white;
+    font-size: 16px;
+}
+.contenedor-volver{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.boton-volver{
+    display: inline-block;
+    padding: 12px 40px;
+    border-radius: 9999px;
+    background-color: #FF7A41;
+    color: #FFF5EA;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+.boton-volver:hover{
+    background-color: #ea580c;
+}
