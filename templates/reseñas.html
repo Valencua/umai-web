@@ -21,34 +21,34 @@
     </nav>
 </header>
 
-<main class="min-h-screen flex items-center justify-center py-20 px-4 pt-12">
+<main class="main-resenas">
     
-    <div class="max-w-4xl w-full px-4">
+    <div class="contenedor-principal">
 
-        <div class="mb-6 text-left">
-            <h2 class="font-bold mb-1" style="color:#FF7A41; font-size: 2.8rem">Tu reseña</h2>
-            <p style="color: #FFFFFF;font-size: 0.95rem; font-weight: 300; opacity: 0.85;">Describe y valorizá tu experiencia en UMAI!</p>
-            <hr style="border: none; border-top: 2px solid #FF7A41; width: 64px; margin-top: 6px;"> 
+        <div class="encabezado-resena">
+            <h2 class="titulo-resena">Tu reseña</h2>
+            <p class="descripcion-resena">Describe y valorizá tu experiencia en UMAI!</p>
+            <hr class="linea-resena"> 
         </div>
 
-        <div class="w-full p-8 shadow-2xl" style="background-color: #38332f; border-radius: 1.25rem; border: 1px solid #3f3f46;">
+        <div class="contenedor-resena">
 
          {% if not enviado %}
 
             <form action="/resenas/crear" method="POST">
 
                 
-                <div class="flex items-end mb-6 gap-3 mt-2">
-                    <div class="text-white text-5xl">
+                <div class="usuario-resena">
+                    <div class="icono-usuario">
                         <i class="fa-regular fa-circle-user"></i>
                     </div>
-                    <div class="flex items-center gap-2 text-sm text-gray-400">
+                    <div class="info-publica">
                         <span>El contenido será publico</span>
                         <i class="fa-solid fa-circle-info text-gray-500"></i>
                     </div>
                 </div>
                 
-                <div class="flex flex-col mb-6">
+                <div class="contenedor-estrellas">
                     <div class="rating-estrellas">
 
                         <input type="radio" id="estrellas1" name="rating" value="1" required />
@@ -68,23 +68,21 @@
                     </div>
                 </div>
 
-                <div class="flex flex-col mb-6">
-                    <label class="text-sm mb-2 text-gray-300 font-medium" style="font-size: 1.0rem;">Cuéntenos su experiencia...</label>
+                <div class="contenedor-formulario">
+                    <label class="label-experiencia">Cuéntenos su experiencia...</label>
                     <textarea
                     name="descripcion"
                     rows="5"
                     required
                     placeholder="Comparte detalles de la experiencia de su visita!"
-                    class="text-white text-base rounded-xl px-4 py-3 resize-none"
-                    style="background-color: #1D1A18; border: 1px solid rgba(255, 122, 65, 0.4); font-family: inherit;"
+                    class="textarea-resena"
                     ></textarea>
                 </div>
 
-                <div class="flex justify-center pt-2">
+                <div class="contenedor-boton">
                     <button
                        type="submit"
-                       class="inline-flex items-center gap-2 rounded-full font-extrabold text-sm tracking-wider uppercase px-8 py-3 transition-colors hover:bg-orange-600"
-                       style="background-color: #FF7A41;color:#FFF5EA;"
+                       class="boton-enviar-resena"
                     >
                         Enviar Reseña
                         <i class="fa-solid fa-paper-plane text-xs"></i>
@@ -94,28 +92,25 @@
 
             {% else %}
 
-            <div class="w-full py-12 flex flex-col items-center justify-center text-center gap-6">
+            <div class="resena-enviada">
 
-                <div class="w-full rounded-full px-4 py-6 flex items-center justify-center mb-1" style="background-color: #58534e; max-width: 600px; margin-left: auto; margin-right: auto;">
-                    <h3 class="font-bold text-white tracking-widest uppercase text-3xl m-0">
+                <div class="mensaje-enviado">
+                    <h3 class="titulo-enviado">
                         Reseña Enviada
                     </h3>
                 </div>
 
-                <div class="max-w-md mx-auto flex flex-col items-center mb-6">
-                    <p class="text-xs text-gray-400 leading-relaxed mb-2">
+                <div class="verificacion-mensaje">
+                    <p>
                         Tu reseña ha sido enviada a verificacion de contenido apto para todo público, con el fin de mantener una comunidad de UMAI sana.
                     </p>
-                    <div class="text-white text-base">
+                    <div class="icono-alerta">
                         <i class="fa-solid fa-circle-exclamation"></i>
                     </div>
                 </div>
 
-                <div class="w-full flex justify-center">
-                    <a href="/" class="inline-block font-extrabold text-base tracking-wider uppercase px-10 py-3 rounded-full transition-colors hover:bg-orange-600 no-underline shadow-md"
-                     style="background-color: #FF7A41;color: #FFF5EA;"
-
-                    >
+                <div class="contenedor-volver">
+                    <a href="/" class="boton-volver">
                        Volver al Inicio
                     </a>
                 </div> 
