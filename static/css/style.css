@@ -1,9 +1,34 @@
 /*importo la fuente de google fonts, es importante que esto esté al principio del CSS para que se aplique a todo el documento, aunque también se podría importar en el HTML, pero así queda más ordenado y centralizado en el CSS*/
 @import url('https://fonts.googleapis.com/css2?family=Sen:wght@400;500;700;800&display=swap');
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
 
 * {
     font-family: 'Sen', sans-serif;
 } 
+
+#servicios {
+    background-color: #36322F;
+}
+
+#avatar {
+    font-size: 45px;
+    margin-right: 16px;
+    display: flex;
+    justify-content: center;
+}
+
+#texto-servicio {
+    color: #77716C;
+    text-align: center;
+}
+
+#texto-disponibilidad {
+    color: #16D733;
+}
 
 .bg-body {
     margin: 0;
@@ -48,6 +73,23 @@ header {
     min-height: 80px;
     height: auto;
     margin: 0;
+}
+
+#resenia-1 {
+    background-color: #36322F;
+}
+
+#check {
+    margin-right: 1rem;
+}
+
+#avatar {
+    font-size: 45px;
+    margin-right: 16px;
+}
+
+.texto-resenia {
+    color: #77716C;
 }
 
 .seccion-base {

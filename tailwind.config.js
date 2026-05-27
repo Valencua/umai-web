@@ -5,8 +5,12 @@ module.exports = {
   },
   purge: [],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        umai: "#36322F",
+      },
+    },
+    variants: {},
+    plugins: [],
   },
-  variants: {},
-  plugins: [],
 }
