@@ -1,506 +1,632 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=99">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style-inicio.css') }}?v=24">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}?v=99"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style-inicio.css') }}?v=24"
+    />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"/>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+    />
     <title>UMAI</title>
-</head>
-<body class="bg-body"> 
-
-   <header>
-    <nav class="barra-navegacion">
+  </head>
+  <body class="bg-body">
+    <header>
+      <nav class="barra-navegacion">
         <div class="logo">
-            <img src="{{ url_for('static', filename='img/LOGO-NAVBAR.png') }}" alt="Logo UMAI">
+          <img
+            src="{{ url_for('static', filename='img/LOGO-NAVBAR.png') }}"
+            alt="Logo UMAI"
+          />
         </div>
         {% include 'nav_botones.html' %}
-    </nav>
-</header>
+      </nav>
+    </header>
 
-<main>
-    <section id="inicio" class="seccion-base">
+    <main>
+      <section id="inicio" class="seccion-base">
         <div class="imagen-inicio">
-            <img src="{{ url_for('static', filename='img/FOTO-INICIO.png') }}" alt="Imagen de inicio">
-            <div class="imagen-inicio-overlay" aria-hidden="true"></div>
-            <h1>El Arte de la Perfección Japonesa</h1>
-            <div class="flex-shrink">
-                <p>Una experiencia de sabor auténtico creada para redefinir el concepto del sushi tradicional.</p>
+          <img
+            src="{{ url_for('static', filename='img/FOTO-INICIO.png') }}"
+            alt="Imagen de inicio"
+          />
+          <div class="imagen-inicio-overlay" aria-hidden="true"></div>
+          <h1>El Arte de la Perfección Japonesa</h1>
+          <div class="flex-shrink">
+            <p>
+              Una experiencia de sabor auténtico creada para redefinir el
+              concepto del sushi tradicional.
+            </p>
             <a href="#menu">
-                <button id="boton-menu" class="bg-transparent border border-white font-semibold py-2 px-4 rounded-full transition-colors duration-300 hover:bg-white">
-                    Menú
-                </button>
+              <button
+                id="boton-menu"
+                class="bg-transparent border border-white font-semibold py-2 px-4 rounded-full transition-colors duration-300 hover:bg-white"
+              >
+                Menú
+              </button>
             </a>
             <a href="#sobre-nosotros">
-                <button id="boton-sobre-nosotros" class="bg-transparent border border-white font-semibold py-2 px-4 rounded-full transition-colors duration-300 hover:bg-white">
-                    Más información
-                </button>
+              <button
+                id="boton-sobre-nosotros"
+                class="bg-transparent border border-white font-semibold py-2 px-4 rounded-full transition-colors duration-300 hover:bg-white"
+              >
+                Más información
+              </button>
             </a>
             <a href="#reservas">
-                <button id="boton-reservas" class="bg-grey-500 font-semibold py-2 px-4 rounded-full transition-colors duration-300 hover:bg-white">
-                    Reserva ya! <i class="fa-solid fa-chevron-right"></i>
-                </button>
+              <button
+                id="boton-reservas"
+                class="bg-grey-500 font-semibold py-2 px-4 rounded-full transition-colors duration-300 hover:bg-white"
+              >
+                Reserva ya! <i class="fa-solid fa-chevron-right"></i>
+              </button>
             </a>
-            </div>
+          </div>
         </div>
 
         <div class="portadas-cards">
-            <div class="portadas-card full-rounded overflow-hidden">
-                <img src="{{ url_for('static', filename='img/PORTADA_CARD_1.png') }}" alt="portada 1" class="w-full h-full object-cover">
-                <div class="portadas-card-overlay" aria-hidden="true"></div>
-                <div class="numero-card">
-                    <button type="button" class="numero-card-etiqueta">01</button>
-                </div>
-                <h1 class="titulo-card"><span class="titulo-card-line">Menú</span><span class="titulo-card-line">ejecutivo</span></h1>
-                <p class="descripcion-card"><span class="descripcion-card-line">La alta cocina japonesa</span><span class="descripcion-card-line">a tu alcance</span></p>
+          <div class="portadas-card full-rounded overflow-hidden">
+            <img
+              src="{{ url_for('static', filename='img/PORTADA_CARD_1.png') }}"
+              alt="portada 1"
+              class="w-full h-full object-cover"
+            />
+            <div class="portadas-card-overlay" aria-hidden="true"></div>
+            <div class="numero-card">
+              <button type="button" class="numero-card-etiqueta">01</button>
             </div>
-            <div class="portadas-card full-rounded overflow-hidden">
-                <img src="{{ url_for('static', filename='img/PORTADA_CARD_2.png') }}" alt="portada 2" class="w-full h-full object-cover">
-                <div class="portadas-card-overlay" aria-hidden="true"></div>
-                <div class="numero-card">
-                    <button type="button" class="numero-card-etiqueta">02</button>
-                </div>
-                <h1 class="titulo-card"><span class="titulo-card-line">Barra de</span><span class="titulo-card-line">sushi</span></h1>
-                <p class="descripcion-card"><span class="descripcion-card-line">El escenario donde nace</span><span class="descripcion-card-line">la perfección técnica</span></p>
+            <h1 class="titulo-card">
+              <span class="titulo-card-line">Menú</span
+              ><span class="titulo-card-line">ejecutivo</span>
+            </h1>
+            <p class="descripcion-card">
+              <span class="descripcion-card-line">La alta cocina japonesa</span
+              ><span class="descripcion-card-line">a tu alcance</span>
+            </p>
+          </div>
+          <div class="portadas-card full-rounded overflow-hidden">
+            <img
+              src="{{ url_for('static', filename='img/PORTADA_CARD_2.png') }}"
+              alt="portada 2"
+              class="w-full h-full object-cover"
+            />
+            <div class="portadas-card-overlay" aria-hidden="true"></div>
+            <div class="numero-card">
+              <button type="button" class="numero-card-etiqueta">02</button>
             </div>
-            <div class="portadas-card full-rounded overflow-hidden">
-                <img src="{{ url_for('static', filename='img/PORTADA_CARD_3.png') }}" alt="portada 3" class="w-full h-full object-cover">
-                <div class="portadas-card-overlay" aria-hidden="true"></div>
-                <div class="numero-card">
-                    <button type="button" class="numero-card-etiqueta">03</button>
-                </div>
-                <h1 class="titulo-card"><span class="titulo-card-line">Cocktails &</span><span class="titulo-card-line">Rolls</span></h1>
-                <p class="descripcion-card"><span class="descripcion-card-line">Armonía perfecta entre</span><span class="descripcion-card-line">la barra y cocina</span></p>
+            <h1 class="titulo-card">
+              <span class="titulo-card-line">Barra de</span
+              ><span class="titulo-card-line">sushi</span>
+            </h1>
+            <p class="descripcion-card">
+              <span class="descripcion-card-line">El escenario donde nace</span
+              ><span class="descripcion-card-line">la perfección técnica</span>
+            </p>
+          </div>
+          <div class="portadas-card full-rounded overflow-hidden">
+            <img
+              src="{{ url_for('static', filename='img/PORTADA_CARD_3.png') }}"
+              alt="portada 3"
+              class="w-full h-full object-cover"
+            />
+            <div class="portadas-card-overlay" aria-hidden="true"></div>
+            <div class="numero-card">
+              <button type="button" class="numero-card-etiqueta">03</button>
             </div>
+            <h1 class="titulo-card">
+              <span class="titulo-card-line">Cocktails &</span
+              ><span class="titulo-card-line">Rolls</span>
+            </h1>
+            <p class="descripcion-card">
+              <span class="descripcion-card-line">Armonía perfecta entre</span
+              ><span class="descripcion-card-line">la barra y cocina</span>
+            </p>
+          </div>
         </div>
-    </section>
-    
-    <section id="menu" class="seccion-base">
+      </section>
 
+      <section id="menu" class="seccion-base">
         <h1 class="titulo-menu">Nuestro Menú</h1>
 
         <p class="subtitulo-menu">
-            Ingredientes frescos, técnica japonesa, sabor único.
+          Ingredientes frescos, técnica japonesa, sabor único.
         </p>
 
         <div class="slider-container">
+          <button class="prev">❮</button>
 
-            <button class="prev">❮</button>
+          <div class="slider">
+            <!-- ================= PAGINA 1 ================= -->
 
-            <div class="slider">
+            <div class="slide">
+              <div class="menu-grid">
+                <!-- PLATO 1 -->
+                <div class="card-menu">
+                  <img
+                    src="{{ url_for('static', filename='img/sushi1.png') }}"
+                    alt="Uramaki Tobiko"
+                  />
 
-                <!-- ================= PAGINA 1 ================= -->
+                  <h3>Uramaki Tobiko</h3>
 
-                <div class="slide">
+                  <p>
+                    Rollo invertido con palta y langostino. Cubierto de huevas
+                    de pescado.
+                  </p>
 
-                    <div class="menu-grid">
+                  <div class="card-footer">
+                    <span class="precio">$3.500</span>
 
-                        <!-- PLATO 1 -->
-                        <div class="card-menu">
-
-                            <img 
-                                src="{{ url_for('static', filename='img/sushi1.png') }}"
-                                alt="Uramaki Tobiko"
-                            >
-
-                            <h3>Uramaki Tobiko</h3>
-
-                            <p>
-                                Rollo invertido con palta y langostino. Cubierto de huevas de pescado.
-                            </p>
-
-                            <div class="card-footer">
-
-                                <span class="precio">$3.500</span>
-
-                                <div class="tags">
-                                    <span class="tag verde">Sin TACC</span>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <!-- PLATO 2 -->
-                        <div class="card-menu">
-
-                            <img 
-                                src="{{ url_for('static', filename='img/sushi2.png') }}"
-                                alt="Rainbow Uramaki"
-                            >
-
-                            <h3>Rainbow Uramaki</h3>
-
-                            <p>
-                                Kanikama, filadelfia y palta. Cubierto con salmón fresco.
-                            </p>
-
-                            <div class="card-footer">
-
-                                <span class="precio">$3.000</span>
-
-                                <div class="tags">
-                                    <span class="tag verde">Sin TACC</span>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <!-- PLATO 3 -->
-                        <div class="card-menu">
-
-                            <img 
-                                src="{{ url_for('static', filename='img/sushi3.png') }}"
-                                alt="Uramaki Sake"
-                            >
-
-                            <h3>Uramaki Sake</h3>
-
-                            <p>
-                                Rollo invertido con palta y langostino. Cubierto con salmón.
-                            </p>
-
-                            <div class="card-footer">
-
-                                <span class="precio">$3.000</span>
-
-                                <div class="tags">
-                                    <span class="tag verde">Sin TACC</span>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <!-- PLATO 4 -->
-                        <div class="card-menu">
-
-                            <img 
-                                src="{{ url_for('static', filename='img/sushi4.png') }}"
-                                alt="Uramaki Surimi"
-                            >
-
-                            <h3>Uramaki Surimi</h3>
-
-                            <p>
-                                Salmón y palta. Cubierto con kanikama y mayonesa japonesa.
-                            </p>
-
-                            <div class="card-footer">
-
-                                <span class="precio">$3.000</span>
-
-                                <div class="tags">
-                                    <span class="tag verde">Sin TACC</span>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <!-- PLATO 5 -->
-                        <div class="card-menu">
-
-                            <img 
-                                src="{{ url_for('static', filename='img/sushi5.png') }}"
-                                alt="Crispy Maki"
-                            >
-
-                            <h3>Crispy Maki</h3>
-
-                            <p>
-                                Roll crocante con langostino, panko y crema de huevas.
-                            </p>
-
-                            <div class="card-footer">
-
-                                <span class="precio">$3.000</span>
-
-                                <div class="tags">
-                                    <span class="tag verde">Sin TACC</span>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <!-- PLATO 6 -->
-                        <div class="card-menu">
-
-                            <img 
-                                src="{{ url_for('static', filename='img/sushi6.png') }}"
-                                alt="Maki Mixto"
-                            >
-
-                            <h3>Maki Mixto</h3>
-
-                            <p>
-                                Salmón, langostino y verdeo. Decorado con langostino frito.
-                            </p>
-
-                            <div class="card-footer">
-
-                                <span class="precio">$3.000</span>
-
-                                <div class="tags">
-                                    <span class="tag verde">Sin TACC</span>
-                                </div>
-
-                            </div>
-
-                        </div>
-
+                    <div class="tags">
+                      <span class="tag verde">Sin TACC</span>
                     </div>
-
+                  </div>
                 </div>
 
-                <!-- ================= PAGINA 2 ================= -->
+                <!-- PLATO 2 -->
+                <div class="card-menu">
+                  <img
+                    src="{{ url_for('static', filename='img/sushi2.png') }}"
+                    alt="Rainbow Uramaki"
+                  />
 
-                <div class="slide">
+                  <h3>Rainbow Uramaki</h3>
 
-                    <div class="menu-grid">
+                  <p>
+                    Kanikama, filadelfia y palta. Cubierto con salmón fresco.
+                  </p>
 
-                        <!-- PLATO 7 -->
-                        <div class="card-menu">
+                  <div class="card-footer">
+                    <span class="precio">$3.000</span>
 
-                            <img 
-                                src="{{ url_for('static', filename='img/sushi7.png') }}"
-                                alt="Uraveggie"
-                            >
-
-                            <h3>Uraveggie</h3>
-
-                            <p>
-                                Pepino, zanahoria y verdeo. Cubierto con lluvia de verdeo.
-                            </p>
-
-                            <div class="card-footer">
-
-                                <span class="precio">$3.300</span>
-
-                                <div class="tags">
-                                    <span class="tag verde">Sin TACC</span>
-                                    <span class="tag turquesa">Veggie</span>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <!-- PLATO 8 -->
-                        <div class="card-menu">
-
-                            <img 
-                                src="{{ url_for('static', filename='img/sushi8.png') }}"
-                                alt="Green Kappa Roll"
-                            >
-
-                            <h3>Green Kappa Roll</h3>
-
-                            <p>
-                                Pepino fresco y palta. Envuelto en semillas de sésamo.
-                            </p>
-
-                            <div class="card-footer">
-
-                                <span class="precio">$3.000</span>
-
-                                <div class="tags">
-                                    <span class="tag verde">Sin TACC</span>
-                                    <span class="tag turquesa">Veggie</span>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <!-- PLATO 9 -->
-                        <div class="card-menu">
-
-                            <img 
-                                src="{{ url_for('static', filename='img/sushi9.png') }}"
-                                alt="Uramaki Spicy"
-                            >
-
-                            <h3>Uramaki Spicy</h3>
-
-                            <p>
-                                Salmón fresco y palta, con hilos de kanikama en mayonesa japonesa picante y togarashi.
-                            </p>
-
-                            <div class="card-footer">
-
-                                <span class="precio">$3.300</span>
-
-                                <div class="tags">
-                                    <span class="tag verde">Sin TACC</span>
-                                    <span class="tag rojo">Spicy</span>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <!-- PLATO 10 -->
-                        <div class="card-menu">
-
-                            <img 
-                                src="{{ url_for('static', filename='img/sushi10.png') }}"
-                                alt="Dragon Uramaki"
-                            >
-
-                            <h3>Dragon Uramaki</h3>
-
-                            <p>
-                                Langostino, queso crema y palta. Cubierto con un toque de salsa unagi dulce.
-                            </p>
-
-                            <div class="card-footer">
-
-                                <span class="precio">$3.300</span>
-
-                                <div class="tags">
-                                    <span class="tag verde">Sin TACC</span>
-                                    <span class="tag rojo">Spicy</span>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <!-- PLATO 11 -->
-                        <div class="card-menu">
-
-                            <img 
-                                src="{{ url_for('static', filename='img/sushi11.png') }}"
-                                alt="Black Uramaki"
-                            >
-
-                            <h3>Black Uramaki</h3>
-
-                            <p>
-                                Arroz negro relleno de vegetales. Cubierto con una lámina de palta y crema picante
-                            </p>
-
-                            <div class="card-footer">
-
-                                <span class="precio">$3.500</span>
-
-                                <div class="tags">
-                                    <span class="tag verde">Sin TACC</span>
-                                    <span class="tag turquesa">Veggie</span>
-                                    <span class="tag rojo">Spicy</span>
-                                </div>
-
-                            </div>
-
-                        </div>
-                        
-                        <!-- PLATO 11 -->
-                        <div class="card-menu">
-
-                            <img 
-                                src="{{ url_for('static', filename='img/nigiri1.png') }}"
-                                alt="Nigiri Clasico"
-                            >
-
-                            <h3>Nigiri Clasico</h3>
-
-                            <p>
-                                Bola de arroz con una lámina de salmón y una cinta de alga.
-                            </p>
-
-                            <div class="card-footer">
-
-                                <span class="precio">$3.000</span>
-
-                                <div class="tags">
-                                    <span class="tag verde">Sin TACC</span>
-                                </div>
-
-                            </div>
-
-                        </div>
-
+                    <div class="tags">
+                      <span class="tag verde">Sin TACC</span>
                     </div>
-
+                  </div>
                 </div>
 
+                <!-- PLATO 3 -->
+                <div class="card-menu">
+                  <img
+                    src="{{ url_for('static', filename='img/sushi3.png') }}"
+                    alt="Uramaki Sake"
+                  />
+
+                  <h3>Uramaki Sake</h3>
+
+                  <p>
+                    Rollo invertido con palta y langostino. Cubierto con salmón.
+                  </p>
+
+                  <div class="card-footer">
+                    <span class="precio">$3.000</span>
+
+                    <div class="tags">
+                      <span class="tag verde">Sin TACC</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- PLATO 4 -->
+                <div class="card-menu">
+                  <img
+                    src="{{ url_for('static', filename='img/sushi4.png') }}"
+                    alt="Uramaki Surimi"
+                  />
+
+                  <h3>Uramaki Surimi</h3>
+
+                  <p>
+                    Salmón y palta. Cubierto con kanikama y mayonesa japonesa.
+                  </p>
+
+                  <div class="card-footer">
+                    <span class="precio">$3.000</span>
+
+                    <div class="tags">
+                      <span class="tag verde">Sin TACC</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- PLATO 5 -->
+                <div class="card-menu">
+                  <img
+                    src="{{ url_for('static', filename='img/sushi5.png') }}"
+                    alt="Crispy Maki"
+                  />
+
+                  <h3>Crispy Maki</h3>
+
+                  <p>Roll crocante con langostino, panko y crema de huevas.</p>
+
+                  <div class="card-footer">
+                    <span class="precio">$3.000</span>
+
+                    <div class="tags">
+                      <span class="tag verde">Sin TACC</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- PLATO 6 -->
+                <div class="card-menu">
+                  <img
+                    src="{{ url_for('static', filename='img/sushi6.png') }}"
+                    alt="Maki Mixto"
+                  />
+
+                  <h3>Maki Mixto</h3>
+
+                  <p>
+                    Salmón, langostino y verdeo. Decorado con langostino frito.
+                  </p>
+
+                  <div class="card-footer">
+                    <span class="precio">$3.000</span>
+
+                    <div class="tags">
+                      <span class="tag verde">Sin TACC</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <button class="next">❯</button>
+            <!-- ================= PAGINA 2 ================= -->
 
+            <div class="slide">
+              <div class="menu-grid">
+                <!-- PLATO 7 -->
+                <div class="card-menu">
+                  <img
+                    src="{{ url_for('static', filename='img/sushi7.png') }}"
+                    alt="Uraveggie"
+                  />
+
+                  <h3>Uraveggie</h3>
+
+                  <p>
+                    Pepino, zanahoria y verdeo. Cubierto con lluvia de verdeo.
+                  </p>
+
+                  <div class="card-footer">
+                    <span class="precio">$3.300</span>
+
+                    <div class="tags">
+                      <span class="tag verde">Sin TACC</span>
+                      <span class="tag turquesa">Veggie</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- PLATO 8 -->
+                <div class="card-menu">
+                  <img
+                    src="{{ url_for('static', filename='img/sushi8.png') }}"
+                    alt="Green Kappa Roll"
+                  />
+
+                  <h3>Green Kappa Roll</h3>
+
+                  <p>Pepino fresco y palta. Envuelto en semillas de sésamo.</p>
+
+                  <div class="card-footer">
+                    <span class="precio">$3.000</span>
+
+                    <div class="tags">
+                      <span class="tag verde">Sin TACC</span>
+                      <span class="tag turquesa">Veggie</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- PLATO 9 -->
+                <div class="card-menu">
+                  <img
+                    src="{{ url_for('static', filename='img/sushi9.png') }}"
+                    alt="Uramaki Spicy"
+                  />
+
+                  <h3>Uramaki Spicy</h3>
+
+                  <p>
+                    Salmón fresco y palta, con hilos de kanikama en mayonesa
+                    japonesa picante y togarashi.
+                  </p>
+
+                  <div class="card-footer">
+                    <span class="precio">$3.300</span>
+
+                    <div class="tags">
+                      <span class="tag verde">Sin TACC</span>
+                      <span class="tag rojo">Spicy</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- PLATO 10 -->
+                <div class="card-menu">
+                  <img
+                    src="{{ url_for('static', filename='img/sushi10.png') }}"
+                    alt="Dragon Uramaki"
+                  />
+
+                  <h3>Dragon Uramaki</h3>
+
+                  <p>
+                    Langostino, queso crema y palta. Cubierto con un toque de
+                    salsa unagi dulce.
+                  </p>
+
+                  <div class="card-footer">
+                    <span class="precio">$3.300</span>
+
+                    <div class="tags">
+                      <span class="tag verde">Sin TACC</span>
+                      <span class="tag rojo">Spicy</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- PLATO 11 -->
+                <div class="card-menu">
+                  <img
+                    src="{{ url_for('static', filename='img/sushi11.png') }}"
+                    alt="Black Uramaki"
+                  />
+
+                  <h3>Black Uramaki</h3>
+
+                  <p>
+                    Arroz negro relleno de vegetales. Cubierto con una lámina de
+                    palta y crema picante
+                  </p>
+
+                  <div class="card-footer">
+                    <span class="precio">$3.500</span>
+
+                    <div class="tags">
+                      <span class="tag verde">Sin TACC</span>
+                      <span class="tag turquesa">Veggie</span>
+                      <span class="tag rojo">Spicy</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- PLATO 11 -->
+                <div class="card-menu">
+                  <img
+                    src="{{ url_for('static', filename='img/nigiri1.png') }}"
+                    alt="Nigiri Clasico"
+                  />
+
+                  <h3>Nigiri Clasico</h3>
+
+                  <p>
+                    Bola de arroz con una lámina de salmón y una cinta de alga.
+                  </p>
+
+                  <div class="card-footer">
+                    <span class="precio">$3.000</span>
+
+                    <div class="tags">
+                      <span class="tag verde">Sin TACC</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="next">❯</button>
         </div>
-        
+
         <!-- BOTÓN PDF -->
-        <a href="{{ url_for('static', filename='pdf/menu_umai.pdf') }}"
-            download
-            class="boton-pdf">
-            DESCARGAR MENU COMPLETO
+        <a
+          href="{{ url_for('static', filename='pdf/menu_umai.pdf') }}"
+          download
+          class="boton-pdf"
+        >
+          DESCARGAR MENU COMPLETO
         </a>
 
-        <br><br><br><br><br><br><br><br><br><br><br>
-    </section>
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+      </section>
 
-    <section id="resenas" class="seccion-base">
+      <section id="resenas" class="seccion-base">
         <h1>RESEÑAS</h1>
-        <br><br><br><br><br><br><br><br><br><br><br>
-    </section>
-    <section id="reservas" class="seccion-base">
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        <h1 class="flex justify-center mb-6 text-4xl text-orange-700">
+          Servicios & Comodidades
+        </h1>
+        <p class="flex justify-center text-lg text-gray-300">
+          Pensamos en cada detalle para tu experiencia.
+        </p>
+        <div class="flex justify-center mt-2 mb-10">
+          <hr class="border-b-2 border-orange-700 w-24 rounded-full" />
+        </div>
+        <div class="flex justify-around flex-wrap gap-6">
+          <div
+            id="servicios"
+            class="max-w-sm rounded-2xl overflow-hidden shadow-lg text-white"
+          >
+            <div class="flex justify-center items-center mt-6">
+              <p class="text-5xl">♿</p>
+            </div>
+            <div class="px-6 py-4">
+              <div
+                class="font-bold text-xl mb-2 flex justify-center items-center"
+              >
+                Acceso para discapacitados
+              </div>
+              <p id="texto-servicio" class="flex justify-center items-center">
+                Rampa de acceso, baños adaptados y atención preferencial.
+              </p>
+            </div>
+            <div
+              id="texto-disponibilidad"
+              class="mb-4 flex justify-center items-center"
+            >
+              <p>● Disponible</p>
+            </div>
+          </div>
+          <div
+            id="servicios"
+            class="max-w-sm rounded-2xl overflow-hidden shadow-lg text-white"
+          >
+            <div class="flex justify-center items-center mt-6">
+              <p class="text-5xl">🅿️</p>
+            </div>
+            <div class="px-6 py-4">
+              <div
+                class="font-bold text-xl mb-2 flex justify-center items-center"
+              >
+                Estacionamiento
+              </div>
+              <p id="texto-servicio" class="flex justify-center items-center">
+                Playa de estacionamiento a 50 metros del local.
+              </p>
+            </div>
+            <div
+              id="texto-disponibilidad"
+              class="mb-4 flex justify-center items-center"
+            >
+              <p>● Disponible</p>
+            </div>
+          </div>
+          <div
+            id="servicios"
+            class="max-w-sm rounded-2xl overflow-hidden shadow-lg text-white"
+          >
+            <div class="flex justify-center items-center mt-6">
+              <p class="text-5xl">📶</p>
+            </div>
+            <div class="px-6 py-4">
+              <div
+                class="font-bold text-xl mb-2 flex justify-center items-center"
+              >
+                Wifi gratuito
+              </div>
+              <p id="texto-servicio" class="flex justify-center items-center">
+                Conectividad de alta velocidad para todos los comensales.
+              </p>
+            </div>
+            <div
+              id="texto-disponibilidad"
+              class="mb-4 flex justify-center items-center"
+            >
+              <p>● Disponible</p>
+            </div>
+          </div>
+          <div
+            id="servicios"
+            class="max-w-sm rounded-2xl overflow-hidden shadow-lg text-white"
+          >
+            <div class="flex justify-center items-center mt-6">
+              <p class="text-5xl">🥡</p>
+            </div>
+            <div class="px-6 py-4">
+              <div
+                class="font-bold text-xl mb-2 flex justify-center items-center"
+              >
+                Take Away
+              </div>
+              <p id="texto-servicio" class="flex justify-center items-center">
+                Disfrutá nuestros platos donde quieras, listos para llevar.
+              </p>
+            </div>
+            <div
+              id="texto-disponibilidad"
+              class="mb-4 flex justify-center items-center"
+            >
+              <p>● Disponible</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="reservas" class="seccion-base">
         <h1>RESERVAS</h1>
-        <br><br><br><br><br><br><br><br><br><br><br>
-    </section>
-    <section id="sobre-nosotros" class="seccion-base">
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+      </section>
+      <section id="sobre-nosotros" class="seccion-base">
         <div class="sobre-nosotros-content">
-            
-            <div class="sobre-nosotros-text">
-                <h2>SOBRE NOSOTROS</h2>
-                <p>En UMAI! fusionamos tecnología y gastronomía en una experiencia moderna inspirada en la estética japonesa.</p>
-                <p>Creemos que el sushi es ritual: precisión, materia prima impecable y un ambiente pensado para que cada visita se sienta especial. Por eso trabajamos con un servicio detallista y una atmósfera nocturna, íntima y cuidada.</p>
-                <p>🍣 うまい — “Delicioso”: porque cada detalle también forma parte de la experiencia. </p>
-            </div>
+          <div class="sobre-nosotros-text">
+            <h2>SOBRE NOSOTROS</h2>
+            <p>
+              En UMAI! fusionamos tecnología y gastronomía en una experiencia
+              moderna inspirada en la estética japonesa.
+            </p>
+            <p>
+              Creemos que el sushi es ritual: precisión, materia prima impecable
+              y un ambiente pensado para que cada visita se sienta especial. Por
+              eso trabajamos con un servicio detallista y una atmósfera
+              nocturna, íntima y cuidada.
+            </p>
+            <p>
+              🍣 うまい — “Delicioso”: porque cada detalle también forma parte
+              de la experiencia.
+            </p>
+          </div>
 
-            <div class="sobre-nosotros-image">
-                <img src="{{ url_for('static', filename='img/LOCAL-UMAI.png') }}">
-            </div>
+          <div class="sobre-nosotros-image">
+            <img src="{{ url_for('static', filename='img/LOCAL-UMAI.png') }}" />
+          </div>
         </div>
-    </section>
-</main>
+      </section>
+    </main>
 
-<footer class="footer-umai">
-    <div class="footer-content">
+    <footer class="footer-umai">
+      <div class="footer-content">
         <div class="footer-logo">
-            <img src="{{ url_for('static', filename='img/LOGO-FOOTER.png') }}" alt="Logo UMAI">
+          <img
+            src="{{ url_for('static', filename='img/LOGO-FOOTER.png') }}"
+            alt="Logo UMAI"
+          />
         </div>
-        
+
         <div class="footer-redes">
-            <a href="https://instagram.com/umai.ba" target="_blank"><i class="fa-brands fa-instagram"></i> @umai.ba</a>
-            <a href="https://tiktok.com/@bs_umai" target="_blank"><i class="fa-brands fa-tiktok"></i> @bs_umai</a>
+          <a href="https://instagram.com/umai.ba" target="_blank"
+            ><i class="fa-brands fa-instagram"></i> @umai.ba</a
+          >
+          <a href="https://tiktok.com/@bs_umai" target="_blank"
+            ><i class="fa-brands fa-tiktok"></i> @bs_umai</a
+          >
         </div>
-        
+
         <div class="footer-info">
-            <div class="footer-ubicacion">
-                <p><strong>📍 Ubicación</strong></p>
-                <p>Av. Alicia Moreau de Justo 210</p>
-            </div>
-            <div class="footer-horarios">
-                <p><strong>🕕 Horarios</strong></p>
-                <p>Lun - Dom: 18:30 hs a 1:00 hs</p>
-            </div>
+          <div class="footer-ubicacion">
+            <p><strong>📍 Ubicación</strong></p>
+            <p>Av. Alicia Moreau de Justo 210</p>
+          </div>
+          <div class="footer-horarios">
+            <p><strong>🕕 Horarios</strong></p>
+            <p>Lun - Dom: 18:30 hs a 1:00 hs</p>
+          </div>
         </div>
-    </div>
-    
-    <div class="footer-bottom">
-        <p><i class="fa-solid fa-copyright"></i> 2026 UMAI. Todos los derechos reservados</p>
-    </div>
-</footer>
+      </div>
 
-<script src="{{ url_for('static', filename='js/menu.js') }}"></script>
+      <div class="footer-bottom">
+        <p>
+          <i class="fa-solid fa-copyright"></i> 2026 UMAI. Todos los derechos
+          reservados
+        </p>
+      </div>
+    </footer>
 
-</body>
+    <script src="{{ url_for('static', filename='js/menu.js') }}"></script>
+  </body>
 </html>

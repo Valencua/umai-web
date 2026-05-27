@@ -5,6 +5,26 @@
     font-family: 'Sen', sans-serif;
 } 
 
+#servicios {
+    background-color: #36322F;
+}
+
+#avatar {
+    font-size: 45px;
+    margin-right: 16px;
+    display: flex;
+    justify-content: center;
+}
+
+#texto-servicio {
+    color: #77716C;
+    text-align: center;
+}
+
+#texto-disponibilidad {
+    color: #16D733;
+}
+
 .bg-body {
     margin: 0;
     padding: 0;
