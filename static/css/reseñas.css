@@ -1,11 +1,14 @@
 /* CONTENEDOR Y LAYOUT PRINCIPAL */
-.contenedor-principal-reseñas {
+.pestaña-reseñas {
     background-color: #1D1A18; /* Fondo de la página principal */
     padding: 40px;
     font-family: 'Sen', sans-serif;
     color: #FFFFFF;
     box-sizing: border-box;
     width: 100%;
+    min-height: 100vh;
+    max-width: 1300px;
+    margin: 0 auto;
     min-height: 100vh;
 }
 
