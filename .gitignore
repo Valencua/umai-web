@@ -23,8 +23,14 @@ wheels/
 share/python-wheels/
 *.egg-info/
 .installed.cfg
+
+#tailwind
+node_modules/
+
 *.egg
 MANIFEST
+
+node_modules/
 
 # PyInstaller
 #   Usually these files are written by a python script from a template

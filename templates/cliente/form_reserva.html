@@ -1,0 +1,63 @@
+<div class="max-w-md border border-white shadow-xl font-sans text-white" 
+     style="background-color: #1D1A18; padding: 15px 50px; margin-right: 30px; margin-top: 50px; border-radius: 35px;">
+    
+    <h2 class="font-bold mb-6 tracking-wide" style="font-size: 30px; color: #FF7A41;">
+        Nueva reserva
+    </h2>
+    
+    <form action="#" method="POST">
+        
+        <div class="mb-5">
+            <label class="block text-xs font-bold tracking-widest mb-2" style="color: #8c827c;">NOMBRE COMPLETO</label>
+            <input type="text" name="nombre" placeholder="Ej: Franco Colapinto" 
+                   class="w-full border border-transparent focus:outline-none focus:border-orange-500 text-gray-200" 
+                   style="height: 35px; padding: 10px; background-color: #36322F; border-radius: 12px;">
+        </div>
+
+        <div class="mb-5">
+            <label class="block text-xs font-bold tracking-widest mb-2" style="color: #8c827c;">EMAIL</label>
+            <input type="email" name="email" placeholder="Ej: francpinto@gmail.com" 
+                   class="w-full border border-transparent focus:outline-none focus:border-orange-500 text-gray-200" 
+                   style="height: 35px; padding: 10px; background-color: #36322F; border-radius: 12px;">
+        </div>
+
+        <div class="flex -mx-2 mb-5">
+            <div class="w-1/2 px-2">
+                <label class="block text-xs font-bold tracking-widest mb-2" style="color: #8c827c;">FECHA</label>
+                <input type="text" name="fecha" placeholder="dd/mm/aaaa" 
+                       class="w-full border border-transparent focus:outline-none focus:border-orange-500 text-gray-200" 
+                       style="height: 35px; padding: 10px; background-color: #36322F; border-radius: 12px;">
+            </div>
+            <div class="w-1/2 px-2">
+                <label class="block text-xs font-bold tracking-widest mb-2" style="color: #8c827c;">TELÉFONO</label>
+                <input type="tel" name="telefono" placeholder="Ej: +54 9 11 1234 5678" 
+                       class="w-full border border-transparent focus:outline-none focus:border-orange-500 text-gray-200" 
+                       style="height: 35px; padding: 10px; background-color: #36322F; border-radius: 12px;">
+            </div>
+        </div>
+
+        <div class="flex -mx-2 mb-5">
+            <div class="w-1/2 px-2">
+                <label class="block text-xs font-bold tracking-widest mb-2" style="color: #8c827c;">HORARIO</label>
+                <input type="text" name="horario" placeholder="18:00" 
+                       class="w-full border border-transparent focus:outline-none focus:border-orange-500 text-gray-200" 
+                       style="height: 35px; padding: 10px; background-color: #36322F; border-radius: 12px;">
+            </div>
+            <div class="w-1/2 px-2">
+                <label class="block text-xs font-bold tracking-widest mb-2" style="color: #8c827c;">PERSONAS</label>
+                <input type="number" name="personas" placeholder="2" min="1"
+                       class="w-full border border-transparent focus:outline-none focus:border-orange-500 text-gray-200" 
+                       style="height: 35px; padding: 10px; background-color: #36322F; border-radius: 12px;">
+            </div>
+        </div>
+
+        <div class="pt-4">
+            <button type="submit" 
+                    class="w-full text-white font-bold text-base tracking-wider uppercase hover:bg-orange-600 focus:outline-none shadow-lg" 
+                    style="height: 40px; padding: 4px 10px; background-color: #FF7A41; border-radius: 15px;">
+                Confirmar reserva - Recibir QR
+            </button>
+        </div>
+
+    </form>
+</div>

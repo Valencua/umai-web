@@ -1,9 +1,79 @@
 /*importo la fuente de google fonts, es importante que esto esté al principio del CSS para que se aplique a todo el documento, aunque también se podría importar en el HTML, pero así queda más ordenado y centralizado en el CSS*/
 @import url('https://fonts.googleapis.com/css2?family=Sen:wght@400;500;700;800&display=swap');
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+
+
+/* --- Lista de enlaces --- */
+.enlaces {
+    display: flex; 
+    gap: 30px; 
+    list-style: none; 
+    margin: 0; 
+    padding: 0;
+}
+
+/* --- Limpieza básica de los textos --- */
+.enlaces a {
+    text-decoration: none; 
+    font-weight: bold; 
+}
+
+.enlaces a:hover {
+   background-color: #FF7A41; 
+   color: white;
+   border-radius: 10px;
+}
+
+/* --- El botón que simula estar activo ("INICIO") --- */
+.boton-activo {
+    padding: 8px 16px; 
+    font-size: 20px;
+    color: #FF7A41;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+
+/* --- Contenedor Padre (El que pone las cosas lado a lado) --- */
+.seccion-principal-reservas {
+    display: flex;
+    justify-content: space-between; 
+    align-items: start; 
+    max-width: 1100px; 
+    margin: 60px auto;
+    gap: 50px; 
+    padding: 0 20px;
+}
+
 
 * {
     font-family: 'Sen', sans-serif;
 } 
+
+#servicios {
+    background-color: #36322F;
+}
+
+#avatar {
+    font-size: 45px;
+    margin-right: 16px;
+    display: flex;
+    justify-content: center;
+}
+
+#texto-servicio {
+    color: #77716C;
+    text-align: center;
+}
+
+#texto-disponibilidad {
+    color: #16D733;
+}
 
 .bg-body {
     margin: 0;
@@ -50,9 +120,26 @@ header {
     margin: 0;
 }
 
+#resenia-1 {
+    background-color: #36322F;
+}
+
+#check {
+    margin-right: 1rem;
+}
+
+#avatar {
+    font-size: 45px;
+    margin-right: 16px;
+}
+
+.texto-resenia {
+    color: #77716C;
+}
+
 .seccion-base {
     min-height: 100vh;
-    scroll-margin-top: 110px;
+    padding-top: 60px; /* reducir espacio superior para acercar el inicio a la navbar */
 }
 
 .logo img {
@@ -90,6 +177,75 @@ header {
     font-family: inherit;
 }
 
+/* --- SECCION SOBRE NOSOTROS --- */
+#sobre-nosotros {
+    background-color: transparent;
+}
+
+.sobre-nosotros-content {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    width: 100vw;
+    height: 650px;
+    margin: 0;
+    background-color: transparent;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.sobre-nosotros-text {
+    width: 60%;
+    background-color: #36322f;
+    color: #E0E0E0;
+    padding: 60px 80px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.sobre-nosotros-text h2 {
+    color: #FF7A41;
+    font-size: 65px;
+    font-weight: 700;  
+    margin-top: 0;
+    margin-bottom: 20px;
+    line-height: 1.1; 
+}
+
+.sobre-nosotros-text p {
+    font-size: 20px;
+    font-weight: 400;     
+    line-height: 1.4; 
+    margin-bottom: 25px;
+}
+
+.sobre-nosotros-text p:last-of-type {
+    font-size: 24px;
+    margin-top: 30px;
+    margin-bottom: 0;
+}
+
+.sobre-nosotros-image {
+    width: 50%;
+    height: 100%;
+    background-color: black;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    overflow: hidden;
+}
+
+.sobre-nosotros-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    object-position: center; /* centra la imagen dentro del contenedor, especialmente útil si el contenedor es más grande que la imagen debido al object-fit: contain, para que la imagen no quede alineada a un lado y se vea más equilibrada */
+    display: block; /* hace que la imagen se comporte como un bloque, ocupando todo el ancho disponible y evitando problemas de alineación con otros elementos del contenedor */
+}
+
 /*FOOTER!!*/
 .footer-umai{
     background-color:black;
@@ -97,6 +253,8 @@ header {
     padding: 40px 20px 20px; /* espacio interno: 40px arriba, 20px a los lados y 20px abajo, para que el contenido del footer no quede pegado al borde y tenga un poco de aire */
     color:white;
 }
+
+
 
 .footer-content {
     display: grid;
@@ -232,4 +390,343 @@ header {
     .footer-horarios {
         font-size: 12px;
     }
+}
+
+/* ELEMENTOS DEL MENU */
+
+#menu{
+    overflow: hidden;
+}
+
+.titulo-menu{
+    color: #FF7A41;
+
+    text-align: center;
+
+    font-size: 52px;
+
+    margin-bottom: 10px;
+}
+
+.subtitulo-menu{
+    color: #d8d8d8;
+
+    text-align: center;
+
+    margin-bottom: 50px;
+}
+
+/* CONTENEDOR GENERAL */
+
+.slider-container{
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 20px;
+
+    position: relative;
+}
+
+/* SLIDER */
+
+.slider{
+    display: flex;
+
+    width: 100%;
+
+    transition: transform .5s ease;
+}
+
+/* CADA PAGINA */
+
+.slide{
+    min-width: 100%;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    justify-content: center;
+}
+
+/* GRID DE CARDS */
+
+.menu-grid{
+    display: grid;
+
+    grid-template-columns: repeat(3, 300px);
+
+    gap: 25px;
+
+    justify-content: center;
+}
+
+/* CARD */
+
+.card-menu{
+    position: relative;
+
+    width: 300px;
+
+    height: 260px;
+
+    background-color: black;
+
+    border-radius: 20px;
+
+    padding: 18px;
+
+    overflow: hidden;
+
+    box-sizing: border-box;
+
+    transition: transform 0.25s ease;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+.card-menu:hover{
+    transform: translateY(-5px);
+}
+
+/* IMAGEN */
+
+.card-menu img{
+    position: absolute;
+
+    width: 105px;
+
+    height: 105px;
+
+    object-fit: contain;
+
+    top: 18px;
+
+    right: 12px;
+
+    transition: transform .3s ease;
+}
+
+.card-menu:hover img{
+    transform: scale(1.05);
+}
+
+/* TITULO */
+
+.card-menu h3{
+    color: #FF7A41;
+
+    font-size: 22px;
+
+    width: 60%;
+
+    margin-bottom: 12px;
+
+    line-height: 1.1;
+}
+
+/* DESCRIPCION */
+
+.card-menu p{
+    color: #d8d8d8;
+
+    font-size: 15px;
+
+    width: 58%;
+
+    line-height: 1.5;
+
+    min-height: 95px;
+}
+
+/* FOOTER CARD */
+
+.card-footer{
+    margin-top: auto;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+/* PRECIO */
+
+.precio{
+    color: white;
+
+    font-size: 28px;
+
+    font-weight: bold;
+}
+
+/* TAGS */
+
+.tags{
+    display: flex;
+
+    gap: 6px;
+
+    flex-wrap: wrap;
+
+    justify-content: flex-end;
+}
+
+.tag{
+    padding: 4px 10px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+
+    font-weight: bold;
+}
+
+.verde{
+    background-color: #173f24;
+
+    color: #79ff9c;
+}
+
+.turquesa{
+    background-color: #123d3d;
+
+    color: #7effff;
+}
+
+.rojo{
+    background-color: #4a1b1b;
+
+    color: #ff7b7b;
+}
+/* FLECHAS */
+
+.prev,
+.next{
+    position: absolute;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    background: rgba(0, 0, 0, 0.45);
+
+    backdrop-filter: blur(6px);
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    color: white;
+
+    width: 58px;
+
+    height: 58px;
+
+    border-radius: 50%;
+
+    font-size: 28px;
+
+    cursor: pointer;
+
+    z-index: 10;
+
+    transition:
+        transform .25s ease,
+        background-color .25s ease,
+        opacity .25s ease;
+
+    opacity: .75;
+}
+
+.prev{
+    left: 10px;
+}
+
+.next{
+    right: 10px;
+}
+
+.prev:hover,
+.next:hover{
+    transform: translateY(-50%) scale(1.12);
+
+    opacity: 1;
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 1100px){
+
+    .menu-grid{
+        grid-template-columns: repeat(2, 300px);
+    }
+
+}
+
+@media(max-width: 768px){
+
+    #menu{
+        padding: 120px 20px;
+    }
+
+    .titulo-menu{
+        font-size: 38px;
+    }
+
+    .menu-grid{
+        grid-template-columns: 1fr;
+    }
+
+    .prev,
+    .next{
+        font-size: 40px;
+    }
+
+}
+
+/* BOTÓN PARA DESCARGAR EL PDF DEL MENÚ */
+.boton-pdf{
+    display: block;
+
+    width: fit-content;
+
+    margin: 25px auto 0;
+
+    padding: 14px 40px;
+
+    background-color: #FF7A41;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    border-radius: 999px;
+
+    letter-spacing: 1px;
+
+    transition:
+        transform 0.25s ease,
+        background-color 0.25s ease,
+        box-shadow 0.25s ease;
+
+    box-shadow: 0 0 20px rgba(255, 122, 65, 0.25);
+}
+
+.boton-pdf:hover{
+    background-color: #ff915f;
+
+    transform: translateY(-2px) scale(1.03);
+
+    box-shadow: 0 0 28px rgba(255, 122, 65, 0.4);
 }
