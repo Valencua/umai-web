@@ -3,6 +3,6 @@ from flask import Blueprint, render_template, request, redirect, url_for, jsonif
 abm_servicios_bp = Blueprint('servicios', __name__)
 
 @abm_servicios_bp.route('/', methods=['GET', 'POST'])
-def auth():
+def index():
 
     return render_template('admin/servicios.html')

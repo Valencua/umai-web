@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tu reserva en UMAI!</title>
+</head>
+<body style="margin:0; padding:0; background-color:#1D1A18; font-family:'Segoe UI', sans-serif;">
+
+    <div style="max-width:600px; margin:40px auto; background-color:#36322F; border-radius:12px; overflow:hidden;">
+
+        <!-- Header -->
+        <div style="background-color:#FF7A41; padding:30px; text-align:center;">
+            <h1 style="margin:0; color:#FFF5EA; font-size:28px;">UMAi! うまい</h1>
+            <p style="margin:5px 0 0; color:#FFF5EA; font-size:13px;">Tu reserva fue creada</p>
+        </div>
+
+        <!-- Contenido -->
+        <div style="padding:30px;">
+            <p style="color:#FFF5EA; font-size:16px;">Hola, <strong>{{ nombre }}</strong> 👋</p>
+            <p style="color:#FFF5EA; font-size:14px;">Tu reserva fue registrada con éxito. Acá están los detalles:</p>
+
+            <!-- Datos de la reserva -->
+            <div style="background-color:#1D1A18; border-radius:8px; padding:20px; margin:20px 0;">
+                <table style="width:100%; color:#FFF5EA; font-size:14px; border-collapse:collapse;">
+                    <tr>
+                        <td style="padding:8px 0; color:#5B534E;">📅 Fecha</td>
+                        <td style="padding:8px 0;"><strong>{{ fecha }}</strong></td>
+                    </tr>
+                    <tr>
+                        <td style="padding:8px 0; color:#5B534E;">🕐 Hora</td>
+                        <td style="padding:8px 0;"><strong>{{ hora }}</strong></td>
+                    </tr>
+                    <tr>
+                        <td style="padding:8px 0; color:#5B534E;">👥 Personas</td>
+                        <td style="padding:8px 0;"><strong>{{ cantidad_personas }}</strong></td>
+                    </tr>
+                    <tr>
+                        <td style="padding:8px 0; color:#5B534E;">📍 Lugar</td>
+                        <td style="padding:8px 0;"><strong>Av. Corrientes 1234, CABA</strong></td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- QR -->
+            <div style="text-align:center; margin:20px 0;">
+                <p style="color:#FFF5EA; font-size:14px;">Presentá este QR al llegar:</p>
+                <img src="{{ qr_url }}" alt="QR Reserva" style="width:180px; height:180px; border-radius:8px;">
+            </div>
+
+            <!-- Botón cancelar -->
+            <div style="text-align:center; margin:30px 0 10px;">
+                <a href="{{ cancel_url }}" style="background-color:#1D1A18; color:#FF7A41; padding:12px 30px; border-radius:8px; text-decoration:none; font-size:14px; border:1px solid #FF7A41;">
+                    Cancelar reserva
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="border-top:1px solid #5B534E; padding:20px; text-align:center;">
+            <p style="color:#5B534E; font-size:12px; margin:0;">UMAI! · Av. Corrientes 1234, CABA</p>
+            <p style="color:#5B534E; font-size:12px; margin:5px 0 0;">reservas@umai.com.ar · +54 11 4567-8900</p>
+        </div>
+
+    </div>
+
+</body>
+</html>
