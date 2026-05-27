@@ -21,15 +21,6 @@ const els = {
   resultado: document.getElementById('resultado-mensaje'),
 };
 
-function marcarNavActivo() {
-  document.querySelectorAll('.nav-item').forEach((item) => {
-    const texto = item.querySelector('.nav-text');
-    if (texto && texto.textContent.trim() === 'Escanear QR') {
-      item.classList.add('active');
-    }
-  });
-}
-
 /** Acepta UUID crudo o URL tipo https://umai.example/qr/{uuid} */
 function extraerCodigoReserva(valor) {
   const trimmed = valor.trim();
@@ -214,8 +205,6 @@ async function iniciarCamara() {
 }
 
 function initEscaner() {
-  marcarNavActivo();
-
   els.btnCamara.addEventListener('click', iniciarCamara);
   els.btnDetener.addEventListener('click', () => {
     detenerCamara();
