@@ -386,19 +386,23 @@ header {
 
     width: 300px;
 
-    height: 250px;
+    height: 260px;
 
     background-color: black;
 
     border-radius: 20px;
 
-    padding: 20px 20px 70px;
+    padding: 18px;
 
     overflow: hidden;
 
     box-sizing: border-box;
 
-    transition: .3s;
+    transition: transform 0.25s ease;
+
+    display: flex;
+
+    flex-direction: column;
 }
 
 .card-menu:hover{
@@ -432,11 +436,13 @@ header {
 .card-menu h3{
     color: #FF7A41;
 
-    padding-right: 95px;
-
     font-size: 22px;
 
-    line-height: 1.2;
+    width: 60%;
+
+    margin-bottom: 12px;
+
+    line-height: 1.1;
 }
 
 /* DESCRIPCION */
@@ -444,35 +450,25 @@ header {
 .card-menu p{
     color: #d8d8d8;
 
-    font-size: 13px;
+    font-size: 15px;
 
     width: 58%;
 
-    line-height: 1.4;
+    line-height: 1.5;
 
-    margin-bottom: 50px;
+    min-height: 95px;
 }
 
 /* FOOTER CARD */
 
 .card-footer{
-    position: absolute;
-
-    bottom: 18px;
-
-    left: 18px;
-
-    right: 18px;
+    margin-top: auto;
 
     display: flex;
 
     justify-content: space-between;
 
     align-items: center;
-
-    gap: 10px;
-
-    flex-wrap: wrap;
 }
 
 /* PRECIO */
@@ -519,6 +515,11 @@ header {
     color: #7effff;
 }
 
+.rojo{
+    background-color: #4a1b1b;
+
+    color: #ff7b7b;
+}
 /* FLECHAS */
 
 .prev,
