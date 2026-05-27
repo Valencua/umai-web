@@ -28,7 +28,10 @@
             <span class="badge badge-sintacc">Sin TACC</span>
           </div>
         </div>
-        <button class="btn-delete">🗑️</button>
+        <div class="plato-acciones">
+          <button class="btn-edit">✏️</button>
+          <button class="btn-delete">🗑️</button>
+        </div>
       </div>
 
       <div class="plato-item">
@@ -41,7 +44,10 @@
             <span class="badge badge-sintacc">Sin TACC</span>
           </div>
         </div>
-        <button class="btn-delete">🗑️</button>
+        <div class="plato-acciones">
+          <button class="btn-edit">✏️</button>
+          <button class="btn-delete">🗑️</button>
+        </div>
       </div>
 
       <div class="plato-item">
@@ -54,7 +60,10 @@
             <span class="badge badge-sintacc">Sin TACC</span>
           </div>
         </div>
-        <button class="btn-delete">🗑️</button>
+        <div class="plato-acciones">
+          <button class="btn-edit">✏️</button>
+          <button class="btn-delete">🗑️</button>
+        </div>
       </div>
 
       <div class="plato-item">
@@ -66,7 +75,10 @@
             <span class="badge badge-sintacc">Sin TACC</span>
           </div>
         </div>
-        <button class="btn-delete">🗑️</button>
+        <div class="plato-acciones">
+          <button class="btn-edit">✏️</button>
+          <button class="btn-delete">🗑️</button>
+        </div>
       </div>
 
     </div>
@@ -164,6 +176,56 @@
     <div class="modal-actions">
       <button class="btn-cancelar" onclick="cerrarModal()">Cancelar</button>
       <button class="btn-guardar" id="btn-guardar">Guardar plato</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal editar plato -->
+<div class="modal-overlay" id="modalEditarOverlay" onclick="cerrarModalEditar(event)">
+  <div class="modal">
+    <h2 class="modal-title">Editar plato</h2>
+    <p class="modal-subtitle">¿Qué modificación tenemos pensada realizar?</p>
+
+    <div class="form-group form-group-nombre">
+      <label class="form-label">Nombre</label>
+      <input type="text" class="form-input" id="editar-nombre">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Descripción</label>
+      <textarea class="form-textarea" id="editar-desc"></textarea>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Precio ($)</label>
+        <input type="number" class="form-input" id="editar-precio">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Foto del plato</label>
+        <div class="foto-upload" id="editar-foto-upload" onclick="document.getElementById('editar-foto-input').click()">
+          <img class="foto-preview" id="editar-foto-preview" src="" alt="">
+          <span class="foto-icon" id="editar-foto-icon">📷</span>
+          <span class="foto-text" id="editar-foto-text">Subir imagen</span>
+        </div>
+        <input type="file" id="editar-foto-input" accept="image/*" style="display:none">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Etiquetas</label>
+      <div class="etiquetas-selector">
+        <span class="badge badge-spicy badge-toggle" data-badge="spicy">Spicy</span>
+        <span class="badge badge-sintacc badge-toggle" data-badge="sintacc">Sin TACC</span>
+        <span class="badge badge-veggie badge-toggle" data-badge="veggie">Veggie</span>
+      </div>
+    </div>
+
+    <p class="form-error" id="editar-error">Llene todos los campos obligatorios</p>
+
+    <div class="modal-actions">
+      <button class="btn-cancelar" onclick="cerrarModalEditar()">Cancelar</button>
+      <button class="btn-guardar" id="btn-guardar-editar">Guardar plato</button>
     </div>
   </div>
 </div>

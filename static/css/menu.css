@@ -120,17 +120,26 @@
   flex-wrap: wrap;
 }
 
-.btn-delete {
+/* ── Acciones del plato ── */
+.plato-acciones {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-self: flex-end;
+}
+
+.btn-delete,
+.btn-edit {
   background: none;
   border: none;
   cursor: pointer;
   font-size: 16px;
   opacity: 0.5;
   transition: opacity 0.2s;
-  align-self: flex-end;
 }
 
-.btn-delete:hover {
+.btn-delete:hover,
+.btn-edit:hover {
   opacity: 1;
 }
 
