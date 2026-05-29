@@ -734,3 +734,28 @@ header {
 
     box-shadow: 0 0 28px rgba(255, 122, 65, 0.4);
 }
+
+
+.contenedor-form{
+    background-color: #1D1A18; 
+    padding: 15px 50px; 
+    border-radius: 35px;
+}
+
+.label-form{
+    color: #8c827c;
+}
+
+.input-form{
+    height: 35px; 
+    padding: 10px; 
+    background-color: #36322F; 
+    border-radius: 12px;
+}
+
+.button-reserva{
+    height: 40px; 
+    padding: 4px 10px; 
+    background-color: #FF7A41; 
+    border-radius: 15px;
+}
