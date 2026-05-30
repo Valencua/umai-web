@@ -1,4 +1,4 @@
-// Bar Chart
+// Bar Chart — usa datos reales de la API
 new ApexCharts(document.getElementById('barChart'), {
   chart: {
     type: 'bar',
@@ -11,10 +11,10 @@ new ApexCharts(document.getElementById('barChart'), {
   },
   series: [{
     name: 'Reservas',
-    data: [8, 14, 7, 16, 11, 18, 20]
+    data: reservasSemana.map(function(d) { return d.reservas; })
   }],
   xaxis: {
-    categories: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
+    categories: reservasSemana.map(function(d) { return d.dia; }),
     labels: {
       style: {
         colors: ['#FFF5EA'],
@@ -42,14 +42,12 @@ new ApexCharts(document.getElementById('barChart'), {
     }
   },
   states: {
-    active: {
-      filter: { type: 'none' }
-    }
+    active: { filter: { type: 'none' } }
   },
   theme: { mode: 'dark' }
 }).render();
 
-// Donut Chart
+// Donut Chart — usa datos reales de la API
 new ApexCharts(document.getElementById('donutChart'), {
   chart: {
     type: 'donut',
@@ -59,16 +57,18 @@ new ApexCharts(document.getElementById('donutChart'), {
     toolbar: { show: false },
     sparkline: { enabled: true }
   },
-  series: [87, 23, 18],
+  series: [
+    metricas.visitaron.cantidad,
+    metricas.canceladas.cantidad,
+    metricas.pendientes.cantidad
+  ],
   colors: ['#4CAF50', '#e53935', '#FF7A41'],
   dataLabels: { enabled: false },
   legend: { show: false },
   tooltip: { enabled: false },
   stroke: { width: 0 },
   plotOptions: {
-    pie: {
-      donut: { size: '75%' }
-    }
+    pie: { donut: { size: '75%' } }
   },
   theme: { mode: 'dark' }
 }).render();
