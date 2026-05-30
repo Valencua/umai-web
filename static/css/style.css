@@ -110,6 +110,34 @@ header {
     color: #77716C;
 }
 
+/* --- SLIDER RESEÑAS --- */
+
+.slider-container-resenas{
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-around;
+
+    gap: 20px;
+
+    position: relative;
+}
+
+.menu-grid-resenas{
+    display: grid;
+
+    display: flex;
+
+    grid-template-columns: repeat(3, 300px);
+
+    gap: 50px;
+
+    justify-content: space-around;
+}
+
 #servicios-divider {
     border-color: #FF7A41;
 }
@@ -117,6 +145,7 @@ header {
 #servicios-title {
     color: #FF7A41;
 }
+
 
 .seccion-base {
     min-height: 100vh;
@@ -372,6 +401,7 @@ header {
         font-size: 12px;
     }
 }
+
 
 /* ELEMENTOS DEL MENU */
 

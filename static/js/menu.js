@@ -11,7 +11,6 @@ let index = 0;
 function actualizarSlider(){
 
     slider.style.transform = `translateX(-${index * 100}%)`;
-
 }
 
 next.addEventListener('click', () => {
