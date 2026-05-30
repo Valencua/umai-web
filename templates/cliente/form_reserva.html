@@ -1,6 +1,6 @@
 <div class="contenedor-form max-w-md border border-white shadow-xl font-sans text-white">
     
-    <h2 class="font-bold mb-6 tracking-wide" style="font-size: 30px; color: #FF7A41;">
+    <h2 class="titulo-reserva font-bold mb-6 tracking-wide">
         Nueva reserva
     </h2>
     
@@ -20,12 +20,12 @@
 
         <div class="flex -mx-2 mb-5">
             <div class="w-1/2 px-2">
-                <label class="block text-xs font-bold tracking-widest mb-2" style="color: #8c827c;">FECHA</label>
-                <input type="text" name="fecha" placeholder="dd/mm/aaaa" 
-                       class="input-form w-full border border-transparent focus:outline-none focus:border-orange-500 text-gray-200">
-            </div>
+                <label class="label-form block text-xs font-bold tracking-widest mb-2">FECHA</label>
+                <input type="date" id="fecha-reserva" name="fecha" 
+           class="input-form w-full border border-transparent focus:outline-none focus:border-orange-500 text-gray-200">
+</div>
             <div class="w-1/2 px-2">
-                <label class="block text-xs font-bold tracking-widest mb-2" style="color: #8c827c;">TELÉFONO</label>
+                <label class="label-form  block text-xs font-bold tracking-widest mb-2">TELÉFONO</label>
                 <input type="tel" name="telefono" placeholder="Ej: +54 9 11 1234 5678" 
                        class="input-form w-full border border-transparent focus:outline-none focus:border-orange-500 text-gray-200">
             </div>
@@ -33,12 +33,20 @@
 
         <div class="flex -mx-2 mb-5">
             <div class="w-1/2 px-2">
-                <label class="block text-xs font-bold tracking-widest mb-2" style="color: #8c827c;">HORARIO</label>
-                <input type="text" name="horario" placeholder="18:00" 
-                       class="input-form w-full border border-transparent focus:outline-none focus:border-orange-500 text-gray-200">
+                <label class="label-form  block text-xs font-bold tracking-widest mb-2">FECHA</label>
+                <select name="horario" 
+                        class="input-form w-full border border-transparent focus:outline-none focus:border-orange-500 text-gray-200"> <option value="" disabled selected>Seleccionar</option>
+                    <option value="19:00">19:00</option>
+                    <option value="19:30">19:30</option>
+                    <option value="20:00">20:00</option>
+                    <option value="20:30">20:30</option>
+                    <option value="21:00">21:00</option>
+                    <option value="21:30">21:30</option>
+                    <option value="22:00">22:00</option>
+                </select>
             </div>
             <div class="w-1/2 px-2">
-                <label class="block text-xs font-bold tracking-widest mb-2" style="color: #8c827c;">PERSONAS</label>
+                <label class="label-form block text-xs font-bold tracking-widest mb-2">PERSONAS</label>
                 <input type="number" name="personas" placeholder="2" min="1"
                        class="input-form w-full border border-transparent focus:outline-none focus:border-orange-500 text-gray-200">
             </div>
