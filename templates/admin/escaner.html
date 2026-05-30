@@ -63,13 +63,14 @@
         </button>
       </form>
 
-      {% if mensaje %}
-      <div class="resultado-mensaje visible {{ tipo_mensaje }}" role="status">
-        {{ mensaje }}
-      </div>
-      {% else %}
-      <div id="resultado-mensaje" class="resultado-mensaje" role="status" aria-live="polite"></div>
-      {% endif %}
+      <div
+        id="resultado-mensaje"
+        class="resultado-mensaje {% if mensaje %}visible {{ tipo_mensaje }}{% endif %}"
+        role="status"
+        aria-live="polite"
+      >
+        {{ mensaje or '' }}
+      </div>    
 
     </div>
   </div>
