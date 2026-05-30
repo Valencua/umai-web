@@ -79,8 +79,26 @@ header {
     background-color: #36322F;
 }
 
+#resenas-title {
+    color: #FF7A41;
+}
+
+#resenas-subtitle {
+    color: #FF7A41;
+}
+
+#resenas-divider {
+    border-color: #FF7A41;
+}
+
 #check {
     margin-right: 1rem;
+    color: #FF7A41;
+}
+
+#resenas_verificada {
+    border-color: #FF7A41;
+    color: #FF7A41;
 }
 
 #avatar {
@@ -90,6 +108,14 @@ header {
 
 .texto-resenia {
     color: #77716C;
+}
+
+#servicios-divider {
+    border-color: #FF7A41;
+}
+
+#servicios-title {
+    color: #FF7A41;
 }
 
 .seccion-base {

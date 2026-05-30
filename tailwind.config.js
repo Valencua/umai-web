@@ -8,6 +8,7 @@ module.exports = {
     extend: {
       colors: {
         umai: "#36322F",
+        naranja: "#FF7A41",
       },
     },
     variants: {},
