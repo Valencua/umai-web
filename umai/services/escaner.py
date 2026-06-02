@@ -2,9 +2,7 @@ import json
 import os
 
 import requests
-
-
-API_BASE = os.environ.get('UMAI_API_URL', 'http://127.0.0.1:5000').rstrip('/')
+from umai.constants import UMAI_API_URL
 
 
 def _mensaje_desde_error_api(cuerpo: str) -> str:
@@ -23,7 +21,7 @@ def _mensaje_desde_error_api(cuerpo: str) -> str:
 
 
 def confirmar_reserva_en_api(uuid_codigo: str) -> tuple[bool, str]:
-    url = f'{API_BASE}/reservas/{uuid_codigo}'
+    url = f'{UMAI_API_URL}/reservas/{uuid_codigo}'
 
     try:
         resp = requests.patch(
@@ -32,14 +30,14 @@ def confirmar_reserva_en_api(uuid_codigo: str) -> tuple[bool, str]:
             timeout=15,
         )
 
-        if 200 <= resp.status_code < 300:
+        if resp.status_code == 200:
             return True, 'Reserva confirmada'
 
         return False, _mensaje_desde_error_api(resp.text)
 
     except requests.exceptions.ConnectionError:
         return False, (
-            f'No se pudo conectar con la API ({API_BASE}). '
+            f'No se pudo conectar con la API ({UMAI_API_URL}). '
             'Verificá que umai-api esté corriendo en el puerto 5000.'
         )
 
