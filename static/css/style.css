@@ -777,16 +777,18 @@ header {
 
 .cont-reserva-confirmada{
     background-color: rgba(0, 0, 0, 0.5);
+    align-items: flex-start;
+    padding-top: 10vh;
 }
 
 .contenedor-confirmada{
-    height: 600px; 
-    background-color: #464443; 
-    border-color: #FF7A41; 
-    border-radius: 35px; 
-    padding-top: 15px;
+    background-color: #464443;
+    border: 3px solid #FF7A41;
+    border-radius: 35px;
+    padding: 28px 0 40px;
+    min-height: 520px;
+    box-sizing: border-box;
 }
-
 .titulo-confirmada{
     font-size: 30px; 
     color: #FF7A41;

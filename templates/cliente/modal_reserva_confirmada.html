@@ -1,43 +1,44 @@
 {% if reserva_exitosa %}
-<div class="cont-reserva-confirmada fixed inset-0 z-50 flex items-center justify-center px-4 bg-black bg-opacity-75">
-    
-    <div class="contenedor-confirmada relative w-full max-w-md border-4 border-orange-500 bg-gray-900 shadow-2xl text-center p-6">
-        
-        <h2 class="titulo-confirmada font-bold mb-2 text-2xl text-white">
+<div class="cont-reserva-confirmada fixed inset-0 z-50 flex items-center justify-center px-4">
+
+    <div class="contenedor-confirmada relative w-full max-w-md shadow-2xl text-center">
+
+        <h2 class="titulo-confirmada font-bold mb-2">
             ¡Reserva confirmada!
         </h2>
-        <p class="texto-confirmada text-gray-300 mb-8">
-            Tu QR fue enviado a tu email.<br>Presentalo al llegar al restaurante.
+
+        <p class="texto-confirmada text-white mb-6 px-6">
+            Tu QR fue enviado a tu email.<br>
+            Presentalo al llegar al restaurante.
         </p>
 
-        <div class="codigo-qr mx-auto w-48 h-48 bg-white mb-8 flex items-center justify-center p-4">
+        <div class="codigo-qr mx-auto w-48 h-48 bg-white mb-6 flex items-center justify-center p-2">
+            {% if qr_data_uri %}
+            <img src="{{ qr_data_uri }}" alt="QR de tu reserva" class="w-full h-full object-contain">
+            {% else %}
             <span class="text-black font-bold">QR AQUÍ</span>
+            {% endif %}
         </div>
 
         <div class="cont-info-confirmada text-left">
-            <div class="info-confirmada flex justify-between text-sm px-4 mb-3 pb-3 border-b border-gray-700">
+            <div class="info-confirmada flex justify-between text-sm px-4 mb-3 pb-3 border-b">
                 <span class="text-gray-400">Nombre</span>
                 <span class="text-white font-medium">{{ nombre }}</span>
             </div>
-            <div class="info-confirmada flex justify-between text-sm px-4 mb-3 pb-3 border-b border-gray-700">
+            <div class="info-confirmada flex justify-between text-sm px-4 mb-3 pb-3 border-b">
                 <span class="text-gray-400">Fecha</span>
                 <span class="text-white font-medium">{{ fecha }}</span>
             </div>
-            <div class="info-confirmada flex justify-between text-sm px-4 mb-3 pb-3 border-b border-gray-700">
+            <div class="info-confirmada flex justify-between text-sm px-4 mb-3 pb-3 border-b">
                 <span class="text-gray-400">Horario</span>
-                <span class="text-white font-medium">{{ horario }}</span>
+                <span class="text-white font-medium">{{ horario }} hs</span>
             </div>
             <div class="info-confirmada flex justify-between text-sm px-4">
                 <span class="text-gray-400">Personas</span>
                 <span class="text-white font-medium">{{ personas }}</span>
             </div>
         </div>
-        
-        <div class="mt-6">
-            <a href="/" class="button-reserva inline-block w-full text-white font-bold text-base tracking-wider uppercase bg-orange-500 hover:bg-orange-600 focus:outline-none shadow-lg py-2">
-                Aceptar
-            </a>
-        </div>
+
     </div>
 </div>
 {% endif %}
