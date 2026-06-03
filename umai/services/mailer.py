@@ -1,5 +1,6 @@
 from flask import render_template, current_app
 from flask_mail import Mail, Message
+from urllib.parse import quote
 from umai.services.qr import generar_qr_bytes
 from umai.constants import PUBLIC_URL
 
@@ -51,7 +52,7 @@ def enviar_reserva_creada(
 
 
 def enviar_reserva_confirmada(destinatario: str, nombre: str, uuid_codigo: str) -> None:
-    resena_url = f'{PUBLIC_URL}reseñas/?codigo={uuid_codigo}'
+    resena_url = f'{PUBLIC_URL}reseñas/?codigo={quote(destinatario)}'
 
     _enviar(
         asunto='¿Cómo estuvo tu visita en UMAI!?',
