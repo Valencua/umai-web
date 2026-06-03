@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request
 from umai.services.mailer import enviar_reserva_creada
 from umai.services.qr import generar_qr_data_uri
+from umai.services.servicios import obtener_servicios
 from umai.services.reservas import (
     crear_reserva_en_api,
     formatear_fecha_display,
@@ -82,6 +83,8 @@ def index():
             error_reserva = mensaje
             
 
+    servicios = obtener_servicios()
+
     return render_template(
         'cliente/index.html',
         reserva_exitosa=reserva_exitosa,
@@ -92,4 +95,5 @@ def index():
         horario=horario,
         personas=personas,
         qr_data_uri=qr_data_uri,
+        servicios=servicios,
     )

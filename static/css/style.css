@@ -78,6 +78,10 @@
     color: #16D733;
 }
 
+#texto-no-disponibilidad{
+    color: #E81919;
+}
+
 .bg-body {
     margin: 0;
     padding: 0;
