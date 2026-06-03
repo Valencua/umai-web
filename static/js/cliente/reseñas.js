@@ -1,25 +1,30 @@
-const slider = document.querySelector(".slider-resenas");
-const slides = document.querySelectorAll(".slide-resenas");
-const next = document.querySelector(".next-resenas");
-const prev = document.querySelector(".prev-resenas");
+const slider_reseñas = document.querySelector(".slider-resenas");
+const slides_reseñas = document.querySelectorAll(".slide-resenas");
+const next_reseñas = document.querySelector(".next-resenas");
+const prev_reseñas = document.querySelector(".prev-resenas");
 
-let index = 0;
+let index_reseñas = 0;
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Todo tu código actual va acá dentro
+    console.log("El script de reseñas se cargó correctamente!");
+});
 
 function actualizarSlider() {
-  slider.style.transform = `translateX(-${index * 100}%)`;
+  slider_reseñas.style.transform = `translateX(-${index_reseñas * 100}%)`;
 }
 
-next.addEventListener("click", () => {
-  if (index < slides.length - 1) {
-    index++;
+next_reseñas.addEventListener("click", () => {
+  if (index_reseñas < slides_reseñas.length - 1) {
+    index_reseñas++;
 
     actualizarSlider();
   }
 });
 
-prev.addEventListener("click", () => {
-  if (index > 0) {
-    index--;
+prev_reseñas.addEventListener("click", () => {
+  if (index_reseñas > 0) {
+    index_reseñas--;
 
     actualizarSlider();
   }
