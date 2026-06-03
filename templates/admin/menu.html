@@ -41,7 +41,14 @@
 
       <div class="plato-acciones">
         <button class="btn-edit">✏️</button>
-        <button class="btn-delete">🗑️</button>
+
+        <form
+          action="{{ url_for('admin.menu.eliminar', plato_id=plato.plato_id) }}"
+          method="POST"
+          style="display:inline;"
+        >
+          <button class="btn-delete">🗑️</button>
+        </form>
       </div>
 
     </div>
@@ -99,50 +106,56 @@
 <!-- Modal nuevo plato -->
 <div class="modal-overlay" id="modalOverlay" onclick="cerrarModal(event)">
   <div class="modal">
-    <h2 class="modal-title">Nuevo plato</h2>
-    <p class="modal-subtitle">¿Qué plato delicioso tenemos pensado agregar?</p>
+    <form
+      action="{{ url_for('admin.menu.crear') }}"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <h2 class="modal-title">Nuevo plato</h2>
+      <p class="modal-subtitle">¿Qué plato delicioso tenemos pensado agregar?</p>
 
-    <div class="form-group form-group-nombre">
-      <label class="form-label">*Nombre</label>
-      <input type="text" class="form-input" id="modal-nombre" placeholder="Ej: Dragon Roll">
-    </div>
-
-    <div class="form-group">
-      <label class="form-label">*Descripción</label>
-      <textarea class="form-textarea" id="modal-desc" placeholder="Ingredientes y descripción del plato..."></textarea>
-    </div>
-
-    <div class="form-row">
-      <div class="form-group">
-        <label class="form-label">*Precio ($)</label>
-        <input type="number" class="form-input" id="modal-precio" placeholder="3500">
+      <div class="form-group form-group-nombre">
+        <label class="form-label">*Nombre</label>
+        <input type="text" class="form-input" id="modal-nombre" name="nombre" placeholder="Ej: Dragon Roll">
       </div>
+
       <div class="form-group">
-        <label class="form-label">Foto del plato</label>
-        <div class="foto-upload" id="foto-upload" onclick="document.getElementById('foto-input').click()">
-          <img class="foto-preview" id="foto-preview" src="" alt="">
-          <span class="foto-icon" id="foto-icon">📷</span>
-          <span class="foto-text" id="foto-text">Subir imagen</span>
+        <label class="form-label">*Descripción</label>
+        <textarea class="form-textarea" id="modal-desc" name="descripcion" placeholder="Descripción del plato"></textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">*Precio ($)</label>
+          <input type="number" class="form-input" id="modal-precio" name="precio" placeholder="3500">
         </div>
-        <input type="file" id="foto-input" accept="image/*" style="display:none">
+        <div class="form-group">
+          <label class="form-label">Foto del plato</label>
+          <div class="foto-upload" id="foto-upload" onclick="document.getElementById('foto-input').click()">
+            <img class="foto-preview" id="foto-preview" src="" alt="">
+            <span class="foto-icon" id="foto-icon">📷</span>
+            <span class="foto-text" id="foto-text">Subir imagen</span>
+          </div>
+          <input type="file" id="foto-input" name="foto" accept="image/*" style="display:none">
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label class="form-label">Etiquetas</label>
-      <div class="etiquetas-selector">
-        <span class="badge badge-spicy badge-toggle" data-badge="spicy">Spicy</span>
-        <span class="badge badge-sintacc badge-toggle" data-badge="sintacc">Sin TACC</span>
-        <span class="badge badge-veggie badge-toggle" data-badge="veggie">Veggie</span>
+      <div class="form-group">
+        <label class="form-label">Etiquetas</label>
+        <div class="etiquetas-selector">
+          <span class="badge badge-spicy badge-toggle" data-badge="spicy">Spicy</span>
+          <span class="badge badge-sintacc badge-toggle" data-badge="sintacc">Sin TACC</span>
+          <span class="badge badge-veggie badge-toggle" data-badge="veggie">Veggie</span>
+        </div>
       </div>
-    </div>
 
-    <p class="form-error" id="modal-error">Llene todos los campos obligatorios</p>
+      <p class="form-error" id="modal-error">Llene todos los campos obligatorios</p>
 
-    <div class="modal-actions">
-      <button class="btn-cancelar" onclick="cerrarModal()">Cancelar</button>
-      <button class="btn-guardar" id="btn-guardar">Guardar plato</button>
-    </div>
+      <div class="modal-actions">
+        <button type="button" class="btn-cancelar" onclick="cerrarModal()">Cancelar</button>
+        <button type="submit" class="btn-guardar" id="btn-guardar">Guardar plato</button>
+      </div>
+    </form>
   </div>
 </div>
 

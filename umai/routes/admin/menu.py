@@ -1,4 +1,11 @@
-from flask import Blueprint, render_template, request, jsonify
+from flask import (
+    Blueprint,
+    render_template,
+    request,
+    redirect,
+    url_for
+)
+
 from umai.services.menu import (
     obtener_platos,
     crear_plato,
@@ -8,14 +15,17 @@ from umai.services.menu import (
 
 abm_menu_bp = Blueprint('menu', __name__)
 
+
 @abm_menu_bp.route('/')
 def index():
+
     platos = obtener_platos()
 
     return render_template(
         'admin/menu.html',
         platos=platos
     )
+
 
 @abm_menu_bp.route('/crear', methods=['POST'])
 def crear():
@@ -25,37 +35,52 @@ def crear():
         'descripcion': request.form.get('descripcion'),
         'precio': request.form.get('precio')
     }
+    
+    foto = request.files.get('foto')
 
     files = {}
 
-    if 'foto' in request.files:
-        files['foto'] = request.files['foto']
+    if foto and foto.filename:
+        files['foto'] = (
+            foto.filename,
+            foto.stream,
+            foto.content_type
+        )
+ 
+    crear_plato(data, files)
 
-    response = crear_plato(data, files)
+    return redirect(url_for('admin.menu.index'))
 
-    return jsonify(response.json()), response.status_code
 
-@abm_menu_bp.route('/eliminar/<int:plato_id>', methods=['DELETE'])
+@abm_menu_bp.route('/eliminar/<int:plato_id>', methods=['POST'])
 def eliminar(plato_id):
 
-    response = eliminar_plato(plato_id)
+    eliminar_plato(plato_id)
 
-    return ('', response.status_code)
+    return redirect(url_for('admin.menu.index'))
 
-@abm_menu_bp.route('/editar/<int:plato_id>', methods=['PATCH'])
+
+@abm_menu_bp.route('/editar/<int:plato_id>', methods=['POST'])
 def editar(plato_id):
 
     data = request.form.to_dict()
 
     files = {}
 
-    if 'foto' in request.files:
-        files['foto'] = request.files['foto']
+    foto = request.files.get('foto')
 
-    response = actualizar_plato(
+    if foto and foto.filename:    
+        files['foto'] = (
+            foto.filename,
+            foto.stream,
+            foto.content_type
+        )
+    
+
+    actualizar_plato(
         plato_id,
         data,
         files
     )
 
-    return jsonify(response.json()), response.status_code
+    return redirect(url_for('admin.menu.index'))
