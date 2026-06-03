@@ -1,7 +1,5 @@
-import os
 import requests
-
-API_BASE = os.environ.get('UMAI_API_URL', 'http://127.0.0.1:5000').rstrip('/')
+from umai.constants import UMAI_API_URL
 
 _FALLBACK_METRICAS = {
     'rating': {'promedio': 0},
@@ -23,7 +21,7 @@ _FALLBACK_METRICAS = {
 
 def obtener_metricas() -> dict:
     try:
-        resp = requests.get(f'{API_BASE}/metricas/dashboard', timeout=40)
+        resp = requests.get(f'{UMAI_API_URL}/metricas/dashboard', timeout=40)
         resp.raise_for_status()
         return resp.json()
     except requests.exceptions.Timeout:
@@ -36,7 +34,7 @@ def obtener_metricas() -> dict:
 
 def obtener_ultimas_reservas(limit: int = 3) -> list:
     try:
-        resp = requests.get(f'{API_BASE}/reservas/', params={'limit': limit}, timeout=5)
+        resp = requests.get(f'{UMAI_API_URL}/reservas/', params={'limit': limit}, timeout=5)
         resp.raise_for_status()
         return resp.json().get('data', [])
     except requests.exceptions.Timeout:

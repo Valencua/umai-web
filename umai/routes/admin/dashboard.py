@@ -1,7 +1,7 @@
-
-from flask import Blueprint, render_template, request, redirect, url_for, jsonify
+from flask import Blueprint, render_template
 from umai.services.dashboard import obtener_metricas, obtener_ultimas_reservas
 from umai.utils import requiere_login
+
 
 dashboard_bp = Blueprint('dashboard', __name__)
 
