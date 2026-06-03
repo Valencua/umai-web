@@ -8,10 +8,8 @@ API_BASE = os.environ.get('UMAI_API_URL', 'http://127.0.0.1:5000').rstrip('/')
 FALLBACK_RESEÑAS = []
 def obtener_reseñas_pendientes():
     try:  
-        # LE AGREGAMOS UNA BARRA AL FINAL A /reseñas/
-        url = f"{API_BASE}/reseñas/"
-        
-        # Volvemos a usar el booleano nativo False que es el correcto
+        url = f"{API_BASE}/reseñas"
+
         response = requests.get(url, params={'estado': False}) 
         response.raise_for_status()
         
@@ -34,8 +32,8 @@ def obtener_reseñas_pendientes():
 
 def obtener_reseñas_publicadas():
     try:
-        # LE AGREGAMOS UNA BARRA AL FINAL A /reseñas/
-        url = f"{API_BASE}/reseñas/"
+
+        url = f"{API_BASE}/reseñas"
         
         response = requests.get(url, params={'estado': True})
         response.raise_for_status()
@@ -83,8 +81,7 @@ def calcular_estadisticas(reseñas_publicadas, reseñas_pendientes, rating_prome
     porcentaje_pendientes = (len(reseñas_pendientes) / total_reseñas * 100) if total_reseñas > 0 else 0
     
     return {
-        'total_general': total_reseñas, # Le cambié el nombre para no confundir
-        'total': len(reseñas_publicadas), # <--- Cambiado a 'total' para que en tu HTML figure en "aprobadas"
+        'total': len(reseñas_publicadas), 
         'pendientes': len(reseñas_pendientes),
         'porcentaje_publicadas': porcentaje_publicadas,
         'porcentaje_pendientes': porcentaje_pendientes,
