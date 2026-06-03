@@ -78,3 +78,42 @@ def obtener_uuid_reserva_por_email(email: str) -> tuple[bool, str]:
         return True, data[0]['uuid_codigo']
     except requests.exceptions.RequestException:
         return False, 'No se pudo obtener la reserva.'
+
+def _mensaje_error_cancelar(cuerpo: str) -> str:
+    try:
+        data = json.loads(cuerpo)
+        errores = data.get('errors', [])
+        if errores:
+            err = errores[0]
+            return err.get('description') or err.get('message') or 'No se pudo cancelar la reserva.'
+    except json.JSONDecodeError:
+        pass
+    return 'No se pudo cancelar la reserva.'
+
+
+def cancelar_reserva_en_api(uuid_codigo: str) -> tuple[bool, str]:
+    url = f'{UMAI_API_URL}/reservas/{uuid_codigo}'
+
+    try:
+        resp = requests.patch(
+            url,
+            json={'funcion': 'cancelar'},
+            timeout=15,
+        )
+
+        if resp.status_code == 204:
+            return True, 'Tu reserva fue cancelada correctamente.'
+
+        return False, _mensaje_error_cancelar(resp.text)
+
+    except requests.exceptions.ConnectionError:
+        return False, (
+            f'No se pudo conectar con la API ({UMAI_API_URL}). '
+            'Verificá que umai-api esté corriendo en el puerto 5000.'
+        )
+
+    except requests.exceptions.Timeout:
+        return False, 'La API tardó demasiado en responder. Intentá de nuevo.'
+
+    except requests.exceptions.RequestException:
+        return False, 'No se pudo cancelar la reserva.'

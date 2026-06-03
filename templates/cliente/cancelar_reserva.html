@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=99" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cancelar_reserva.css') }}?v=1" />
+    <title>Cancelar reserva - UMAI</title>
+</head>
+<body class="bg-body cancelar-page">
+    <div class="cancelar-card">
+        <h1 class="cancelar-titulo">Cancelar reserva</h1>
+
+        {% if error %}
+        <p class="cancelar-texto-error">{{ error }}</p>
+        <a href="/" class="cancelar-link">Volver al inicio</a>
+
+        {% elif cancelada == True %}
+        <p class="cancelar-texto">{{ mensaje }}</p>
+        <a href="/" class="cancelar-link">Volver al inicio</a>
+
+        {% elif cancelada == False %}
+        <p class="cancelar-texto-error">{{ mensaje }}</p>
+        <a href="/" class="cancelar-link">Volver al inicio</a>
+
+        {% elif codigo %}
+        <p class="cancelar-texto">¿Querés cancelar tu reserva? Esta acción no se puede deshacer.</p>
+        <form method="POST" action="{{ url_for('cliente.cancelar.cancelar_reserva') }}" class="cancelar-form">
+            <input type="hidden" name="codigo" value="{{ codigo }}">
+            <button type="submit" class="cancelar-boton">Sí, cancelar mi reserva</button>
+        </form>
+        <a href="/" class="cancelar-link-secundario">No, volver al inicio</a>
+        {% endif %}
+    </div>
+</body>
+</html>

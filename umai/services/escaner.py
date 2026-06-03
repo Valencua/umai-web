@@ -19,7 +19,6 @@ def _mensaje_desde_error_api(cuerpo: str) -> str:
 
     return 'No se pudo confirmar la reserva.'
 
-
 def confirmar_reserva_en_api(uuid_codigo: str) -> tuple[bool, str]:
     url = f'{UMAI_API_URL}/reservas/{uuid_codigo}'
 

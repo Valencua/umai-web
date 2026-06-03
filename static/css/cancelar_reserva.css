@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Sen:wght@400;500;700;800&display=swap');
+
+.cancelar-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    font-family: 'Sen', sans-serif;
+    color: #FFF5EA;
+}
+
+.cancelar-card {
+    width: 100%;
+    max-width: 28rem;
+    text-align: center;
+    background-color: #464443;
+    border: 3px solid #FF7A41;
+    border-radius: 35px;
+    padding: 2rem 1.5rem;
+    box-sizing: border-box;
+}
+
+.cancelar-titulo {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #FF7A41;
+    margin: 0 0 1rem;
+}
+
+.cancelar-texto {
+    font-size: 1.125rem;
+    margin: 0 0 1.5rem;
+    line-height: 1.5;
+}
+
+.cancelar-texto-error {
+    color: #f87171;
+    font-size: 1.125rem;
+    margin: 0 0 1.5rem;
+}
+
+.cancelar-form {
+    margin-bottom: 1rem;
+}
+
+.cancelar-boton {
+    width: 100%;
+    max-width: 16rem;
+    height: 40px;
+    padding: 4px 1.25rem;
+    background-color: #FF7A41;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.cancelar-boton:hover {
+    background-color: #e66a35;
+}
+
+.cancelar-link {
+    color: #FF7A41;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.cancelar-link:hover {
+    text-decoration: underline;
+}
+
+.cancelar-link-secundario {
+    display: inline-block;
+    margin-top: 1rem;
+    color: #9ca3af;
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
+.cancelar-link-secundario:hover {
+    color: #FFF5EA;
+}
