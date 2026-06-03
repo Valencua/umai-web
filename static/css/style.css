@@ -127,8 +127,26 @@ header {
     background-color: #36322F;
 }
 
+#resenas-title {
+    color: #FF7A41;
+}
+
+#resenas-subtitle {
+    color: #FF7A41;
+}
+
+#resenas-divider {
+    border-color: #FF7A41;
+}
+
 #check {
     margin-right: 1rem;
+    color: #FF7A41;
+}
+
+#resenas_verificada {
+    border-color: #FF7A41;
+    color: #FF7A41;
 }
 
 #avatar {
@@ -139,6 +157,44 @@ header {
 .texto-resenia {
     color: #77716C;
 }
+
+/* --- SLIDER RESEÑAS --- */
+
+.slider-container-resenas{
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-around;
+
+    gap: 20px;
+
+    position: relative;
+}
+
+.menu-grid-resenas{
+    display: grid;
+
+    display: flex;
+
+    grid-template-columns: repeat(3, 300px);
+
+    gap: 50px;
+
+    justify-content: space-around;
+}
+
+#servicios-divider {
+    border-color: #FF7A41;
+}
+
+#servicios-title {
+    color: #FF7A41;
+}
+
+
 
 .seccion-base {
     min-height: 100vh;
