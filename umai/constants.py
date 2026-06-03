@@ -1,12 +1,15 @@
 import os
 
 from dotenv import load_dotenv
+from zoneinfo import ZoneInfo
 
 load_dotenv()
 
 USUARIO_URL = '/admin'
 PUBLIC_URL = os.getenv('PUBLIC_URL', 'http://127.0.0.1:5001')
 UMAI_API_URL = os.getenv('UMAI_API_URL', 'http://127.0.0.1:5000').rstrip('/')
+
+TZ_ARGENTINA = ZoneInfo('America/Argentina/Buenos_Aires')
 
 MAIL_SERVER = os.getenv('MAIL_SERVER', 'smtp.gmail.com')
 MAIL_PORT = int(os.getenv('MAIL_PORT', '587'))

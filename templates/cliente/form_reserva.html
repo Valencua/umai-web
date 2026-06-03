@@ -4,29 +4,29 @@
         Nueva reserva
     </h2>
     
-    <form id="formulario-reserva" action="#" method="POST">
+    <form id="formulario-reserva" action="{{ url_for('cliente.index.index') }}" method="POST">
         
         <div class="mb-5">
             <label class="label-form block text-xs font-bold tracking-widest mb-2">NOMBRE COMPLETO</label>
-            <input type="text" name="nombre" placeholder="Ej: Franco Colapinto" 
+            <input type="text" name="nombre" value="{{ form.nombre or '' }}" placeholder="Ej: Franco Colapinto" 
                    class="input-form w-full border border-transparent focus:outline-none focus:border-orange-500 text-gray-200">
         </div>
 
         <div class="mb-5">
             <label class="label-form block text-xs font-bold tracking-widest mb-2">EMAIL</label>
-            <input type="email" name="email" placeholder="Ej: francpinto@gmail.com" 
+            <input type="email" name="email" value="{{ form.email or '' }}" placeholder="Ej: francpinto@gmail.com" 
                    class="input-form w-full border border-transparent focus:outline-none focus:border-orange-500 text-gray-200">
         </div>
 
         <div class="flex -mx-2 mb-5">
             <div class="w-1/2 px-2">
                 <label class="label-form block text-xs font-bold tracking-widest mb-2">FECHA</label>
-                <input type="date" id="fecha-reserva" name="fecha" 
+                <input type="date" id="fecha-reserva" name="fecha" value="{{ form.fecha or '' }}" 
            class="input-form w-full border border-transparent focus:outline-none focus:border-orange-500 text-gray-200">
 </div>
             <div class="w-1/2 px-2">
                 <label class="label-form  block text-xs font-bold tracking-widest mb-2">TELÉFONO</label>
-                <input type="tel" name="telefono" placeholder="Ej: +54 9 11 1234 5678" 
+                <input type="tel" name="telefono" value="{{ form.telefono or '' }}" placeholder="Ej: +54 9 11 1234 5678" 
                        class="input-form w-full border border-transparent focus:outline-none focus:border-orange-500 text-gray-200">
             </div>
         </div>
@@ -35,25 +35,27 @@
             <div class="w-1/2 px-2">
                 <label class="label-form  block text-xs font-bold tracking-widest mb-2">FECHA</label>
                 <select name="horario" 
-                        class="input-form w-full border border-transparent focus:outline-none focus:border-orange-500 text-gray-200"> <option value="" disabled selected>Seleccionar</option>
-                    <option value="19:00">19:00</option>
-                    <option value="19:30">19:30</option>
-                    <option value="20:00">20:00</option>
-                    <option value="20:30">20:30</option>
-                    <option value="21:00">21:00</option>
-                    <option value="21:30">21:30</option>
-                    <option value="22:00">22:00</option>
+                        class="input-form w-full border border-transparent focus:outline-none focus:border-orange-500 text-gray-200">
+                    <option value="" disabled {% if not form.horario %}selected{% endif %}>Seleccionar</option>
+                    <option value="19:00" {% if form.horario == '19:00' %}selected{% endif %}>19:00</option>
+                    <option value="19:30" {% if form.horario == '19:30' %}selected{% endif %}>19:30</option>
+                    <option value="20:00" {% if form.horario == '20:00' %}selected{% endif %}>20:00</option>
+                    <option value="20:30" {% if form.horario == '20:30' %}selected{% endif %}>20:30</option>
+                    <option value="21:00" {% if form.horario == '21:00' %}selected{% endif %}>21:00</option>
+                    <option value="21:30" {% if form.horario == '21:30' %}selected{% endif %}>21:30</option>
+                    <option value="22:00" {% if form.horario == '22:00' %}selected{% endif %}>22:00</option>
                 </select>
             </div>
             <div class="w-1/2 px-2">
                 <label class="label-form block text-xs font-bold tracking-widest mb-2">PERSONAS</label>
-                <input type="number" name="personas" placeholder="2" min="1"
+                <input type="number" name="personas" placeholder="2" min="1" max="5" value="{{ form.personas or '' }}" 
                        class="input-form w-full border border-transparent focus:outline-none focus:border-orange-500 text-gray-200">
             </div>
         </div>
 
-        <div id="mensaje-error" class="hidden text-red-700 px-4 py-2 rounded mb-4 text-sm font-bold text-center">
-            Llene todos los campos
+        <div id="mensaje-error"
+            class="{% if not error_reserva %}hidden{% endif %} text-red-700 px-4 py-2 rounded mb-4 text-sm font-bold text-center">
+            {{ error_reserva or 'Llene todos los campos' }}
         </div>
 
         <div class="pt-4">
