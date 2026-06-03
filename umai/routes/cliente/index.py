@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request
-
+from umai.services.mailer import enviar_reserva_creada
 from umai.services.qr import generar_qr_data_uri
 from umai.services.reservas import (
     crear_reserva_en_api,
@@ -64,6 +64,13 @@ def index():
             uuid_ok, uuid_codigo = obtener_uuid_reserva_por_email(form['email'])
             if uuid_ok:
                 qr_data_uri = generar_qr_data_uri(uuid_codigo)
+                enviar_reserva_creada(destinatario=form['email'],
+                    nombre=form['nombre'],
+                    fecha=formatear_fecha_display(form['fecha']),
+                    hora=form['horario'],
+                    cantidad_personas=cantidad_personas,
+                    uuid_codigo=uuid_codigo,
+                )
 
             reserva_exitosa = True
             nombre = form['nombre']
