@@ -1,21 +1,21 @@
 from flask import Blueprint, render_template, request
 import requests
 from umai.constants import UMAI_API_URL
+
+
 reseñas_bp = Blueprint('reseñas_cliente', __name__)
+
 @reseñas_bp.route('/')
 def mostrar_resenas():
-
-    return render_template('cliente/reseñas.html', enviado=False)
-
     codigo = request.args.get('codigo')
     return render_template('cliente/reseñas.html', enviado=False, email_cliente=codigo)
-
 
 
 @reseñas_bp.route('/resenas/crear', methods=['POST'])
 def crear_resena():
     puntuacion = request.form.get('rating')
     comentario = request.form.get('descripcion')
+
 
     codigo = request.form.get('email_oculto')
 
@@ -37,4 +37,3 @@ def crear_resena():
           
     except requests.exceptions.RequestException:
         return render_template('cliente/reseñas.html', enviado=False, error="Error de conexión con el servicio de reseñas")
-
