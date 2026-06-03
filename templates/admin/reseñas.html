@@ -64,11 +64,11 @@
 
     <div class="tarjeta-base tarjeta-estadisticas">
       <div class="promedio-estrellas">
-        <div class="estrellas-promedio">{{ estadisticas.promedio }}</div>
+        <div class="estrellas-promedio">{{ promedio }}</div>
         <div class="estrellas-graficas">
-          {% for i in range(1, 6) %} {% if estadisticas.promedio >= i %}
+          {% for i in range(1, 6) %} {% if promedio >= i %}
           <i class="fa-solid fa-star"></i>
-          {% elif estadisticas.promedio >= i - 0.5 %}
+          {% elif promedio >= i - 0.5 %}
           <i class="fa-solid fa-star-half-stroke"></i>
           {% else %}
           <i class="fa-regular fa-star"></i>
@@ -87,7 +87,7 @@
         <div class="fila-estadistica">
           <span class="etiqueta-estadistica">aprobadas</span>
           <span class="valor-estadistica valor-publicadas"
-            >{{ estadisticas.total }}</span
+            >{{ reseñas_publicadas|length }}</span
           >
         </div>
       </div>

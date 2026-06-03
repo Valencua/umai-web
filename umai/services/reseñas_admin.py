@@ -75,19 +75,6 @@ def obtener_rating_promedio(reseñas):
 
     return round(total_rating / contador_validos, 1)
 
-def calcular_estadisticas(reseñas_publicadas, reseñas_pendientes, rating_promedio):
-    total_reseñas = len(reseñas_publicadas) + len(reseñas_pendientes)
-    porcentaje_publicadas = (len(reseñas_publicadas) / total_reseñas * 100) if total_reseñas > 0 else 0
-    porcentaje_pendientes = (len(reseñas_pendientes) / total_reseñas * 100) if total_reseñas > 0 else 0
-    
-    return {
-        'total': len(reseñas_publicadas), 
-        'pendientes': len(reseñas_pendientes),
-        'porcentaje_publicadas': porcentaje_publicadas,
-        'porcentaje_pendientes': porcentaje_pendientes,
-        'promedio': rating_promedio 
-    }
-
 
 def cambiar_estado_reseña_api(resena_id, nuevo_estado):
     try:
