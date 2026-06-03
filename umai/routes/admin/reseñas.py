@@ -1,10 +1,11 @@
 from flask import Blueprint, render_template, redirect, url_for
 from umai.constants import UMAI_API_URL
 from umai.services.reseñas_admin import obtener_reseñas_pendientes, obtener_reseñas_publicadas, obtener_rating_promedio, calcular_estadisticas, cambiar_estado_reseña_api
-
+from umai.utils import requiere_admin
 abm_reseñas_bp = Blueprint('reseñas', __name__)
 
 @abm_reseñas_bp.route('/')
+@requiere_admin
 def index():
     reseñas_pendientes = obtener_reseñas_pendientes()
     reseñas_publicadas = obtener_reseñas_publicadas()
