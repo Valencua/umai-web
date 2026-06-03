@@ -7,50 +7,50 @@ API_BASE = os.environ.get('UMAI_API_URL', 'http://127.0.0.1:5000').rstrip('/')
 
 FALLBACK_RESEÑAS = []
 def obtener_reseñas_pendientes():
-    try:
-        url = f"{API_BASE}/reseñas"
-        # Enviamos el string 'false' o el booleano según lo espere tu API intermedia
-        response = requests.get(url, params={'estado': False})
+    try:  
+        # LE AGREGAMOS UNA BARRA AL FINAL A /reseñas/
+        url = f"{API_BASE}/reseñas/"
+        
+        # Volvemos a usar el booleano nativo False que es el correcto
+        response = requests.get(url, params={'estado': False}) 
         response.raise_for_status()
         
-        # Intentamos obtener los datos directamente
         datos = response.json()
         
-        # Si por alguna razón la respuesta llegó como un string de texto JSON, lo parseamos
+        if isinstance(datos, dict) and 'data' in datos:
+            datos = datos['data']
+        
         if isinstance(datos, str):
-            try:
+            try:  
                 datos = json.loads(datos)
-            except json.JSONDecodeError:
-                print(f"DEBUG: El texto devuelto no era un JSON válido: {datos}")
+            except json.JSONDecodeError:  
                 return []
 
         return datos if isinstance(datos, list) else []
     
-    except Exception as e:
+    except Exception as e:  
         print(f"Error al obtener reseñas pendientes: {e}")
         return []
-        
+
 def obtener_reseñas_publicadas():
     try:
-        url = f"{API_BASE}/reseñas"
+        # LE AGREGAMOS UNA BARRA AL FINAL A /reseñas/
+        url = f"{API_BASE}/reseñas/"
+        
         response = requests.get(url, params={'estado': True})
         response.raise_for_status()
         
         datos = response.json()
         
-        # Si llegó como string de texto JSON, lo decodificamos a lista de Python
+        if isinstance(datos, dict) and 'data' in datos:
+            datos = datos['data']
+            
         if isinstance(datos, str):
             try:
                 datos = json.loads(datos)
             except json.JSONDecodeError:
-                print(f"DEBUG: El texto devuelto no era un JSON válido: {datos}")
                 return []
                 
-        # ¡OJO ACÁ! Si la API te devuelve un diccionario con una clave adentro (ej: {'data': [...]})
-        # tenemos que extraer la lista. Si es una lista directa, pasa de largo.
-        if isinstance(datos, dict) and 'data' in datos:
-            datos = datos['data']
-            
         return datos if isinstance(datos, list) else []
     
     except Exception as e:
@@ -90,3 +90,21 @@ def calcular_estadisticas(reseñas_publicadas, reseñas_pendientes, rating_prome
         'porcentaje_pendientes': porcentaje_pendientes,
         'promedio': rating_promedio 
     }
+
+
+def cambiar_estado_reseña_api(resena_id, nuevo_estado):
+    try:
+        url = f"{API_BASE}/reseñas/{resena_id}"
+        
+        if nuevo_estado is True:
+            # Si es True, aprobamos usando PATCH (modificar el estado a True)
+            response = requests.patch(url, json={'estado': True})
+        else:
+            # Si es False (Rechazar), eliminamos directamente usando DELETE (eliminar la resela al haber sido rechazada)
+            response = requests.delete(url)
+            
+        response.raise_for_status()
+        return True
+    except Exception as e:
+        print(f"Error en el service al procesar la reseña: {e}")
+        return False
