@@ -1,3 +1,16 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const botonesAprobar = document.querySelectorAll('.boton-aprobar');
     const botonesRechazar = document.querySelectorAll('.boton-rechazar');

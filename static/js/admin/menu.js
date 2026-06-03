@@ -4,8 +4,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ── Eliminar platos existentes ──
   document.querySelectorAll('.btn-delete').forEach(btn => {
-    btn.addEventListener('click', () => {
-      btn.closest('.plato-item').remove();
+    btn.addEventListener('click', async () => {
+
+      const plato = btn.closest('.plato-item');
+      const platoId = plato.dataset.id;
+
+      if (!confirm('¿Eliminar este plato?')) {
+        return;
+      }
+
+      try {
+
+        const response = await fetch(
+          `/admin/menu/eliminar/${platoId}`,
+          {
+            method: 'DELETE'
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error('Error al eliminar');
+        }
+
+        plato.remove();
+
+      } catch (error) {
+
+        console.error(error);
+        alert('No se pudo eliminar el plato');
+
+      }
+
     });
   });
 
