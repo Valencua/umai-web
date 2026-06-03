@@ -10,7 +10,6 @@
 
   <div class="dashboard">
 
-    <!-- Stat Cards -->
     <div class="cards-grid">
 
       <div class="card">
@@ -18,7 +17,7 @@
           <span class="card-label">RESERVAS HOY</span>
           <span class="card-icon">📅</span>
         </div>
-        <span class="card-value red">18</span>
+        <span class="card-value red">{{ dashboard.reservas_hoy.reservas_hoy }}</span>
       </div>
 
       <div class="card">
@@ -26,7 +25,7 @@
           <span class="card-label">PERSONAS HOY</span>
           <span class="card-icon">👥</span>
         </div>
-        <span class="card-value blue">24</span>
+        <span class="card-value blue">{{ dashboard.personas_hoy.personas_hoy }}</span>
       </div>
 
       <div class="card">
@@ -34,7 +33,7 @@
           <span class="card-label">CANCELACIONES HOY</span>
           <span class="card-icon">❌</span>
         </div>
-        <span class="card-value orange">23</span>
+        <span class="card-value orange">{{ dashboard.cancelaciones.cancelaciones }}</span>
       </div>
 
       <div class="card">
@@ -42,12 +41,11 @@
           <span class="card-label">RATING PROMEDIO</span>
           <span class="card-icon">⭐</span>
         </div>
-        <span class="card-value yellow">4.7</span>
+        <span class="card-value yellow">{{ dashboard.rating.promedio }}</span>
       </div>
 
     </div>
 
-    <!-- Charts -->
     <div class="charts-grid">
 
       <div class="card chart-card">
@@ -61,7 +59,7 @@
           <div class="donut-container">
             <div id="donutChart"></div>
             <div class="donut-center">
-              <span class="donut-number">128</span>
+              <span class="donut-number">{{ dashboard.metricas_reservas.total }}</span>
               <span class="donut-label">reservas</span>
             </div>
           </div>
@@ -69,17 +67,17 @@
             <div class="legend-item">
               <span class="legend-dot green"></span>
               <span class="legend-text green-text">Visitaron</span>
-              <span class="legend-value green-val">87 — 68%</span>
+              <span class="legend-value green-val">{{ dashboard.metricas_reservas.visitaron.cantidad }} — {{ dashboard.metricas_reservas.visitaron.porcentaje }}%</span>
             </div>
             <div class="legend-item">
               <span class="legend-dot red"></span>
               <span class="legend-text red-text">Canceladas</span>
-              <span class="legend-value red-val">23 — 18%</span>
+              <span class="legend-value red-val">{{ dashboard.metricas_reservas.canceladas.cantidad }} — {{ dashboard.metricas_reservas.canceladas.porcentaje }}%</span>
             </div>
             <div class="legend-item">
               <span class="legend-dot orange"></span>
               <span class="legend-text orange-text">Pendientes</span>
-              <span class="legend-value orange-val">18 — 14%</span>
+              <span class="legend-value orange-val">{{ dashboard.metricas_reservas.pendientes.cantidad }} — {{ dashboard.metricas_reservas.pendientes.porcentaje }}%</span>
             </div>
           </div>
         </div>
@@ -87,7 +85,6 @@
 
     </div>
 
-    <!-- Table -->
     <div class="card table-card">
       <h3 class="table-title">Últimas reservas</h3>
       <table class="reservas-table">
@@ -100,24 +97,26 @@
           </tr>
         </thead>
         <tbody>
+          {% for r in ultimas_reservas %}
           <tr>
-            <td>Tomas Bilbao</td>
-            <td>Tbilbao@gmail.com</td>
-            <td>3</td>
-            <td><span class="badge badge-green">Visitó</span></td>
+            <td>{{ r.cliente.nombre }}</td>
+            <td>{{ r.cliente.email }}</td>
+            <td>{{ r.cantidad_personas }}</td>
+            <td>
+              {% if r.estado == 'confirmado' %}
+                <span class="badge badge-green">Visitó</span>
+              {% elif r.estado == 'cancelado' %}
+                <span class="badge badge-red">Canceló</span>
+              {% else %}
+                <span class="badge badge-purple">Pendiente</span>
+              {% endif %}
+            </td>
           </tr>
+          {% else %}
           <tr>
-            <td>Hernan Leclerc</td>
-            <td>Hernilec@yahoo.com.ar</td>
-            <td>6</td>
-            <td><span class="badge badge-red">Canceló</span></td>
+            <td colspan="4" style="text-align:center; opacity:.6;">Sin reservas recientes</td>
           </tr>
-          <tr>
-            <td>Jimena Narvaez</td>
-            <td>valencuavasula@gmail.com</td>
-            <td>2</td>
-            <td><span class="badge badge-purple">Pendiente</span></td>
-          </tr>
+          {% endfor %}
         </tbody>
       </table>
     </div>
@@ -128,5 +127,9 @@
 
 {% block extra_js %}
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script>
+  const reservasSemana = {{ dashboard.reservas_semana | tojson | safe }};
+  const metricas = {{ dashboard.metricas_reservas | tojson | safe }};
+</script>
 <script src="{{ url_for('static', filename='js/admin/dashboard.js') }}"></script>
 {% endblock %}
