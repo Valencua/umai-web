@@ -21,10 +21,31 @@ def index():
 
     platos = obtener_platos()
 
+    estadisticas = obtener_estadisticas_menu(platos)
+
     return render_template(
         'admin/menu.html',
-        platos=platos
+        platos=platos,
+        estadisticas=estadisticas
     )
+
+
+def obtener_estadisticas_menu(platos):
+
+    total_platos = len(platos)
+
+    precio_promedio = 0
+
+    if total_platos > 0:
+        precio_promedio = sum(
+            plato['precio']
+            for plato in platos
+        ) / total_platos
+
+    return {
+        'total_platos': total_platos,
+        'precio_promedio': round(precio_promedio)
+    }
 
 
 @abm_menu_bp.route('/crear', methods=['POST'])
