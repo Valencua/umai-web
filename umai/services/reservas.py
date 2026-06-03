@@ -117,3 +117,26 @@ def cancelar_reserva_en_api(uuid_codigo: str) -> tuple[bool, str]:
 
     except requests.exceptions.RequestException:
         return False, 'No se pudo cancelar la reserva.'
+
+def obtener_reserva_por_uuid(uuid_codigo: str) -> tuple[bool, dict | str]:
+    try:
+        resp = requests.get(
+            f'{UMAI_API_URL}/reservas/',
+            params={'uuid_codigo': uuid_codigo},
+            timeout=15,
+        )
+
+        if resp.status_code == 404:
+            return False, 'No se encontró la reserva.'
+
+        if resp.status_code != 200:
+            return False, _mensaje_desde_error_api(resp.text)
+
+        data = resp.json().get('data', [])
+        if not data:
+            return False, 'No se encontró la reserva.'
+
+        return True, data[0]
+
+    except requests.exceptions.RequestException:
+        return False, 'No se pudo obtener la reserva.'

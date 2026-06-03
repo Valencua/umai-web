@@ -2,6 +2,8 @@ import re
 from flask import Blueprint, render_template, request
 from umai.services.escaner import confirmar_reserva_en_api
 from umai.utils import requiere_login
+from umai.services.mailer import enviar_reserva_confirmada
+from umai.services.reservas import obtener_reserva_por_uuid
 
 escaner_bp = Blueprint('escaner', __name__)
 
@@ -39,11 +41,31 @@ def escan():
             mensaje = 'Ingresá un UUID válido o la URL completa del QR.'
             tipo_mensaje = 'error'
         else:
-            ok, mensaje = confirmar_reserva_en_api(uuid_codigo)
-            tipo_mensaje = 'exito' if ok else 'error'
+            datos_ok, reserva = obtener_reserva_por_uuid(uuid_codigo)
 
-            if ok:
-                codigo = ''
+            if not datos_ok:
+                mensaje = reserva  # acÃ¡ viene el texto de error
+                tipo_mensaje = 'error'
+            else:
+                era_pendiente = reserva.get('estado') == 'pendiente'
+
+                ok, mensaje = confirmar_reserva_en_api(uuid_codigo)
+                tipo_mensaje = 'exito' if ok else 'error'
+
+                if ok and era_pendiente:
+                    cliente = reserva.get('cliente') or {}
+                    email = cliente.get('email')
+                    nombre = cliente.get('nombre') or ''
+
+                    if email:
+                        enviar_reserva_confirmada(
+                            destinatario=email,
+                            nombre=nombre,
+                            uuid_codigo=uuid_codigo,
+                        )
+
+                if ok:
+                    codigo = ''
 
     return render_template(
         'admin/escaner.html',
