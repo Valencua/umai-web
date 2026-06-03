@@ -15,16 +15,21 @@
       <h2 class="historial-title">Historial completo de reservas</h2>
     </div>
 
-    <div class="filtros">
-      <input type="text" class="filtro-input" id="filtro-texto" placeholder="Buscar por nombre o email">
-      <input type="text" class="filtro-input" id="filtro-fecha" placeholder="dd/mm/aaaa">
-      <select class="filtro-select" id="filtro-estado">
+    <form method="GET" action="{{ url_for('admin.historial.index') }}" class="filtros flex gap-2 items-center">
+      <input type="text" name="texto" class="filtro-input" id="filtro-texto" placeholder="Buscar por nombre o email" value="{{ filtro_texto }}">
+      <input type="text" name="fecha" class="filtro-input" id="filtro-fecha" placeholder="dd/mm/aaaa" value="{{ filtro_fecha }}">
+      
+      <select name="estado" class="filtro-select" id="filtro-estado"> 
         <option value="">Todos los estados</option>
-        <option value="Visitó">Visitó</option>
-        <option value="Pendiente">Pendiente</option>
-        <option value="Canceló">Canceló</option>
+        <option value="confirmado" {% if filtro_estado == 'confirmado' %}selected{% endif %}>Visitó</option>
+        <option value="pendiente" {% if filtro_estado == 'pendiente' %}selected{% endif %}>Pendiente</option>
+        <option value="cancelado" {% if filtro_estado == 'cancelado' %}selected{% endif %}>Canceló</option>
       </select>
-    </div>
+      
+      <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded shadow transition">
+        Buscar
+      </button>
+    </form>
 
     <div class="tabla-scroll">
       <table class="historial-table">
@@ -39,118 +44,34 @@
           </tr>
         </thead>
         <tbody>
+          {% for reserva in reservas %}
           <tr>
-            <td>Tomas Bilbao</td>
-            <td>Tbilbao@gmail.com</td>
-            <td>12/06/2025</td>
-            <td>12:00</td>
-            <td>3</td>
-            <td><span class="badge badge-green">Visitó</span></td>
+            <td>{{ reserva.cliente.nombre }}</td>
+            <td>{{ reserva.cliente.email }}</td>
+            
+            <td>{{ reserva.fecha_limpia }}</td>
+            <td>{{ reserva.horario_limpio }}</td>
+            <td>{{ reserva.cantidad_personas }}</td>
+            
+            <td>
+              {% if reserva.estado == 'confirmado' %}
+                <span class="badge badge-green">Visitó</span>
+              {% elif reserva.estado == 'pendiente' %}
+                <span class="badge badge-purple">Pendiente</span>
+              {% elif reserva.estado == 'cancelado' %}
+                <span class="badge badge-red">Canceló</span>
+              {% else %}
+                <span class="badge text-gray-500">{{ reserva.estado }}</span>
+              {% endif %}
+            </td>
           </tr>
+          {% else %}
           <tr>
-            <td>Hernan Leclerc</td>
-            <td>Hernilec@yahoo.com.ar</td>
-            <td>22/08/2026</td>
-            <td>22:00</td>
-            <td>4</td>
-            <td><span class="badge badge-purple">Pendiente</span></td>
+            <td colspan="6" class="text-center p-4 text-gray-500">
+              No hay reservas que coincidan con la búsqueda.
+            </td>
           </tr>
-          <tr>
-            <td>Jimena Narvaez</td>
-            <td>Jimenarva@gmail.com</td>
-            <td>14/03/2027</td>
-            <td>11:00</td>
-            <td>1</td>
-            <td><span class="badge badge-red">Canceló</span></td>
-          </tr>
-          <tr>
-            <td>Lucas Cetani</td>
-            <td>Cetanilucas@gmail.com</td>
-            <td>17/01/2027</td>
-            <td>12:00</td>
-            <td>5</td>
-            <td><span class="badge badge-green">Visitó</span></td>
-          </tr>
-          <tr>
-            <td>Thiago Nuñez</td>
-            <td>Tk9@gmail.com</td>
-            <td>20/10/2026</td>
-            <td>13:00</td>
-            <td>6</td>
-            <td><span class="badge badge-purple">Pendiente</span></td>
-          </tr>
-          <tr>
-            <td>Facundo Riolo</td>
-            <td>Rivestman@gmail.com</td>
-            <td>12/06/2026</td>
-            <td>20:00</td>
-            <td>3</td>
-            <td><span class="badge badge-red">Canceló</span></td>
-          </tr>
-          <tr>
-            <td>Aela Iriarte</td>
-            <td>Aliri@hotmail.com</td>
-            <td>14/02/2027</td>
-            <td>19:00</td>
-            <td>2</td>
-            <td><span class="badge badge-green">Visitó</span></td>
-          </tr>
-          <tr>
-            <td>Francisco Panei</td>
-            <td>Franpan@gmail.com</td>
-            <td>05/09/2026</td>
-            <td>21:00</td>
-            <td>3</td>
-            <td><span class="badge badge-purple">Pendiente</span></td>
-          </tr>
-          <tr>
-            <td>Daniel Suñavi</td>
-            <td>Danisuña@gmail.com</td>
-            <td>08/10/2026</td>
-            <td>23:00</td>
-            <td>5</td>
-            <td><span class="badge badge-red">Canceló</span></td>
-          </tr>
-          <tr>
-            <td>Barbara Ribas</td>
-            <td>Barbriv@yahoo.com</td>
-            <td>15/03/2027</td>
-            <td>09:00</td>
-            <td>7</td>
-            <td><span class="badge badge-green">Visitó</span></td>
-          </tr>
-          <tr>
-            <td>Sebastian Prato</td>
-            <td>Persprat@yahoo.com</td>
-            <td>12/06/2026</td>
-            <td>07:00</td>
-            <td>2</td>
-            <td><span class="badge badge-purple">Pendiente</span></td>
-          </tr>
-          <tr>
-            <td>Lucio Vitale</td>
-            <td>Vitalelucio@gmail.com</td>
-            <td>12/06/2026</td>
-            <td>12:00</td>
-            <td>3</td>
-            <td><span class="badge badge-red">Canceló</span></td>
-          </tr>
-          <tr>
-            <td>Carlos Sainz</td>
-            <td>Csainz@gmail.com</td>
-            <td>06/12/2026</td>
-            <td>12:00</td>
-            <td>22</td>
-            <td><span class="badge badge-red">Canceló</span></td>
-          </tr>
-          <tr>
-            <td>Jonathan Joestar</td>
-            <td>Jojoestar@yahoo.com</td>
-            <td>04/04/2027</td>
-            <td>18:00</td>
-            <td>12</td>
-            <td><span class="badge badge-red">Canceló</span></td>
-          </tr>
+          {% endfor %}
         </tbody>
       </table>
     </div>
@@ -160,5 +81,4 @@
 {% endblock %}
 
 {% block extra_js %}
-<script src="{{ url_for('static', filename='js/admin/historial.js') }}"></script>
 {% endblock %}
