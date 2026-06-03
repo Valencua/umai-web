@@ -9,40 +9,62 @@
 
 {% block content %}
 <div class="pestaña-reseñas">
-    <!-- Inyectar URL del API para que el JS la lea -->
-    <div id="reseñas-config" data-api-base="{{ api_base }}" hidden></div>
-
-    <div class= "fila-superior">
+    <div class="fila-superior">
         <div class="tarjeta-base tarjeta-reseñas-pendientes tarjeta-con-lista">
             <div class="header-tarjeta">
                 <h2>⏳ Pendientes de aprobación</h2>
             </div>
 
             <div class="lista-reseñas lista-con-scroll" id="pendientes-list">
+                {% if reseñas_pendientes %}
+                    {% for reseña in reseñas_pendientes %}
+                        <div class="caja-reseña" data-resena-id="{{ reseña.reseña_id }}">
+                            <div class="header-reseña">
+                                <span class="nombre-cliente">{{ reseña.clientes.nombre }}</span>
+                                <div class="estrellas">
+                                    {% for i in range(5) %}
+                                        <i class="{% if i < reseña.rating %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <span class="fecha-reserva">{{ reseña.creado_en }}</span>
+                            <p class="texto-reseña">{{ reseña.descripcion }}</p>
+                            
+                            <div class="acciones-reseña">
+                                <form method="POST" action="{{ url_for('reseñas.aprobar', reseña_id=reseña.reseña_id) }}" style="display:inline;">
+                                    <button type="submit" class="boton-aprobar">Aprobar</button>
+                                </form>
+                                <form method="POST" action="{{ url_for('reseñas.rechazar', reseña_id=reseña.reseña_id) }}" style="display:inline;">
+                                    <button type="submit" class="boton-rechazar">Rechazar</button>
+                                </form>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="vacio">No hay reseñas pendientes</div>
+                {% endif %}
             </div>
         </div>         
 
         <div class="tarjeta-base tarjeta-estadisticas">
             <div class="promedio-estrellas">
-                <div class="estrellas-promedio"></div>
+                <div class="estrellas-promedio">{{ estadisticas.promedio }}</div>
                 <div class="estrellas-graficas">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
+                    {% for i in range(5) %}
+                        <i class="{% if i < estadisticas.promedio|int %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i>
+                    {% endfor %}
                 </div>
             </div>
 
             <div class="detalles-estadisticas">
                 <div class="fila-estadistica">
                     <span class="etiqueta-estadistica">pendientes</span>
-                    <span class="valor-estadistica valor-pendientes"></span>
+                    <span class="valor-estadistica valor-pendientes">{{ reseñas_pendientes|length }}</span>
                 </div>
 
                 <div class="fila-estadistica">
                     <span class="etiqueta-estadistica">aprobadas</span>
-                    <span class="valor-estadistica valor-publicadas"></span>
+                    <span class="valor-estadistica valor-publicadas">{{ estadisticas.total }}</span>
                 </div>
             </div>
         </div>
@@ -55,6 +77,30 @@
             </div>
 
             <div class="lista-reseñas lista-con-scroll">
+                {% if reseñas_publicadas %}
+                    {% for reseña in reseñas_publicadas %}
+                        <div class="caja-reseña" data-resena-id="{{ reseña.reseña_id }}">
+                            <div class="header-reseña">
+                                <span class="nombre-cliente">
+                                    {% if reseña is mapping and reseña.clientes %}
+                                        {{ reseña.clientes.nombre }}
+                                    {% else %}
+                                        {{ reseña }}
+                                    {% endif %}
+                                </span>
+                                <div class="estrellas">
+                                    {% for i in range(5) %}
+                                        <i class="{% if i < reseña.rating %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <span class="fecha-reserva">{{ reseña.creado_en }}</span>
+                            <p class="texto-reseña">{{ reseña.descripcion }}</p>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="vacio">No hay reseñas publicadas</div>
+                {% endif %}
             </div>
         </div>
     </div>
