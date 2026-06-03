@@ -54,9 +54,10 @@ def crear():
     data = {
         'nombre': request.form.get('nombre'),
         'descripcion': request.form.get('descripcion'),
-        'precio': request.form.get('precio')
+        'precio': request.form.get('precio'),
+        'etiquetas': request.form.get('etiquetas')
     }
-    
+
     foto = request.files.get('foto')
 
     files = {}

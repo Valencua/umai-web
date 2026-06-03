@@ -5,7 +5,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // ── Badges toggle (modal nuevo) ──
   document.querySelectorAll('#modalOverlay .badge-toggle').forEach(badge => {
     badge.addEventListener('click', () => {
+
       badge.classList.toggle('badge-selected');
+
+      const seleccionadas = document.querySelectorAll('#modalOverlay .badge-toggle.badge-selected');
+      const etiquetas = [...seleccionadas].map(badge => badge.dataset.badge);
+
+      document.getElementById('etiquetas-input').value = etiquetas.join(',');
+
+      console.log('Etiquetas:', document.getElementById('etiquetas-input').value);
     });
   });
 
