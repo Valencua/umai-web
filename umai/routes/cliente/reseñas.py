@@ -1,6 +1,7 @@
-from flask import Blueprint, render_template, request, redirect, url_for, jsonify
+from flask import Blueprint, render_template, request
 import requests
 from umai.constants import UMAI_API_URL
+
 
 reseñas_bp = Blueprint('reseñas_cliente', __name__)
 
@@ -9,10 +10,12 @@ def mostrar_resenas():
     codigo = request.args.get('codigo')
     return render_template('cliente/reseñas.html', enviado=False, email_cliente=codigo)
 
+
 @reseñas_bp.route('/resenas/crear', methods=['POST'])
 def crear_resena():
     puntuacion = request.form.get('rating')
     comentario = request.form.get('descripcion')
+
 
     codigo = request.form.get('email_oculto')
 
