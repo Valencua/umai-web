@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request
 from umai.services.mailer import enviar_reserva_creada
 from umai.services.qr import generar_qr_data_uri
+from umai.services.reseñas import obtener_reseñas
 from umai.services.reservas import (
     crear_reserva_en_api,
     formatear_fecha_display,
@@ -9,6 +10,10 @@ from umai.services.reservas import (
 
 
 index_bp = Blueprint('index', __name__)
+
+def mostrar_resenas():
+    data = obtener_reseñas()
+    return render_template('cliente/index.html', reseñas=data)
 
 
 def _datos_formulario():
@@ -24,6 +29,9 @@ def _datos_formulario():
 
 @index_bp.route('/', methods=['GET', 'POST'])
 def index():
+    
+    data = obtener_reseñas()
+
     reserva_exitosa = False
     error_reserva = None
     form = {}
@@ -92,4 +100,5 @@ def index():
         horario=horario,
         personas=personas,
         qr_data_uri=qr_data_uri,
+        reseñas=data,
     )
