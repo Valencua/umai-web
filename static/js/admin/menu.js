@@ -80,7 +80,9 @@ function abrirModalEditar(platoItem) {
 
   const nombre = platoItem.querySelector('.plato-nombre').textContent;
   const desc = platoItem.querySelector('.plato-desc').textContent;
+  const platoId = platoItem.dataset.id;
 
+  document.getElementById('form-editar').action =`/admin/menu/editar/${platoId}`;
   document.getElementById('editar-nombre').value = nombre;
   document.getElementById('editar-desc').value = desc;
   document.getElementById('editar-precio').value = platoItem.dataset.precio || '';

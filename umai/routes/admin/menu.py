@@ -76,7 +76,6 @@ def editar(plato_id):
             foto.content_type
         )
     
-
     actualizar_plato(
         plato_id,
         data,
