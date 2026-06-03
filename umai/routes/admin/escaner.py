@@ -44,10 +44,10 @@ def escan():
             datos_ok, reserva = obtener_reserva_por_uuid(uuid_codigo)
 
             if not datos_ok:
-                mensaje = reserva  # acÃ¡ viene el texto de error
+                mensaje = reserva
                 tipo_mensaje = 'error'
             else:
-                era_pendiente = reserva.get('estado') == 'pendiente'
+                era_pendiente = reserva.get('estado') == 'pendiente' #Se puede confirmar varias veces, pero envia el email solo la primera vez
 
                 ok, mensaje = confirmar_reserva_en_api(uuid_codigo)
                 tipo_mensaje = 'exito' if ok else 'error'
