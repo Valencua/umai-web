@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session
-import requests
-from umai.constants import UMAI_API_URL
+from umai.services.login import autenticar
 
 login_bp = Blueprint('login', __name__)
 
@@ -16,20 +15,11 @@ def auth():
     if not usuario or not contrasena:
         return render_template('admin/login.html', error='Completá todos los campos.')
 
-    try:
-        resp = requests.post(
-            f'{UMAI_API_URL}/auth/login',
-            json={'usuario': usuario, 'contraseña': contrasena},
-            timeout=10,
-        )
-        if resp.status_code == 200:
-            session['usuario'] = usuario
-            session['admin'] = resp.json().get('admin', False)
-            return redirect(url_for('admin.dashboard.index'))
+    ok, resultado = autenticar(usuario, contrasena)
 
-        errores = resp.json().get('errors', [])
-        mensaje = errores[0].get('description', 'Credenciales inválidas.') if errores else 'Credenciales inválidas.'
-        return render_template('admin/login.html', error=mensaje)
+    if ok:
+        session['usuario'] = usuario
+        session['admin'] = resultado.get('admin', False)
+        return redirect(url_for('admin.dashboard.index'))
 
-    except Exception:
-        return render_template('admin/login.html', error='No se pudo conectar con el servidor.')
+    return render_template('admin/login.html', error=resultado)
