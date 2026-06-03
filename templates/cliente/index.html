@@ -524,6 +524,7 @@
         </div>
 
         <br /><br /><br />
+
         <h1 class="flex justify-center mb-6 text-4xl text-orange-700">
           Servicios & Comodidades
         </h1>
@@ -534,102 +535,41 @@
           <hr class="border-b-2 border-orange-700 w-24 rounded-full" />
         </div>
         <div class="flex justify-around flex-wrap gap-6">
+          {% for servicio in servicios %}
           <div
             id="servicios"
-            class="max-w-sm rounded-2xl overflow-hidden shadow-lg text-white"
+            class="w-2/12 rounded-2xl overflow-hidden shadow-lg text-white"
           >
             <div class="flex justify-center items-center mt-6">
-              <p class="text-5xl">♿</p>
+              <p class="text-5xl">{{ servicio.icono }}</p>
             </div>
             <div class="px-6 py-4">
               <div
                 class="font-bold text-xl mb-2 flex justify-center items-center"
               >
-                Acceso para discapacitados
+                {{ servicio.nombre }}
               </div>
               <p id="texto-servicio" class="flex justify-center items-center">
-                Rampa de acceso, baños adaptados y atención preferencial.
+                {{ servicio.descripcion }}
               </p>
             </div>
+            {% if servicio.estado %}
             <div
               id="texto-disponibilidad"
               class="mb-4 flex justify-center items-center"
             >
               <p>● Disponible</p>
             </div>
-          </div>
-          <div
-            id="servicios"
-            class="max-w-sm rounded-2xl overflow-hidden shadow-lg text-white"
-          >
-            <div class="flex justify-center items-center mt-6">
-              <p class="text-5xl">🅿️</p>
-            </div>
-            <div class="px-6 py-4">
-              <div
-                class="font-bold text-xl mb-2 flex justify-center items-center"
-              >
-                Estacionamiento
-              </div>
-              <p id="texto-servicio" class="flex justify-center items-center">
-                Playa de estacionamiento a 50 metros del local.
-              </p>
-            </div>
+            {% else %}
             <div
-              id="texto-disponibilidad"
+              id="texto-no-disponibilidad"
               class="mb-4 flex justify-center items-center"
             >
-              <p>● Disponible</p>
+              <p>● No disponible</p>
             </div>
+          {% endif %}
           </div>
-          <div
-            id="servicios"
-            class="max-w-sm rounded-2xl overflow-hidden shadow-lg text-white"
-          >
-            <div class="flex justify-center items-center mt-6">
-              <p class="text-5xl">📶</p>
-            </div>
-            <div class="px-6 py-4">
-              <div
-                class="font-bold text-xl mb-2 flex justify-center items-center"
-              >
-                Wifi gratuito
-              </div>
-              <p id="texto-servicio" class="flex justify-center items-center">
-                Conectividad de alta velocidad para todos los comensales.
-              </p>
-            </div>
-            <div
-              id="texto-disponibilidad"
-              class="mb-4 flex justify-center items-center"
-            >
-              <p>● Disponible</p>
-            </div>
-          </div>
-          <div
-            id="servicios"
-            class="max-w-sm rounded-2xl overflow-hidden shadow-lg text-white"
-          >
-            <div class="flex justify-center items-center mt-6">
-              <p class="text-5xl">🥡</p>
-            </div>
-            <div class="px-6 py-4">
-              <div
-                class="font-bold text-xl mb-2 flex justify-center items-center"
-              >
-                Take Away
-              </div>
-              <p id="texto-servicio" class="flex justify-center items-center">
-                Disfrutá nuestros platos donde quieras, listos para llevar.
-              </p>
-            </div>
-            <div
-              id="texto-disponibilidad"
-              class="mb-4 flex justify-center items-center"
-            >
-              <p>● Disponible</p>
-            </div>
-          </div>
+          {% endfor %}
         </div>
       </section>
 
