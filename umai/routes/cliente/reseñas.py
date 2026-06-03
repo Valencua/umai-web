@@ -1,10 +1,13 @@
 from flask import Blueprint, render_template, request, redirect, url_for, jsonify
+from umai.services.reseñas import obtener_reseñas
 
 reseñas_bp = Blueprint('reseñas_cliente', __name__)
 
 @reseñas_bp.route('/')
 def mostrar_resenas():
-    return render_template('cliente/reseñas.html', enviado=False)
+    data = obtener_reseñas()
+    return render_template('cliente/index.html', reseñas=data)
+
 
 @reseñas_bp.route('/resenas/crear', methods=['POST'])
 def crear_resena():
