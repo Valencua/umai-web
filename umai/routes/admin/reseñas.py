@@ -4,7 +4,6 @@ from umai.services.reseñas_admin import obtener_reseñas_pendientes, obtener_re
 
 abm_reseñas_bp = Blueprint('reseñas', __name__)
 
-# Agregamos strict_slashes=False acá:
 @abm_reseñas_bp.route('/', strict_slashes=False)
 def index():
     reseñas_pendientes = obtener_reseñas_pendientes()
