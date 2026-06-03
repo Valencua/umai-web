@@ -591,9 +591,17 @@ header {
 
     width: 60%;
 
+    max-width: 60%;
+
+    min-width: 0;
+
     margin-bottom: 12px;
 
     line-height: 1.1;
+
+    overflow-wrap: anywhere;
+
+    word-break: break-word;
 }
 
 /* DESCRIPCION */
@@ -606,8 +614,8 @@ header {
     width: 58%;
 
     line-height: 1.5;
-
-    min-height: 95px;
+    
+    overflow-wrap: anywhere;
 }
 
 /* FOOTER CARD */
