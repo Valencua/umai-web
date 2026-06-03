@@ -35,8 +35,9 @@
 
          {% if not enviado %}
 
-            <form action="/resenas/crear" method="POST">
+            <form action="{{ url_for('cliente.reseñas_cliente.crear_resena') }}" method="POST">>
 
+                <input type="hidden" name="email_oculto" value="{{ email_cliente }}">
                 
                 <div class="usuario-resena">
                     <div class="icono-usuario">
@@ -47,23 +48,25 @@
                         <i class="fa-solid fa-circle-info text-gray-500"></i>
                     </div>
                 </div>
+
+                <input type="hidden" name="email" value="`{{ email_cliente }}`">
                 
                 <div class="contenedor-estrellas">
                     <div class="rating-estrellas">
 
-                        <input type="radio" id="estrellas1" name="rating" value="1" required />
+                        <input type="radio" id="estrellas1" name="rating" value="5" required />
                         <label for="estrellas1"><i class="fa-solid fa-star"></i></label>
 
-                        <input type="radio" id="estrellas2" name="rating" value="2" />
+                        <input type="radio" id="estrellas2" name="rating" value="4" />
                         <label for="estrellas2"><i class="fa-solid fa-star"></i></label>
 
                         <input type="radio" id="estrellas3" name="rating" value="3" />
                         <label for="estrellas3"><i class="fa-solid fa-star"></i></label>
 
-                        <input type="radio" id="estrellas4" name="rating" value="4" />
+                        <input type="radio" id="estrellas4" name="rating" value="2" />
                         <label for="estrellas4"><i class="fa-solid fa-star"></i></label>
 
-                        <input type="radio" id="estrellas5" name="rating" value="5" />
+                        <input type="radio" id="estrellas5" name="rating" value="1" />
                         <label for="estrellas5"><i class="fa-solid fa-star"></i></label>
                     </div>
                 </div>
@@ -78,6 +81,12 @@
                     class="textarea-resena"
                     ></textarea>
                 </div>
+
+                {% if error %}
+
+                    <p class="mensaje-error-backend">{{ error }}</p>
+
+                {% endif %}
 
                 <div class="contenedor-boton">
                     <button
