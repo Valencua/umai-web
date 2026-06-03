@@ -34,6 +34,7 @@ def enviar_reserva_creada(
         hora=hora,
         cantidad_personas=cantidad_personas,
         cancel_url=cancel_url,
+        uuid_codigo=uuid_codigo,
     )
 
     mensaje = Message(
@@ -41,13 +42,7 @@ def enviar_reserva_creada(
         recipients=[destinatario],
         html=html,
     )
-    mensaje.attach(
-        filename='qr.png',
-        content_type='image/png',
-        data=generar_qr_bytes(uuid_codigo),
-        disposition='inline',
-        headers={'Content-ID': '<qr_reserva>'},
-    )
+
     Mail(current_app).send(mensaje)
 
 
