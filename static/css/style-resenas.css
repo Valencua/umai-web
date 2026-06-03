@@ -220,3 +220,10 @@
 .boton-volver:hover{
     background-color: #ea580c;
 }
+
+.mensaje-error-backend{
+    color: #FF7A41;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+}
