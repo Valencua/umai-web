@@ -66,8 +66,10 @@
                             >
                         </div>
                     </div>
-                    <div id="login-alerts-slot" class="login-alerts-slot">
-                        <ul id="login-errores" class="login-flashes" role="alert"></ul>
+                    <div id="login-alerts-slot" class="login-alerts-slot {% if error %}is-visible{% endif %}">
+                        <ul id="login-errores" class="login-flashes" role="alert">
+                            {% if error %}<li>{{ error }}</li>{% endif %}
+                        </ul>
                     </div>
                     <button type="submit" class="login-submit">
                         Ingresar <span aria-hidden="true">→</span>

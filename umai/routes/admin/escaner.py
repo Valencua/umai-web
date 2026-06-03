@@ -1,7 +1,7 @@
 import re
 from flask import Blueprint, render_template, request
 from umai.services.escaner import confirmar_reserva_en_api
-
+from umai.utils import requiere_login
 
 escaner_bp = Blueprint('escaner', __name__)
 
@@ -25,6 +25,7 @@ def extraer_codigo_reserva(valor: str) -> str | None:
 
 
 @escaner_bp.route('/', methods=['GET', 'POST'])
+@requiere_login
 def escan():
     mensaje = None
     tipo_mensaje = None
@@ -50,3 +51,4 @@ def escan():
         tipo_mensaje=tipo_mensaje,
         codigo=codigo,
     )
+

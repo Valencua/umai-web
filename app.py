@@ -25,6 +25,8 @@ app = Flask(__name__,
             template_folder='templates',
             static_folder='static')
 
+app.secret_key = os.getenv('SECRET_KEY', 'dev-secret-umai')
+
 app.config['MAIL_SERVER'] = MAIL_SERVER
 app.config['MAIL_PORT'] = MAIL_PORT
 app.config['MAIL_USE_TLS'] = MAIL_USE_TLS
