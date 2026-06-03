@@ -1,13 +1,11 @@
-import os
 import requests
-
-API_BASE = os.environ.get('UMAI_API_URL', 'http://127.0.0.1:5000').rstrip('/')
+from umai.constants import UMAI_API_URL
 
 
 def autenticar(usuario: str, contrasena: str) -> tuple[bool, dict | str]:
     try:
         resp = requests.post(
-            f'{API_BASE}/auth/login',
+            f'{UMAI_API_URL}/auth/login',
             json={'usuario': usuario, 'contraseña': contrasena},
             timeout=10,
         )

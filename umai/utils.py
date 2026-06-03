@@ -17,6 +17,6 @@ def requiere_admin(f):
         if 'usuario' not in session:
             return redirect(url_for('admin.login.auth'))
         if not session.get('admin'):
-            return redirect(url_for('admin.escaner.escan'))
+            return redirect(url_for('admin.login.auth'))
         return f(*args, **kwargs)
     return decorated
