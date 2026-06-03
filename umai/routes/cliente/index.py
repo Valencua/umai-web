@@ -1,6 +1,12 @@
 from flask import Blueprint, render_template, request
 
-from umai.services.reservas import crear_reserva_en_api, formatear_fecha_display
+from umai.services.qr import generar_qr_data_uri
+from umai.services.reservas import (
+    crear_reserva_en_api,
+    formatear_fecha_display,
+    obtener_uuid_reserva_por_email,
+)
+
 
 index_bp = Blueprint('index', __name__)
 
@@ -26,6 +32,7 @@ def index():
     fecha = None
     horario = None
     personas = None
+    qr_data_uri = None
 
     if request.method == 'POST':
         form = _datos_formulario()
@@ -54,6 +61,10 @@ def index():
         )
 
         if ok:
+            uuid_ok, uuid_codigo = obtener_uuid_reserva_por_email(form['email'])
+            if uuid_ok:
+                qr_data_uri = generar_qr_data_uri(uuid_codigo)
+
             reserva_exitosa = True
             nombre = form['nombre']
             fecha = formatear_fecha_display(form['fecha'])
@@ -62,6 +73,7 @@ def index():
             form = {}
         else:
             error_reserva = mensaje
+            
 
     return render_template(
         'cliente/index.html',
@@ -72,4 +84,5 @@ def index():
         fecha=fecha,
         horario=horario,
         personas=personas,
+        qr_data_uri=qr_data_uri,
     )

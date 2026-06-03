@@ -30,7 +30,7 @@ def confirmar_reserva_en_api(uuid_codigo: str) -> tuple[bool, str]:
             timeout=15,
         )
 
-        if resp.status_code == 200:
+        if resp.status_code == 204:
             return True, 'Reserva confirmada'
 
         return False, _mensaje_desde_error_api(resp.text)

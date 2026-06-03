@@ -6,7 +6,6 @@ import requests
 
 from umai.constants import UMAI_API_URL, TZ_ARGENTINA
 
-
 def armar_fecha_api(fecha: str, horario: str) -> str:
     dt = datetime.strptime(f'{fecha} {horario}', '%Y-%m-%d %H:%M')
     dt = dt.replace(tzinfo=TZ_ARGENTINA)
@@ -59,3 +58,23 @@ def crear_reserva_en_api(
         return False, 'La API tardó demasiado en responder. Intentá de nuevo.'
     except requests.exceptions.RequestException:
         return False, 'No se pudo crear la reserva.'
+
+def obtener_uuid_reserva_por_email(email: str) -> tuple[bool, str]:
+    try:
+        resp = requests.get(
+            f'{UMAI_API_URL}/reservas/',
+            params={
+                'email': email.strip().lower(),
+                'limit': 1,
+                'orden': 'desc',
+            },
+            timeout=15,
+        )
+        if resp.status_code != 200:
+            return False, _mensaje_desde_error_api(resp.text)
+        data = resp.json().get('data', [])
+        if not data:
+            return False, 'No se encontró la reserva.'
+        return True, data[0]['uuid_codigo']
+    except requests.exceptions.RequestException:
+        return False, 'No se pudo obtener la reserva.'
