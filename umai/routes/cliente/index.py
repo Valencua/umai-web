@@ -12,11 +12,6 @@ from umai.services.reservas import (
 
 index_bp = Blueprint('index', __name__)
 
-def mostrar_resenas():
-    data = obtener_reseñas()
-    return render_template('cliente/index.html', reseñas=data)
-
-
 def _datos_formulario():
     return {
         'nombre': request.form.get('nombre', '').strip(),
