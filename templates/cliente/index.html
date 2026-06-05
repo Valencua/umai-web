@@ -156,11 +156,11 @@
             {% if platos %}
             {% set platos_por_pagina = 6 %}
             {% for i in range(0, platos|length, platos_por_pagina) %}
-            <!-- ================= PAGINA 1 ================= -->
+
             <div class="slide">
               <div class="menu-grid">
                 {% for plato in platos[i:i + platos_por_pagina] %}
-                <!-- PLATO 1 -->
+
                 <div class="card-menu">
                   <img
                     src="{{ plato.foto }}"
