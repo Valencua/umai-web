@@ -3,17 +3,17 @@ document.addEventListener("DOMContentLoaded", function() {
     const mensajeError = document.getElementById("mensaje-error");
     const inputFecha = document.getElementById("fecha-reserva");
 
-    // --- NUEVO: Configurar el calendario para que no permita fechas pasadas ---
+
     const hoy = new Date();
-    // Formateamos la fecha a YYYY-MM-DD (que es el formato que lee el input type="date")
+
     const anio = hoy.getFullYear();
     const mes = String(hoy.getMonth() + 1).padStart(2, '0');
     const dia = String(hoy.getDate()).padStart(2, '0');
     const fechaMinima = `${anio}-${mes}-${dia}`;
     
-    // Le asignamos la fecha mínima al input
+
     inputFecha.min = fechaMinima;
-    // --------------------------------------------------------------------------
+
 
     formulario.addEventListener("submit", function(evento) {
         
@@ -55,8 +55,7 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
 
-        // Ya no necesitamos el Regex del horario porque el <select> obliga al usuario a elegir 
-        // una de las opciones válidas que tú definiste en el HTML. Solo verificamos que no esté vacío.
+
         if (horario === "") {
             mostrarError("Seleccione un horario de la lista");
             return;
@@ -67,7 +66,6 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
 
-        // Si usaste la Opción B de mi respuesta anterior para probar el modal con JS, 
-        // tu código de evento.preventDefault() y manipulación del modal iría aquí.
+
     });
 });
