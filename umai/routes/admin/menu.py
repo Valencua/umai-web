@@ -30,8 +30,7 @@ def index():
     return render_template(
         'admin/menu.html',
         platos=platos,
-        estadisticas=estadisticas,
-        error=None
+        estadisticas=estadisticas
     )
 
 
@@ -106,6 +105,8 @@ def eliminar(plato_id):
 def editar(plato_id):
 
     data = request.form.to_dict()
+
+    print("FORM:", data)
 
     files = {}
 

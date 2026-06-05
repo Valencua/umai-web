@@ -21,6 +21,16 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('#modalEditarOverlay .badge-toggle').forEach(badge => {
     badge.addEventListener('click', () => {
       badge.classList.toggle('badge-selected');
+
+      const seleccionadas = document.querySelectorAll(
+      '#modalEditarOverlay .badge-toggle.badge-selected'
+      );
+
+      const etiquetas = [...seleccionadas].map(
+        badge => badge.dataset.badge
+      );
+
+      document.getElementById('editar-etiquetas-input').value = etiquetas.join(',');
     });
   });
 
@@ -94,6 +104,34 @@ function abrirModalEditar(platoItem) {
   document.getElementById('editar-nombre').value = nombre;
   document.getElementById('editar-desc').value = desc;
   document.getElementById('editar-precio').value = platoItem.dataset.precio || '';
+  console.log('Etiquetas:', platoItem.dataset.etiquetas);
+
+  const etiquetasPlato = platoItem.dataset.etiquetas;
+
+  console.log('Etiquetas plato:', etiquetasPlato);
+
+  const etiquetasSeleccionadas = etiquetasPlato.split(',');
+
+  document.getElementById('editar-etiquetas-input').value = etiquetasSeleccionadas.join(',');
+
+  console.log('Array etiquetas:', etiquetasSeleccionadas);
+
+  document.querySelectorAll('#modalEditarOverlay .badge-toggle').forEach(b => {
+
+    console.log(
+      'badge:',
+      b.dataset.badge,
+      etiquetasSeleccionadas.includes(b.dataset.badge)
+    );
+
+    b.classList.toggle(
+      'badge-selected',
+      etiquetasSeleccionadas.includes(b.dataset.badge)
+    );
+
+    console.log(b.className);
+
+  });
 
   // Foto existente
   const imgReal = platoItem.querySelector('.plato-img-real');
@@ -109,12 +147,6 @@ function abrirModalEditar(platoItem) {
     document.getElementById('editar-foto-icon').style.display = '';
     document.getElementById('editar-foto-text').style.display = '';
   }
-
-  // Badges actuales
-  const badgesActivos = [...platoItem.querySelectorAll('.plato-badges .badge')].map(b => b.textContent.trim());
-  document.querySelectorAll('#modalEditarOverlay .badge-toggle').forEach(b => {
-    b.classList.toggle('badge-selected', badgesActivos.includes(b.textContent.trim()));
-  });
 
   document.getElementById('modalEditarOverlay').classList.add('active');
 }

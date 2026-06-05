@@ -25,6 +25,7 @@
       class="plato-item"
       data-id="{{ plato.plato_id }}"
       data-precio="{{ plato.precio }}"
+      data-etiquetas="{{ plato.etiquetas|join(',') }}"
     >
 
       <img src="{{ plato.foto }}" class="plato-img-real">
@@ -143,9 +144,9 @@
       <div class="form-group">
         <label class="form-label">Etiquetas</label>
         <div class="etiquetas-selector">
-          <span class="badge badge-spicy badge-toggle" data-badge="1">Spicy</span>
-          <span class="badge badge-sintacc badge-toggle" data-badge="2">Sin TACC</span>
-          <span class="badge badge-veggie badge-toggle" data-badge="3">Veggie</span>
+          <span class="badge badge-spicy badge-toggle" data-badge="3">Spicy</span>
+          <span class="badge badge-sintacc badge-toggle" data-badge="1">Sin TACC</span>
+          <span class="badge badge-veggie badge-toggle" data-badge="2">Veggie</span>
         </div>
         <input type="hidden" name="etiquetas" id="etiquetas-input">
       </div>
@@ -216,10 +217,12 @@
       <div class="form-group">
         <label class="form-label">Etiquetas</label>
         <div class="etiquetas-selector">
-          <span class="badge badge-spicy badge-toggle" data-badge="spicy">Spicy</span>
-          <span class="badge badge-sintacc badge-toggle" data-badge="sintacc">Sin TACC</span>
-          <span class="badge badge-veggie badge-toggle" data-badge="veggie">Veggie</span>
+          <span class="badge badge-spicy badge-toggle" data-badge="3">Spicy</span>
+          <span class="badge badge-sintacc badge-toggle" data-badge="1">Sin TACC</span>
+          <span class="badge badge-veggie badge-toggle" data-badge="2">Veggie</span>
         </div>
+
+        <input type="hidden" name="etiquetas" id="editar-etiquetas-input">
       </div>
 
       <p class="form-error" id="editar-error">Llene todos los campos obligatorios</p>
