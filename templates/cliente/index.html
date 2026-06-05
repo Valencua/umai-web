@@ -174,7 +174,7 @@
                   </p>
 
                   <div class="card-footer">
-                    <span class="precio">${{ plato.precio }}</span>
+                    <span class="precio">${{ '{:,.0f}'.format(plato.precio).replace(',', '.') }}</span>
                     {% if plato.etiquetas %}
                     <div class="tags">
                       {% for etiqueta_id in plato.etiquetas %}
