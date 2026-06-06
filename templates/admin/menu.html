@@ -17,45 +17,46 @@
       <button class="btn-nuevo" onclick="abrirModal()">+ Nuevo plato</button>
     </div>
 
-      <div class="platos-scroll">
+    <div class="platos-scroll">
 
-    {% for plato in platos %}
+      {% for plato in platos %}
 
-    <div
-      class="plato-item"
-      data-id="{{ plato.plato_id }}"
-      data-precio="{{ plato.precio }}"
-      data-etiquetas="{{ plato.etiquetas|join(',') }}"
-    >
+      <div
+        class="plato-item"
+        data-id="{{ plato.plato_id }}"
+        data-precio="{{ plato.precio }}"
+        data-etiquetas="{{ plato.etiquetas|join(',') }}"
+      >
 
-      <img src="{{ plato.foto }}" class="plato-img-real">
+        <img src="{{ plato.foto }}" class="plato-img-real">
 
-      <div class="plato-info">
-        <h4 class="plato-nombre">{{ plato.nombre }}</h4>
+        <div class="plato-info">
+          <h4 class="plato-nombre">{{ plato.nombre }}</h4>
 
-        <p class="plato-desc">
-          {{ plato.descripcion }}
-        </p>
+          <p class="plato-desc">
+            {{ plato.descripcion }}
+          </p>
 
-        <div class="plato-badges"></div>
+          <div class="plato-badges"></div>
+        </div>
+
+        <div class="plato-acciones">
+          <button type="button" class="btn-edit" onclick="abrirModalEditar(this.closest('.plato-item'))">✏️</button>
+
+          <form
+            action="{{ url_for('admin.menu.eliminar', plato_id=plato.plato_id) }}"
+            method="POST"
+            style="display:inline;"
+          >
+            <button class="btn-delete">🗑️</button>
+          </form>
+        </div>
+
       </div>
 
-      <div class="plato-acciones">
-        <button type="button" class="btn-edit" onclick="abrirModalEditar(this.closest('.plato-item'))">✏️</button>
-
-        <form
-          action="{{ url_for('admin.menu.eliminar', plato_id=plato.plato_id) }}"
-          method="POST"
-          style="display:inline;"
-        >
-          <button class="btn-delete">🗑️</button>
-        </form>
-      </div>
+      {% endfor %}
 
     </div>
-
-    {% endfor %}
-
   </div>
 
   <!-- Columna derecha -->
