@@ -12,8 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const etiquetas = [...seleccionadas].map(badge => badge.dataset.badge);
 
       document.getElementById('etiquetas-input').value = etiquetas.join(',');
-
-      console.log('Etiquetas:', document.getElementById('etiquetas-input').value);
     });
   });
 
@@ -77,6 +75,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+      // ── Estadísticas de etiquetas ──
+  let totalSpicy = 0;
+  let totalSinTacc = 0;
+  let totalVeggie = 0;
+
+  document.querySelectorAll('.plato-item').forEach(plato => {
+
+    const etiquetas = plato.dataset.etiquetas.split(',');
+
+    if (etiquetas.includes('1')) {
+      totalSinTacc++;
+    }
+
+    if (etiquetas.includes('2')) {
+      totalVeggie++;
+    }
+
+    if (etiquetas.includes('3')) {
+      totalSpicy++;
+    }
+
+  });
+
+  document.getElementById('stat-spicy').textContent = totalSpicy;
+  document.getElementById('stat-sintacc').textContent = totalSinTacc;
+  document.getElementById('stat-veggie').textContent = totalVeggie;
+
 });
 
 // ── Abrir modal nuevo ──
@@ -104,32 +129,19 @@ function abrirModalEditar(platoItem) {
   document.getElementById('editar-nombre').value = nombre;
   document.getElementById('editar-desc').value = desc;
   document.getElementById('editar-precio').value = platoItem.dataset.precio || '';
-  console.log('Etiquetas:', platoItem.dataset.etiquetas);
 
   const etiquetasPlato = platoItem.dataset.etiquetas;
-
-  console.log('Etiquetas plato:', etiquetasPlato);
 
   const etiquetasSeleccionadas = etiquetasPlato.split(',');
 
   document.getElementById('editar-etiquetas-input').value = etiquetasSeleccionadas.join(',');
 
-  console.log('Array etiquetas:', etiquetasSeleccionadas);
-
   document.querySelectorAll('#modalEditarOverlay .badge-toggle').forEach(b => {
-
-    console.log(
-      'badge:',
-      b.dataset.badge,
-      etiquetasSeleccionadas.includes(b.dataset.badge)
-    );
 
     b.classList.toggle(
       'badge-selected',
       etiquetasSeleccionadas.includes(b.dataset.badge)
     );
-
-    console.log(b.className);
 
   });
 
