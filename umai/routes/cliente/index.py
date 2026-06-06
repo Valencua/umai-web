@@ -9,6 +9,8 @@ from umai.services.reservas import (
     obtener_uuid_reserva_por_email,
 )
 
+import requests
+from umai.constants import UMAI_API_URL
 
 index_bp = Blueprint('index', __name__)
 
@@ -32,6 +34,13 @@ def _datos_formulario():
 def index():
     
     data = obtener_reseñas()
+    try: 
+        response = requests.get(f'{UMAI_API_URL}/platos/', timeout=5)
+        response.raise_for_status()
+        platos = response.json().get('data', [])
+    except Exception:
+        platos = []
+
 
     reserva_exitosa = False
     error_reserva = None
@@ -58,6 +67,7 @@ def index():
                 fecha=None,
                 horario=None,
                 personas=None,
+                platos=platos,
             )
 
         ok, mensaje = crear_reserva_en_api(
@@ -105,4 +115,5 @@ def index():
         qr_data_uri=qr_data_uri,
         reseñas=data,
         servicios=servicios,
+        platos=platos,
     )

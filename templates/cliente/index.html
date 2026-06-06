@@ -153,288 +153,55 @@
           <button class="prev">❮</button>
 
           <div class="slider">
-            <!-- ================= PAGINA 1 ================= -->
+            {% if platos %}
+            {% set platos_por_pagina = 6 %}
+            {% for i in range(0, platos|length, platos_por_pagina) %}
 
             <div class="slide">
               <div class="menu-grid">
-                <!-- PLATO 1 -->
+                {% for plato in platos[i:i + platos_por_pagina] %}
+
                 <div class="card-menu">
                   <img
-                    src="{{ url_for('static', filename='img/sushi1.png') }}"
-                    alt="Uramaki Tobiko"
+                    src="{{ plato.foto }}"
+                    alt="{{ plato.nombre }}"
                   />
 
-                  <h3>Uramaki Tobiko</h3>
+                  <h3>{{ plato.nombre }}</h3>
 
                   <p>
-                    Rollo invertido con palta y langostino. Cubierto de huevas
-                    de pescado.
+                    {{ plato.descripcion }}
                   </p>
 
                   <div class="card-footer">
-                    <span class="precio">$3.500</span>
-
+                    <span class="precio">${{ '{:,.0f}'.format(plato.precio).replace(',', '.') }}</span>
+                    {% if plato.etiquetas %}
                     <div class="tags">
+                      {% for etiqueta_id in plato.etiquetas %}
+                      {% if etiqueta_id == 1 %}
                       <span class="tag verde">Sin TACC</span>
+                      {% elif etiqueta_id == 2 %}
+                      <span class="tag turquesa">Veggie</span>
+                      {% elif etiqueta_id == 3 %}
+                      <span class="tag rojo">Spicy</span>
+                      {% endif %}
+                      {% endfor %}
                     </div>
+                    {% endif %}
                   </div>
                 </div>
-
-                <!-- PLATO 2 -->
-                <div class="card-menu">
-                  <img
-                    src="{{ url_for('static', filename='img/sushi2.png') }}"
-                    alt="Rainbow Uramaki"
-                  />
-
-                  <h3>Rainbow Uramaki</h3>
-
-                  <p>
-                    Kanikama, filadelfia y palta. Cubierto con salmón fresco.
-                  </p>
-
-                  <div class="card-footer">
-                    <span class="precio">$3.000</span>
-
-                    <div class="tags">
-                      <span class="tag verde">Sin TACC</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- PLATO 3 -->
-                <div class="card-menu">
-                  <img
-                    src="{{ url_for('static', filename='img/sushi3.png') }}"
-                    alt="Uramaki Sake"
-                  />
-
-                  <h3>Uramaki Sake</h3>
-
-                  <p>
-                    Rollo invertido con palta y langostino. Cubierto con salmón.
-                  </p>
-
-                  <div class="card-footer">
-                    <span class="precio">$3.000</span>
-
-                    <div class="tags">
-                      <span class="tag verde">Sin TACC</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- PLATO 4 -->
-                <div class="card-menu">
-                  <img
-                    src="{{ url_for('static', filename='img/sushi4.png') }}"
-                    alt="Uramaki Surimi"
-                  />
-
-                  <h3>Uramaki Surimi</h3>
-
-                  <p>
-                    Salmón y palta. Cubierto con kanikama y mayonesa japonesa.
-                  </p>
-
-                  <div class="card-footer">
-                    <span class="precio">$3.000</span>
-
-                    <div class="tags">
-                      <span class="tag verde">Sin TACC</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- PLATO 5 -->
-                <div class="card-menu">
-                  <img
-                    src="{{ url_for('static', filename='img/sushi5.png') }}"
-                    alt="Crispy Maki"
-                  />
-
-                  <h3>Crispy Maki</h3>
-
-                  <p>Roll crocante con langostino, panko y crema de huevas.</p>
-
-                  <div class="card-footer">
-                    <span class="precio">$3.000</span>
-
-                    <div class="tags">
-                      <span class="tag verde">Sin TACC</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- PLATO 6 -->
-                <div class="card-menu">
-                  <img
-                    src="{{ url_for('static', filename='img/sushi6.png') }}"
-                    alt="Maki Mixto"
-                  />
-
-                  <h3>Maki Mixto</h3>
-
-                  <p>
-                    Salmón, langostino y verdeo. Decorado con langostino frito.
-                  </p>
-
-                  <div class="card-footer">
-                    <span class="precio">$3.000</span>
-
-                    <div class="tags">
-                      <span class="tag verde">Sin TACC</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- ================= PAGINA 2 ================= -->
-
+                {% endfor %}
+              </div> 
+            </div>   
+            {% endfor %}
+            {% else %}
             <div class="slide">
-              <div class="menu-grid">
-                <!-- PLATO 7 -->
-                <div class="card-menu">
-                  <img
-                    src="{{ url_for('static', filename='img/sushi7.png') }}"
-                    alt="Uraveggie"
-                  />
-
-                  <h3>Uraveggie</h3>
-
-                  <p>
-                    Pepino, zanahoria y verdeo. Cubierto con lluvia de verdeo.
-                  </p>
-
-                  <div class="card-footer">
-                    <span class="precio">$3.300</span>
-
-                    <div class="tags">
-                      <span class="tag verde">Sin TACC</span>
-                      <span class="tag turquesa">Veggie</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- PLATO 8 -->
-                <div class="card-menu">
-                  <img
-                    src="{{ url_for('static', filename='img/sushi8.png') }}"
-                    alt="Green Kappa Roll"
-                  />
-
-                  <h3>Green Kappa Roll</h3>
-
-                  <p>Pepino fresco y palta. Envuelto en semillas de sésamo.</p>
-
-                  <div class="card-footer">
-                    <span class="precio">$3.000</span>
-
-                    <div class="tags">
-                      <span class="tag verde">Sin TACC</span>
-                      <span class="tag turquesa">Veggie</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- PLATO 9 -->
-                <div class="card-menu">
-                  <img
-                    src="{{ url_for('static', filename='img/sushi9.png') }}"
-                    alt="Uramaki Spicy"
-                  />
-
-                  <h3>Uramaki Spicy</h3>
-
-                  <p>
-                    Salmón fresco y palta, con hilos de kanikama en mayonesa
-                    japonesa picante y togarashi.
-                  </p>
-
-                  <div class="card-footer">
-                    <span class="precio">$3.300</span>
-
-                    <div class="tags">
-                      <span class="tag verde">Sin TACC</span>
-                      <span class="tag rojo">Spicy</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- PLATO 10 -->
-                <div class="card-menu">
-                  <img
-                    src="{{ url_for('static', filename='img/sushi10.png') }}"
-                    alt="Dragon Uramaki"
-                  />
-
-                  <h3>Dragon Uramaki</h3>
-
-                  <p>
-                    Langostino, queso crema y palta. Cubierto con un toque de
-                    salsa unagi dulce.
-                  </p>
-
-                  <div class="card-footer">
-                    <span class="precio">$3.300</span>
-
-                    <div class="tags">
-                      <span class="tag verde">Sin TACC</span>
-                      <span class="tag rojo">Spicy</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- PLATO 11 -->
-                <div class="card-menu">
-                  <img
-                    src="{{ url_for('static', filename='img/sushi11.png') }}"
-                    alt="Black Uramaki"
-                  />
-
-                  <h3>Black Uramaki</h3>
-
-                  <p>
-                    Arroz negro relleno de vegetales. Cubierto con una lámina de
-                    palta y crema picante
-                  </p>
-
-                  <div class="card-footer">
-                    <span class="precio">$3.500</span>
-
-                    <div class="tags">
-                      <span class="tag verde">Sin TACC</span>
-                      <span class="tag turquesa">Veggie</span>
-                      <span class="tag rojo">Spicy</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- PLATO 11 -->
-                <div class="card-menu">
-                  <img
-                    src="{{ url_for('static', filename='img/nigiri1.png') }}"
-                    alt="Nigiri Clasico"
-                  />
-
-                  <h3>Nigiri Clasico</h3>
-
-                  <p>
-                    Bola de arroz con una lámina de salmón y una cinta de alga.
-                  </p>
-
-                  <div class="card-footer">
-                    <span class="precio">$3.000</span>
-
-                    <div class="tags">
-                      <span class="tag verde">Sin TACC</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <p class="subtitulo-menu" style="text-align: center; padding: 2rem;">
+                No hay platos disponibles en este momento.
+              </p>
             </div>
-          </div>
+            {% endif %}
+          </div>  
 
           <button class="next">❯</button>
         </div>
