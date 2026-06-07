@@ -7,6 +7,9 @@
 @tailwind utilities;
 
 
+#servicios-menu {
+    margin-bottom: 200px;
+}
 
 /* --- Lista de enlaces --- */
 .enlaces {
