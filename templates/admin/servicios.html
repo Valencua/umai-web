@@ -26,7 +26,7 @@ endblock %} {% block extra_css %}
           <form
             action="{{ url_for('admin.servicios.cambiar_estado', servicio_id=servicio.servicio_id) }}"
             method="POST"
-            style="display: flex; align-items: center; gap: 10px"
+            id="servicio-controles-form"
           >
             <input
               type="hidden"
@@ -51,34 +51,20 @@ endblock %} {% block extra_css %}
 
             <button
               type="submit"
-              class="btn-guardar"
-              style="
-                background: none;
-                border: none;
-                cursor: pointer;
-                font-size: 1.1rem;
-              "
+              class="botones-servicios btn-guardar"
               title="Guardar estado"
             >
               💾
             </button>
-
             <button
-              type="submit"
-              formaction="{{ url_for('admin.servicios.eliminar_servicio', servicio_id=servicio.servicio_id) }}"
-              formmethod="POST"
-              class="btn-eliminar"
-              style="
-                background: none;
-                border: none;
-                cursor: pointer;
-                font-size: 1.1rem;
-                color: red;
-              "
-              title="Eliminar servicio"
-            >
-              🗑️
-            </button>
+                type="submit"
+                formaction="{{ url_for('admin.servicios.eliminar_servicio', servicio_id=servicio.servicio_id) }}"
+                formmethod="post"
+                class="botones-servicios btn-eliminar"
+                title="Eliminar servicio"
+              >
+                🗑️
+              </button>
           </form>
         </div>
       </div>

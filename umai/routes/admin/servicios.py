@@ -43,7 +43,6 @@ def agregar_servicio():
 @abm_servicios_bp.route('/eliminar/<int:servicio_id>', methods=['POST'])
 @requiere_admin
 def eliminar_servicio(servicio_id):
-    
     eliminar_servicio_api(servicio_id)
         
     return redirect(url_for('admin.servicios.index'))

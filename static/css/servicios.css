@@ -6,7 +6,19 @@
   padding: 32px;
   align-items: start;
 }
-
+.botones-servicios {
+  display: flex;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+#servicio-controles-form {
+  display: flex; 
+  align-items: center; 
+  gap: 10px
+} 
 
 /* ── Servicios card ── */
 .servicios-card {
