@@ -4,7 +4,8 @@ from umai.utils import requiere_admin
 from umai.services.menu import (
     obtener_platos,
     crear_plato,
-    eliminar_plato
+    eliminar_plato,
+    actualizar_plato
 )
 
 abm_menu_bp = Blueprint('menu', __name__)
@@ -55,4 +56,28 @@ def eliminar(plato_id):
 
     return redirect(url_for('admin.menu.index'))
 
+@abm_menu_bp.route('/editar/<int:plato_id>', methods=['POST'])
+@requiere_admin
+def editar(plato_id):
+
+    data = request.form.to_dict()
+
+    files = {}
+
+    foto = request.files.get('foto')
+
+    if foto and foto.filename:    
+        files['foto'] = (
+            foto.filename,
+            foto.stream,
+            foto.content_type
+        )
+    
+    actualizar_plato(
+        plato_id,
+        data,
+        files
+    )
+
+    return redirect(url_for('admin.menu.index'))
 

@@ -36,6 +36,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  document.getElementById('form-editar').addEventListener('submit', () => {
+
+    const etiquetas = Array.from(
+      document.querySelectorAll(
+        '#modalEditarOverlay .badge-toggle.badge-selected'
+      )
+    )
+      .map(badge => badge.dataset.badge)
+      .join(',');
+
+    document.getElementById('editar-etiquetas-input').value = etiquetas;
+  });
+
   // ── Preview de foto (modal nuevo) ──
   document.getElementById('foto-input').addEventListener('change', function () {
     const file = this.files[0];
@@ -66,49 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
     reader.readAsDataURL(file);
   });
 
-  // ── Guardar edición ──
-  document.getElementById('btn-guardar-editar').addEventListener('click', () => {
-    const nombre = document.getElementById('editar-nombre').value.trim();
-    const desc = document.getElementById('editar-desc').value.trim();
-    const precio = document.getElementById('editar-precio').value.trim();
-    const error = document.getElementById('editar-error');
-    const preview = document.getElementById('editar-foto-preview');
-
-    if (!nombre || !desc || !precio) {
-      error.classList.add('visible');
-      return;
-    }
-
-    error.classList.remove('visible');
-
-    const badgesSeleccionados = [];
-    document.querySelectorAll('#modalEditarOverlay .badge-toggle.badge-selected').forEach(b => {
-      const tipo = b.getAttribute('data-badge');
-      badgesSeleccionados.push(`<span class="badge badge-${tipo}">${b.textContent}</span>`);
-    });
-
-    if (platoEditando) {
-      platoEditando.dataset.precio = precio;
-      platoEditando.querySelector('.plato-nombre').textContent = nombre;
-      platoEditando.querySelector('.plato-desc').textContent = desc;
-      platoEditando.querySelector('.plato-badges').innerHTML = badgesSeleccionados.join('');
-
-      if (preview.style.display === 'block') {
-        const imgExistente = platoEditando.querySelector('.plato-img-real');
-        const divExistente = platoEditando.querySelector('.plato-img');
-        if (imgExistente) {
-          imgExistente.src = preview.src;
-        } else if (divExistente) {
-          const img = document.createElement('img');
-          img.src = preview.src;
-          img.className = 'plato-img-real';
-          divExistente.replaceWith(img);
-        }
-      }
-    }
-
-    cerrarModalEditar();
-  });
 
   // ── Limpiar error al escribir ──
   ['modal-nombre', 'modal-desc', 'modal-precio'].forEach(id => {
@@ -144,10 +114,12 @@ function abrirModalEditar(platoItem) {
 
   const nombre = platoItem.querySelector('.plato-nombre').textContent;
   const desc = platoItem.querySelector('.plato-desc').textContent;
+  const platoId = platoItem.dataset.platoId;
 
   document.getElementById('editar-nombre').value = nombre;
   document.getElementById('editar-desc').value = desc;
   document.getElementById('editar-precio').value = platoItem.dataset.precio || '';
+  document.getElementById('form-editar').action = `/admin/menu/editar/${platoId}`;
 
   // Foto existente
   const imgReal = platoItem.querySelector('.plato-img-real');
