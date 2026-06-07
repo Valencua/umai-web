@@ -47,3 +47,13 @@ def crear_servicio_api(datos_servicio):
     except Exception as e:
         print(f"Error al crear servicio: {e}")
         return False
+    
+def eliminar_servicio_api(servicio_id):
+    try:
+        url = f"{API_BASE}/servicios/{servicio_id}"
+        response = requests.delete(url)
+        response.raise_for_status()
+        return True
+    except Exception as e:
+        print(f"Error al eliminar servicio {servicio_id}: {e}")
+        return False
