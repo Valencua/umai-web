@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, jsonify
 from umai.services.mailer import enviar_reserva_creada
 from umai.services.qr import generar_qr_data_uri
 from umai.services.reseñas import obtener_reseñas
@@ -7,12 +7,27 @@ from umai.services.reservas import (
     crear_reserva_en_api,
     formatear_fecha_display,
     obtener_uuid_reserva_por_email,
+    obtener_disponibilidad_en_api,
 )
 
 import requests
 from umai.constants import UMAI_API_URL
 
 index_bp = Blueprint('index', __name__)
+
+@index_bp.route('/disponibilidad', methods=['GET'])
+def disponibilidad():
+    fecha = request.args.get('fecha', '').strip()
+    cantidad_personas = request.args.get('cantidad_personas', '').strip() or None
+
+    ok, resultado = obtener_disponibilidad_en_api(fecha, cantidad_personas)
+    if ok:
+        return jsonify({'data': resultado, 'status': 'success'}), 200
+
+    return jsonify({
+        'errors': [{'message': resultado, 'description': resultado}],
+        'status': 'error',
+    }), 400
 
 def mostrar_resenas():
     data = obtener_reseñas()

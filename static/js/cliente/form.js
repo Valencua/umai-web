@@ -2,18 +2,121 @@ document.addEventListener("DOMContentLoaded", function() {
     const formulario = document.getElementById("formulario-reserva");
     const mensajeError = document.getElementById("mensaje-error");
     const inputFecha = document.getElementById("fecha-reserva");
+    const selectHorario = document.getElementById("select-horario");
+    const inputPersonas = document.getElementById("input-personas");
+    const horarioGuardado = selectHorario.dataset.horarioSeleccionado || "";
+    let usarHorarioGuardado = true;
 
-    // --- NUEVO: Configurar el calendario para que no permita fechas pasadas ---
     const hoy = new Date();
-    // Formateamos la fecha a YYYY-MM-DD (que es el formato que lee el input type="date")
+
     const anio = hoy.getFullYear();
     const mes = String(hoy.getMonth() + 1).padStart(2, '0');
     const dia = String(hoy.getDate()).padStart(2, '0');
     const fechaMinima = `${anio}-${mes}-${dia}`;
-    
-    // Le asignamos la fecha mínima al input
+ 
     inputFecha.min = fechaMinima;
-    // --------------------------------------------------------------------------
+ 
+    function mostrarMensajeHorario(texto) {
+        selectHorario.innerHTML = "";
+        const opcion = document.createElement("option");
+        opcion.value = "";
+        opcion.disabled = true;
+        opcion.selected = true;
+        opcion.textContent = texto;
+        selectHorario.appendChild(opcion);
+    }
+    function filtrarTurnos(turnos, personas) {
+        if (personas === "" || isNaN(personas)) {
+            return turnos.filter(function(turno) {
+                return turno.lugares_disponibles >= 1;
+            });
+        }
+        return turnos.filter(function(turno) {
+            return turno.disponible;
+        });
+    }
+
+    function actualizarSelectHorario(turnos, horarioActual) {
+        selectHorario.innerHTML = "";
+        const opcionInicial = document.createElement("option");
+        opcionInicial.value = "";
+        opcionInicial.disabled = true;
+        opcionInicial.selected = true;
+        opcionInicial.textContent = "Seleccionar";
+        selectHorario.appendChild(opcionInicial);
+        turnos.forEach(function(turno) {
+            const opcion = document.createElement("option");
+            opcion.value = turno.horario;
+            opcion.textContent = turno.horario;
+            if (turno.horario === horarioActual) {
+                opcion.selected = true;
+                opcionInicial.selected = false;
+            }
+            selectHorario.appendChild(opcion);
+        });
+        if (horarioActual && !turnos.some(function(t) { return t.horario === horarioActual; })) {
+            selectHorario.value = "";
+        }
+    }
+
+    function cargarHorarios() {
+        const fecha = inputFecha.value.trim();
+        const personas = inputPersonas.value.trim();
+        const horarioActual = selectHorario.value
+            || (usarHorarioGuardado ? horarioGuardado : "");
+        usarHorarioGuardado = false;
+
+        if (!fecha) {
+            mostrarMensajeHorario("Seleccionar fecha");
+            return;
+        }
+
+        mostrarMensajeHorario("Cargando horarios...");
+
+        let url = "/disponibilidad?fecha=" + encodeURIComponent(fecha);
+        const cantidad = Number(personas);
+        if (personas !== "" && !isNaN(cantidad) && cantidad >= 1 && cantidad <= 5) {
+            url += "&cantidad_personas=" + encodeURIComponent(personas);
+        }
+
+        fetch(url)
+            .then(function(resp) {
+                return resp.json().then(function(json) {
+                    return { resp: resp, json: json };
+                });
+            })
+            .then(function(resultado) {
+                if (!resultado.resp.ok) {
+                    const errores = resultado.json.errors || [];
+                    const msg = (errores[0] && (errores[0].description || errores[0].message))
+                        || "No se pudieron cargar los horarios";
+                    mostrarMensajeHorario(msg);
+                    return;
+                }
+
+                let turnos = resultado.json.data || [];
+                turnos = filtrarTurnos(turnos, personas);
+
+                if (turnos.length === 0) {
+                    const texto = (personas !== "" && !isNaN(personas))
+                        ? "Sin turnos para " + personas + " personas"
+                        : "Sin horarios disponibles";
+                    mostrarMensajeHorario(texto);
+                    return;
+                }
+
+                actualizarSelectHorario(turnos, horarioActual);
+            })
+            .catch(function() {
+                mostrarMensajeHorario("Error al cargar horarios");
+            });
+    }
+
+    inputFecha.addEventListener("change", cargarHorarios);
+    inputPersonas.addEventListener("change", cargarHorarios);
+    if (inputFecha.value) {
+        cargarHorarios();
+    }
 
     formulario.addEventListener("submit", function(evento) {
         
@@ -55,8 +158,6 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
 
-        // Ya no necesitamos el Regex del horario porque el <select> obliga al usuario a elegir 
-        // una de las opciones válidas que tú definiste en el HTML. Solo verificamos que no esté vacío.
         if (horario === "") {
             mostrarError("Seleccione un horario de la lista");
             return;
@@ -67,7 +168,5 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
 
-        // Si usaste la Opción B de mi respuesta anterior para probar el modal con JS, 
-        // tu código de evento.preventDefault() y manipulación del modal iría aquí.
     });
 });

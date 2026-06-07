@@ -34,21 +34,15 @@
         <div class="flex -mx-2 mb-5">
             <div class="w-1/2 px-2">
                 <label class="label-form  block text-xs font-bold tracking-widest mb-2">HORARIO</label>
-                <select name="horario" 
+                <select id="select-horario" name="horario"
+                        data-horario-seleccionado="{{ form.horario or '' }}"
                         class="input-form w-full border border-transparent focus:outline-none focus:border-orange-500 text-gray-200">
-                    <option value="" disabled {% if not form.horario %}selected{% endif %}>Seleccionar</option>
-                    <option value="19:00" {% if form.horario == '19:00' %}selected{% endif %}>19:00</option>
-                    <option value="19:30" {% if form.horario == '19:30' %}selected{% endif %}>19:30</option>
-                    <option value="20:00" {% if form.horario == '20:00' %}selected{% endif %}>20:00</option>
-                    <option value="20:30" {% if form.horario == '20:30' %}selected{% endif %}>20:30</option>
-                    <option value="21:00" {% if form.horario == '21:00' %}selected{% endif %}>21:00</option>
-                    <option value="21:30" {% if form.horario == '21:30' %}selected{% endif %}>21:30</option>
-                    <option value="22:00" {% if form.horario == '22:00' %}selected{% endif %}>22:00</option>
+                    <option value="" disabled selected>Seleccionar fecha</option>
                 </select>
             </div>
             <div class="w-1/2 px-2">
                 <label class="label-form block text-xs font-bold tracking-widest mb-2">PERSONAS</label>
-                <input type="number" name="personas" placeholder="2" min="1" max="5" value="{{ form.personas or '' }}" 
+                <input type="number" id="input-personas" name="personas" placeholder="2" min="1" max="5" value="{{ form.personas or '' }}" 
                        class="input-form w-full border border-transparent focus:outline-none focus:border-orange-500 text-gray-200">
             </div>
         </div>

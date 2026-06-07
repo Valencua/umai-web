@@ -140,3 +140,30 @@ def obtener_reserva_por_uuid(uuid_codigo: str) -> tuple[bool, dict | str]:
 
     except requests.exceptions.RequestException:
         return False, 'No se pudo obtener la reserva.'
+
+def obtener_disponibilidad_en_api(
+    fecha: str,
+    cantidad_personas: str | None = None,
+) -> tuple[bool, list | str]:
+    params = {'fecha': fecha}
+    if cantidad_personas:
+        params['cantidad_personas'] = cantidad_personas
+
+    try:
+        resp = requests.get(
+            f'{UMAI_API_URL}/reservas/disponibilidad',
+            params=params,
+            timeout=30,
+        )
+        if resp.status_code == 200:
+            return True, resp.json().get('data', [])
+        return False, _mensaje_desde_error_api(resp.text)
+    except requests.exceptions.ConnectionError:
+        return False, (
+            f'No se pudo conectar con la API ({UMAI_API_URL}). '
+            'Verificá que umai-api esté corriendo en el puerto 5000.'
+        )
+    except requests.exceptions.Timeout:
+        return False, 'La API tardó demasiado en responder. Intentá de nuevo.'
+    except requests.exceptions.RequestException:
+        return False, 'No se pudieron cargar los horarios.'
