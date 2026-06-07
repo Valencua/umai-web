@@ -22,8 +22,14 @@
       href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
     />
 
-    <script src="{{ url_for('static', filename='js/cliente/menu.js') }}" type="module"></script>
-    <script src="{{ url_for('static', filename='js/cliente/reseñas.js') }}" type="module"></script>
+    <script
+      src="{{ url_for('static', filename='js/cliente/menu.js') }}"
+      type="module"
+    ></script>
+    <script
+      src="{{ url_for('static', filename='js/cliente/reseñas.js') }}"
+      type="module"
+    ></script>
 
     <title>UMAI</title>
   </head>
@@ -214,17 +220,12 @@
         >
           DESCARGAR MENU COMPLETO
         </a>
-        
       </section>
       <section id="reservas" class="seccion-principal-reservas">
-
-          
-          {% include 'cliente/info_reservas.html' %}
-
-          {% include 'cliente/form_reserva.html' %}
-
+        {% include 'cliente/info_reservas.html' %} {% include
+        'cliente/form_reserva.html' %}
       </section>
-       <section id="resenas" class="seccion-base">
+      <section id="resenas" class="seccion-base">
         <h1 id="resenas-title" class="flex justify-center mb-6 text-4xl">
           RESEÑAS
         </h1>
@@ -242,49 +243,50 @@
           <button class="prev prev-resenas">❮</button>
           <div class="slider slider-resenas">
             <!-- PAG 1 -->
-            {% if reseñas %}
-              {% set paso = 3 %} 
-              {% for inicio in range(0, reseñas|length, paso) %}
-                <div class="slide slide-resenas">
-                  <div class="menu-grid-resenas">
-                    {% if reseñas %} {% for reseña in reseñas[inicio:inicio + paso] %}
-                    <div
-                      id="resenia-1"
-                      class="max-w-md rounded-2xl overflow-hidden shadow-lg text-white"
-                    >
-                      <div class="flex items-center ml-5 mt-5">
-                        <i id="avatar" class="rounded-full fa-solid fa-user"></i>
-                        <div class="text-sm">
-                          <p class="text-white leading-none font-bold text-lg">
-                            {{ reseña.clientes.nombre }}
-                          </p>
-                          <p class="texto-resenia">{{ reseña.creado_en[:10] }}</p>
-                        </div>
-                      </div>
-                      <div class="px-6 py-4">
-                        <div class="font-bold text-xl mb-2">{{ reseña.rating }} estrellas</div>
-                        <p class="texto-resenia">
-                          {{ reseña.descripcion }}
-                        </p>
-                      </div>
-                      <div class="px-6 pt-4 pb-2">
-                        <div
-                          id="resenas_verificada"
-                          class="inline-block rounded-full px-3 py-1 border-2 border- text-sm font-semibold text- mr-2 mb-2 flex justify-left items-center w-48"
-                        >
-                          <i id="check" class="fas fa-check"></i>
-                          <p id="resenas_verificada">Reseña verificada</p>
-                        </div>
-                      </div>
+            {% if reseñas %} {% set paso = 3 %} {% for inicio in range(0,
+            reseñas|length, paso) %}
+            <div class="slide slide-resenas">
+              <div class="menu-grid-resenas">
+                {% if reseñas %} {% for reseña in reseñas[inicio:inicio + paso]
+                %}
+                <div
+                  id="resenia-1"
+                  class="max-w-md rounded-2xl overflow-hidden shadow-lg text-white"
+                >
+                  <div class="flex items-center ml-5 mt-5">
+                    <i id="avatar" class="rounded-full fa-solid fa-user"></i>
+                    <div class="text-sm">
+                      <p class="text-white leading-none font-bold text-lg">
+                        {{ reseña.clientes.nombre }}
+                      </p>
+                      <p class="texto-resenia">{{ reseña.creado_en[:10] }}</p>
                     </div>
-                    {% endfor %} 
-                    {% else %}
-                    <p>No hay reseñas</p>
-                    {% endif %} 
+                  </div>
+                  <div class="px-6 py-4">
+                    {% for i in range(5) %}
+                    <i
+                      id="estrellitas"
+                      class="{% if i < reseña.rating|int %}fa-solid{% else %}fa-regular{% endif %} fa-star"
+                    ></i>
+                    {% endfor %}
+                    <p class="texto-resenia">{{ reseña.descripcion }}</p>
+                  </div>
+                  <div class="px-6 pt-4 pb-2">
+                    <div
+                      id="resenas_verificada"
+                      class="inline-block rounded-full px-3 py-1 border-2 border- text-sm font-semibold text- mr-2 mb-2 flex justify-left items-center w-48"
+                    >
+                      <i id="check" class="fas fa-check"></i>
+                      <p id="resenas_verificada">Reseña verificada</p>
+                    </div>
                   </div>
                 </div>
-              {% endfor %}
-            {% endif %}
+                {% endfor %} {% else %}
+                <p>No hay reseñas</p>
+                {% endif %}
+              </div>
+            </div>
+            {% endfor %} {% endif %}
             <!--PAG 1-->
           </div>
           <button class="next next-resenas">❯</button>
@@ -334,7 +336,7 @@
             >
               <p>● No disponible</p>
             </div>
-          {% endif %}
+            {% endif %}
           </div>
           {% endfor %}
         </div>

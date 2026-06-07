@@ -5,11 +5,6 @@ const prev_reseñas = document.querySelector(".prev-resenas");
 
 let index_reseñas = 0;
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Todo tu código actual va acá dentro
-    console.log("El script de reseñas se cargó correctamente!");
-});
-
 function actualizarSlider() {
   slider_reseñas.style.transform = `translateX(-${index_reseñas * 100}%)`;
 }
