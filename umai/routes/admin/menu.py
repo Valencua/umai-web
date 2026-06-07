@@ -16,11 +16,49 @@ abm_menu_bp = Blueprint('menu', __name__)
 def index():
 
     platos = obtener_platos()
+    estadisticas = obtener_estadisticas_menu(platos)
 
     return render_template(
         'admin/menu.html',
         platos=platos,
+        estadisticas=estadisticas
     )
+
+def obtener_estadisticas_menu(platos):
+
+    total_platos = len(platos)
+
+    precio_promedio = 0
+
+    if total_platos > 0:
+        precio_promedio = sum(
+            plato['precio']
+            for plato in platos
+        ) / total_platos
+
+    platos_sin_tacc = 0
+    platos_veggie = 0
+    platos_spicy = 0
+
+    for plato in platos:
+        etiquetas = plato.get('etiquetas', [])
+
+        if 1 in etiquetas:
+            platos_sin_tacc += 1
+
+        if 2 in etiquetas:
+            platos_veggie += 1
+
+        if 3 in etiquetas:
+            platos_spicy += 1
+
+    return {
+        'total_platos': total_platos,
+        'precio_promedio': round(precio_promedio),
+        'platos_sin_tacc': platos_sin_tacc,
+        'platos_veggie': platos_veggie,
+        'platos_spicy': platos_spicy
+    }
 
 @abm_menu_bp.route('/crear', methods=['POST'])
 @requiere_admin
@@ -73,7 +111,7 @@ def editar(plato_id):
             foto.content_type
         )
     
-    actualizar_plato(
+    response= actualizar_plato(
         plato_id,
         data,
         files

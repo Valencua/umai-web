@@ -24,6 +24,7 @@ def eliminar_plato(plato_id):
     )
 
 def actualizar_plato(plato_id, data, files=None):
+
     return requests.patch(
         f'{API_URL}/platos/{plato_id}',
         data=data,

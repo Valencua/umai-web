@@ -59,23 +59,23 @@
       <h3 class="stats-title">📊 Estadísticas del menú</h3>
       <div class="stat-item">
         <span class="stat-label">Total de platos activos</span>
-        <span class="stat-value">4</span>
+        <span class="stat-value">{{ estadisticas.total_platos }}</span>
       </div>
       <div class="stat-item">
         <span class="stat-label">Platos sin TACC</span>
-        <span class="stat-value">4</span>
+        <span class="stat-value">{{ estadisticas.platos_sin_tacc }}</span>
       </div>
       <div class="stat-item">
         <span class="stat-label">Platos vegetarianos</span>
-        <span class="stat-value">1</span>
+        <span class="stat-value">{{ estadisticas.platos_veggie }}</span>
       </div>
       <div class="stat-item">
         <span class="stat-label">Platos picantes</span>
-        <span class="stat-value">1</span>
+        <span class="stat-value">{{ estadisticas.platos_spicy }}</span>
       </div>
       <div class="stat-precio">
         <span class="stat-label">Precio promedio</span>
-        <span class="stat-precio-valor">$3.000</span>
+        <span class="stat-precio-valor">${{ estadisticas.precio_promedio }}</span>
       </div>
     </div>
 
