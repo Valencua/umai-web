@@ -2,13 +2,6 @@ let platoEditando = null;
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // ── Eliminar platos existentes ──
-  document.querySelectorAll('.btn-delete').forEach(btn => {
-    btn.addEventListener('click', () => {
-      btn.closest('.plato-item').remove();
-    });
-  });
-
   // ── Editar platos existentes ──
   document.querySelectorAll('.btn-edit').forEach(btn => {
     btn.addEventListener('click', () => {

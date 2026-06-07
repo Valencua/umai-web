@@ -3,7 +3,8 @@ from umai.utils import requiere_admin
 
 from umai.services.menu import (
     obtener_platos,
-    crear_plato
+    crear_plato,
+    eliminar_plato
 )
 
 abm_menu_bp = Blueprint('menu', __name__)
@@ -21,6 +22,7 @@ def index():
     )
 
 @abm_menu_bp.route('/crear', methods=['POST'])
+@requiere_admin
 def crear():
 
     data = {
@@ -44,4 +46,13 @@ def crear():
     crear_plato(data, files)
 
     return redirect(url_for('admin.menu.index'))
+
+@abm_menu_bp.route('/eliminar/<int:plato_id>', methods=['POST'])
+@requiere_admin
+def eliminar(plato_id):
+
+    eliminar_plato(plato_id)
+
+    return redirect(url_for('admin.menu.index'))
+
 

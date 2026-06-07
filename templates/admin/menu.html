@@ -39,7 +39,13 @@
         </div>
         <div class="plato-acciones">
           <button class="btn-edit">✏️</button>
-          <button class="btn-delete">🗑️</button>
+          <form
+            action="{{ url_for('admin.menu.eliminar', plato_id=plato.plato_id) }}"
+            method="POST"
+            style="display:inline;"
+          >
+            <button class="btn-delete">🗑️</button>
+          </form>
         </div>
       </div>
       {% endfor %}

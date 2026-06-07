@@ -18,3 +18,9 @@ def crear_plato(data, files):
         files=files
     )
 
+def eliminar_plato(plato_id):
+    return requests.delete(
+        f'{API_URL}/platos/{plato_id}'
+    )
+
+
