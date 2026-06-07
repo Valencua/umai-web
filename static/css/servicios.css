@@ -1,4 +1,14 @@
 /* ── Layout ── */
+
+#servicios-title {
+  font-family: 'Sen', sans-serif;
+  font-weight: 700;
+  color: #FF7A41;
+}
+
+#servicios-divider {
+  border-color: #FF7A41;
+}
 .servicios-layout {
   display: grid;
   grid-template-columns: 1fr 280px;
