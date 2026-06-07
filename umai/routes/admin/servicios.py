@@ -31,7 +31,7 @@ def agregar_servicio():
     payload = {
         'nombre': nombre,
         'descripcion': descripcion,
-        'icono': icono if (icono != "" or icono is not None) else '⚙️',
+        'icono': icono if icono else '⚙️',  
         'estado': estado
     }
     
