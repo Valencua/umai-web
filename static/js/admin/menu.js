@@ -16,7 +16,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  document.querySelector('#modalOverlay form').addEventListener('submit', () => {
+  document.querySelector('#modalOverlay form').addEventListener('submit', (e) => {
+
+  const nombre = document.getElementById('modal-nombre').value.trim();
+  const descripcion = document.getElementById('modal-desc').value.trim();
+  const precio = document.getElementById('modal-precio').value.trim();
+
+  const error = document.getElementById('modal-error');
+
+  if (!nombre || !descripcion || !precio) {
+    e.preventDefault();
+    error.textContent = 'Llene todos los campos obligatorios';
+    error.classList.add('visible');
+    return;
+  }
+
+  if (descripcion.length < 10) {
+    e.preventDefault();
+    error.textContent = 'La descripción debe tener al menos 10 caracteres';
+    error.classList.add('visible');
+    return;
+  }
 
   const etiquetas = Array.from(
     document.querySelectorAll(
@@ -36,18 +56,38 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  document.getElementById('form-editar').addEventListener('submit', () => {
+  document.getElementById('form-editar').addEventListener('submit', (e) => {
 
-    const etiquetas = Array.from(
-      document.querySelectorAll(
-        '#modalEditarOverlay .badge-toggle.badge-selected'
-      )
+  const nombre = document.getElementById('editar-nombre').value.trim();
+  const descripcion = document.getElementById('editar-desc').value.trim();
+  const precio = document.getElementById('editar-precio').value.trim();
+
+  const error = document.getElementById('editar-error');
+
+  if (!nombre || !descripcion || !precio) {
+    e.preventDefault();
+    error.textContent = 'Llene todos los campos obligatorios';
+    error.classList.add('visible');
+    return;
+  }
+
+  if (descripcion.length < 10) {
+    e.preventDefault();
+    error.textContent = 'La descripción debe tener al menos 10 caracteres';
+    error.classList.add('visible');
+    return;
+  }
+
+  const etiquetas = Array.from(
+    document.querySelectorAll(
+      '#modalEditarOverlay .badge-toggle.badge-selected'
     )
-      .map(badge => badge.dataset.badge)
-      .join(',');
+  )
+    .map(badge => badge.dataset.badge)
+    .join(',');
 
-    document.getElementById('editar-etiquetas-input').value = etiquetas;
-  });
+  document.getElementById('editar-etiquetas-input').value = etiquetas;
+});
 
   // ── Preview de foto (modal nuevo) ──
   document.getElementById('foto-input').addEventListener('change', function () {
