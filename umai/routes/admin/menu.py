@@ -1,8 +1,9 @@
-from flask import Blueprint, render_template, redirect, url_for
+from flask import Blueprint, render_template, redirect, url_for, request
 from umai.utils import requiere_admin
 
 from umai.services.menu import (
     obtener_platos,
+    crear_plato
 )
 
 abm_menu_bp = Blueprint('menu', __name__)
@@ -13,10 +14,34 @@ abm_menu_bp = Blueprint('menu', __name__)
 def index():
 
     platos = obtener_platos()
-    
-    print(platos[0])
 
     return render_template(
         'admin/menu.html',
         platos=platos,
     )
+
+@abm_menu_bp.route('/crear', methods=['POST'])
+def crear():
+
+    data = {
+        'nombre': request.form.get('nombre'),
+        'descripcion': request.form.get('descripcion'),
+        'precio': request.form.get('precio'),
+        'etiquetas': request.form.get('etiquetas')
+    }
+
+    foto = request.files.get('foto')
+
+    files = {}
+
+    if foto and foto.filename:
+        files['foto'] = (
+            foto.filename,
+            foto.stream,
+            foto.content_type
+        )
+ 
+    crear_plato(data, files)
+
+    return redirect(url_for('admin.menu.index'))
+

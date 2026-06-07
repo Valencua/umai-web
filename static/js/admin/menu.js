@@ -23,6 +23,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  document.querySelector('#modalOverlay form').addEventListener('submit', () => {
+
+  const etiquetas = Array.from(
+    document.querySelectorAll(
+      '#modalOverlay .badge-toggle.badge-selected'
+    )
+  )
+    .map(badge => badge.dataset.badge)
+    .join(',');
+
+  document.getElementById('etiquetas-input').value = etiquetas;
+});
+
   // ── Badges toggle (modal editar) ──
   document.querySelectorAll('#modalEditarOverlay .badge-toggle').forEach(badge => {
     badge.addEventListener('click', () => {
@@ -58,56 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('editar-foto-text').style.display = 'none';
     };
     reader.readAsDataURL(file);
-  });
-
-  // ── Guardar nuevo plato ──
-  document.getElementById('btn-guardar').addEventListener('click', () => {
-    const nombre = document.getElementById('modal-nombre').value.trim();
-    const desc = document.getElementById('modal-desc').value.trim();
-    const precio = document.getElementById('modal-precio').value.trim();
-    const error = document.getElementById('modal-error');
-    const preview = document.getElementById('foto-preview');
-    const tieneFoto = preview.style.display === 'block';
-
-    if (!nombre || !desc || !precio) {
-      error.classList.add('visible');
-      return;
-    }
-
-    error.classList.remove('visible');
-
-    const badgesSeleccionados = [];
-    document.querySelectorAll('#modalOverlay .badge-toggle.badge-selected').forEach(b => {
-      const tipo = b.getAttribute('data-badge');
-      badgesSeleccionados.push(`<span class="badge badge-${tipo}">${b.textContent}</span>`);
-    });
-
-    const imgHTML = tieneFoto
-      ? `<img src="${preview.src}" class="plato-img-real">`
-      : `<div class="plato-img"></div>`;
-
-    const nuevoPlato = document.createElement('div');
-    nuevoPlato.classList.add('plato-item');
-    nuevoPlato.dataset.precio = precio;
-    nuevoPlato.innerHTML = `
-      ${imgHTML}
-      <div class="plato-info">
-        <h4 class="plato-nombre">${nombre}</h4>
-        <p class="plato-desc">${desc}</p>
-        <div class="plato-badges">${badgesSeleccionados.join('')}</div>
-      </div>
-      <div class="plato-acciones">
-        <button class="btn-edit">✏️</button>
-        <button class="btn-delete">🗑️</button>
-      </div>
-    `;
-
-    nuevoPlato.querySelector('.btn-delete').addEventListener('click', () => nuevoPlato.remove());
-    nuevoPlato.querySelector('.btn-edit').addEventListener('click', () => abrirModalEditar(nuevoPlato));
-
-    document.querySelector('.platos-scroll').appendChild(nuevoPlato);
-    limpiarModalNuevo();
-    cerrarModal();
   });
 
   // ── Guardar edición ──

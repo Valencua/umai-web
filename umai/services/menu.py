@@ -10,3 +10,11 @@ def obtener_platos():
         return []
 
     return response.json().get('data', [])
+
+def crear_plato(data, files):
+    return requests.post(
+        f'{API_URL}/platos/',
+        data=data,
+        files=files
+    )
+
