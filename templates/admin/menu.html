@@ -18,14 +18,23 @@
     </div>
 
     <div class="platos-scroll">
+      {% for plato in platos %} 
 
       <div class="plato-item">
-        <div class="plato-img"></div>
+        <img src="{{ plato.foto }}" class="plato-img-real">
         <div class="plato-info">
-          <h4 class="plato-nombre">Dragon Roll</h4>
-          <p class="plato-desc">Langostinos tempura, palta, pepino, cubierto con salmón.</p>
+        <h4 class="plato-nombre">{{ plato.nombre }}</h4>
+        <p class="plato-desc">{{ plato.descripcion }} </p>
           <div class="plato-badges">
-            <span class="badge badge-sintacc">Sin TACC</span>
+            {% for etiqueta in plato.etiquetas %}
+              {% if etiqueta == 1 %}
+                <span class="badge badge-sintacc">Sin TACC</span>
+              {% elif etiqueta == 2 %}
+                <span class="badge badge-veggie">Veggie</span>
+              {% elif etiqueta == 3 %}
+                <span class="badge badge-spicy">Spicy</span>
+              {% endif %}
+            {% endfor %}
           </div>
         </div>
         <div class="plato-acciones">
@@ -33,54 +42,7 @@
           <button class="btn-delete">🗑️</button>
         </div>
       </div>
-
-      <div class="plato-item">
-        <div class="plato-img"></div>
-        <div class="plato-info">
-          <h4 class="plato-nombre">Spicy Tuna Roll</h4>
-          <p class="plato-desc">Atún roja, mayo picante, pepino, sésamo tostado.</p>
-          <div class="plato-badges">
-            <span class="badge badge-spicy">Spicy</span>
-            <span class="badge badge-sintacc">Sin TACC</span>
-          </div>
-        </div>
-        <div class="plato-acciones">
-          <button class="btn-edit">✏️</button>
-          <button class="btn-delete">🗑️</button>
-        </div>
-      </div>
-
-      <div class="plato-item">
-        <div class="plato-img"></div>
-        <div class="plato-info">
-          <h4 class="plato-nombre">Veggie Roll</h4>
-          <p class="plato-desc">Palta, pepino, zanahoria, queso crema, sésamo negro.</p>
-          <div class="plato-badges">
-            <span class="badge badge-veggie">Veggie</span>
-            <span class="badge badge-sintacc">Sin TACC</span>
-          </div>
-        </div>
-        <div class="plato-acciones">
-          <button class="btn-edit">✏️</button>
-          <button class="btn-delete">🗑️</button>
-        </div>
-      </div>
-
-      <div class="plato-item">
-        <div class="plato-img"></div>
-        <div class="plato-info">
-          <h4 class="plato-nombre">Sashimi Premium</h4>
-          <p class="plato-desc">Selección de 12 piezas de salmón, atún y hachomi.</p>
-          <div class="plato-badges">
-            <span class="badge badge-sintacc">Sin TACC</span>
-          </div>
-        </div>
-        <div class="plato-acciones">
-          <button class="btn-edit">✏️</button>
-          <button class="btn-delete">🗑️</button>
-        </div>
-      </div>
-
+      {% endfor %}
     </div>
   </div>
 
@@ -235,3 +197,4 @@
 {% block extra_js %}
 <script src="{{ url_for('static', filename='js/admin/menu.js') }}"></script>
 {% endblock %}
+
