@@ -12,29 +12,16 @@ Guia rapida para levantar el proyecto en local y trabajar con Git sin perder ord
 ## Instalacion inicial
 
 Segui estos pasos en orden:
-
-```bash
-sudo apt install curl -y
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
-source ~/.bashrc
-nvm install --lts
-nvm alias default 22.14.0
-```
-
-Si el instalador de `nvm` termina con un warning sobre la version por defecto, usa:
-
-```bash
-nvm alias default v24.16.0
-```
-
-Luego crea el entorno virtual de Python e instala dependencias:
-
-```bash
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-```
-
+  1. Levantar los setup de node y python
+     ```bash
+      bash setup_node.sh
+      bash setup_python.sh
+     ```
+  2. Activar el entorno virtual
+      ```bash
+      source venv/bin/activate
+     ```
+      
 ## Ejecutar la aplicacion
 
 Para levantar el proyecto:
@@ -42,8 +29,6 @@ Para levantar el proyecto:
 ```bash
 python3 -m app
 ```
-
-
 
 ## Flujo de trabajo con Git (TUTORIAL)
 
