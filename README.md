@@ -1,151 +1,162 @@
-# UMAI Web
+# 🖥️ umai-web
 
-Guia rapida para levantar el proyecto en local y trabajar con Git sin perder orden.
+Frontend del sistema de gestión de restaurante **umai**, desarrollado en **Flask** (renderizado de templates con Jinja) y estilado con **TailwindCSS**. Consume la API del backend [umai-api](https://github.com/Valencua/umai-api).
 
-## Requisitos previos
+---
 
-- `curl`
-- `nvm`
-- `Python 3`
-- `pip`
+## 🛠️ Stack Tecnológico
 
-## Instalacion inicial
+| Tecnología | Uso |
+|---|---|
+| Python / Flask | Servidor web y renderizado de vistas |
+| Jinja2 | Motor de templates |
+| TailwindCSS | Estilos |
+| Flask-Mail | Envío de correos |
+| qrcode | Generación de códigos QR |
+| requests | Consumo de la API umai-api |
 
-Segui estos pasos en orden:
-  1. Levantar los setup de node y python
-     ```bash
-      bash setup_node.sh
-      bash setup_python.sh
-     ```
-  2. Activar el entorno virtual
-      ```bash
-      source venv/bin/activate
-     ```
-      
-## Ejecutar la aplicacion
+---
 
-Para levantar el proyecto:
+## 📋 Requisitos previos
+
+- **Linux / Ubuntu / Debian** (o **Windows con WSL**), ya que los scripts usan `apt`.
+- **Python 3.11+**, **pip** y **venv**
+- **curl** y **nvm / Node LTS** (para TailwindCSS)
+- El backend **umai-api** corriendo en `http://127.0.0.1:5000`
+
+---
+
+## ⚙️ Variables de entorno
+
+La app carga su configuración desde un archivo `.env`. Copiá la plantilla y completá los valores:
 
 ```bash
+cp .env.example .env
+```
+
+| Variable | Descripción |
+|---|---|
+| `PUBLIC_URL` | URL pública del front (usada en mails y QR). Por defecto `http://127.0.0.1:5001/` |
+| `UMAI_API_URL` | URL del backend umai-api. Por defecto `http://127.0.0.1:5000/` |
+| `MAIL_SERVER` / `MAIL_PORT` | Servidor SMTP y puerto (ej. `smtp.gmail.com` / `587`) |
+| `MAIL_USE_TLS` / `MAIL_USE_SSL` | Seguridad de la conexión SMTP |
+| `MAIL_USERNAME` / `MAIL_PASSWORD` | Credenciales del correo emisor |
+| `MAIL_DEFAULT_SENDER` | Remitente por defecto |
+| `MAIL_SUPPRESS_SEND` | `true` para no enviar mails (útil en desarrollo) |
+| `SECRET_KEY` | Clave de sesión de Flask (opcional; si no se define usa una de desarrollo) |
+
+---
+
+## 🚀 Instalación y ejecución
+
+### 1️⃣ Clonar el repositorio y posicionarse en la rama base
+
+```bash
+git clone https://github.com/Valencua/umai-web.git
+cd umai-web
+git switch develop-cliente
+```
+
+### 2️⃣ Ejecutar el setup
+
+```bash
+bash setup.sh
+```
+
+Este script:
+- ✓ Instala las dependencias del sistema (`curl`, `pip`, `venv`)
+- ✓ Instala `nvm` y Node LTS, y las dependencias de Node (TailwindCSS)
+- ✓ Crea y activa el entorno virtual de Python
+- ✓ Instala las dependencias de `requirements.txt`
+- ✓ Crea el `.env` desde `.env.example` si no existe
+- ✓ Levanta la aplicación en `http://127.0.0.1:5001`
+
+> 💡 La app necesita el backend **umai-api** corriendo en `http://127.0.0.1:5000`.
+
+---
+
+## 🔧 Ejecución manual
+
+```bash
+# Activar el entorno virtual
+source venv/bin/activate
+
+# Levantar la aplicación
 python3 -m app
 ```
 
-## Flujo de trabajo con Git (TUTORIAL)
+La app queda disponible en **http://127.0.0.1:5001**.
 
-### 1. Clonar el repositorio
+## 📂 Estructura del proyecto
 
-```bash
-git clone URL
+```
+umai-web/
+├── app.py                  # Punto de entrada: crea la app Flask y registra los Blueprints
+├── requirements.txt        # Dependencias de Python
+├── package.json            # Dependencias de Node (TailwindCSS)
+├── tailwind.config.js      # Configuración de TailwindCSS
+├── setup.sh                # Script de instalación y ejecución
+├── .env.example            # Plantilla de variables de entorno
+├── .gitignore
+├── static/
+│   ├── css/                # Estilos (incluye el CSS generado por Tailwind)
+│   ├── img/
+│   ├── js/
+│   └── pdf/
+├── templates/              # Vistas Jinja (HTML)
+└── umai/
+    ├── constants.py        # Configuración y constantes (URLs, mail, etc.)
+    ├── utils.py            # Utilidades generales
+    ├── routes/             # Blueprints: cliente y admin
+    └── services/           # Comunicación con la API umai-api
 ```
 
-### 2. Cambiar a donde clonamos el repositorio
+---
 
-En caso de que sigamos en el Home “~”
+## 🌱 Convención de Ramas
 
-```bash
-cd umai-web
+```
+feature/nombre-feature
 ```
 
-### 3. Ir a la rama base
+Ejemplos:
 
-Esta es la rama donde suele estar la base HTML de la interfaz.
-
-```bash
-git switch develop-cleinte
+```
+feature/crear_reserva
+feature/listar_platos
 ```
 
-### 4. Crear una rama nueva
+---
 
-Elegí un nombre corto y descriptivo para lo que vas a trabajar.
+## 📝 Convención de Commits
 
-```bash
-git branch RAMA_A_CREAR
-git switch RAMA_A_CREAR
-```
-
-Si preferís hacerlo en un solo paso, también podés usar:
-
-```bash
-git switch -c RAMA_A_CREAR
-```
-
-### 5. Guardar cambios
-
-```bash
-git add .
-git commit -m "tipo(alcance): descripcion en minusculas"
-```
-
-### 6. Subir la rama
-
-```bash
-git push
-```
-
-Si la rama es nueva y todavía no tiene upstream, usá:
-
-```bash
-git push -u origin RAMA_A_CREAR
-```
-
-# 📂 Estructura del Front
-
-```bash
-📦 umai-web
-┣ 📂 static
-┣ 📂 templates
-┣ 📂 umai
-┃ ┣ 📂 routes
-┃ ┣ 📂 services
-┃ ┣ 📂 validators
-┃ ┣ 📜 utils.py
-┃ ┗ 📜 constants.py
-┣ 📜 .gitignore
-┣ 📜 LICENSE
-┣ 📜 README.md
-┣ 📜 app.py
-┣ 📜 package-lock.json
-┗ 📜 requirements.txt
-```
-
-## Convenciones de commits
-
-Para mantener un historial limpio, legible y automatizable, en este proyecto usamos **Conventional Commits**.
-
-La estructura base es:
+Usamos **Conventional Commits**:
 
 ```text
 tipo(alcance_opcional): descripcion en minusculas
 ```
 
-### Tipos permitidos
+| Tipo | Descripción |
+|---|---|
+| `feat` | Nueva funcionalidad |
+| `fix` | Corrección de un error |
+| `style` | Cambios de estilo o formato |
+| `refactor` | Limpieza de código sin cambiar comportamiento |
+| `chore` | Mantenimiento, configs o dependencias |
+| `docs` | Documentación |
+| `test` | Alta o ajuste de pruebas |
 
-| Tipo | Descripcion |
-| :--- | :--- |
-| `feat` | Nueva funcionalidad para el usuario. |
-| `fix` | Correccion de un error o bug. |
-| `style` | Cambios de estilo o formato que no afectan la logica. |
-| `refactor` | Reordenamiento o limpieza de codigo sin cambiar comportamiento. |
-| `chore` | Tareas de mantenimiento, configs o dependencias. |
-| `docs` | Cambios en documentacion. |
-| `test` | Alta o ajuste de pruebas. |
-
-### Ejemplos
+Ejemplos:
 
 ```bash
-feat(auth): add google login button
-fix(navbar): center logo on mobile devices
-style(buttons): change padding and hover color
-refactor(hooks): migrate useFetch to react-query
+feat(reservas): agregar formulario de reserva
+fix(navbar): centrar logo en mobile
+docs: actualizar instrucciones de setup
 chore: install tailwindcss
-docs: update setup instructions in readme
-test(login): add unit test for email validation
 ```
 
-## Buenas practicas
+---
 
-- Usar scope cuando el cambio afecte a un modulo o componente especifico.
-- Mantener los mensajes cortos y claros.
-- No mezclar cambios no relacionados en un mismo commit.
-- Si la rama no tiene upstream, publicarla con `git push -u origin RAMA_A_CREAR`.
+## 📄 Licencia
 
+Consultá el archivo [LICENSE](LICENSE) para más información.
