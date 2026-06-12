@@ -10,8 +10,11 @@ from umai.services.reservas import (
     obtener_disponibilidad_en_api,
 )
 
+import logging
 import requests
 from umai.constants import UMAI_API_URL
+
+logger = logging.getLogger(__name__)
 
 index_bp = Blueprint('index', __name__)
 
@@ -53,7 +56,8 @@ def index():
         response = requests.get(f'{UMAI_API_URL}/platos/', timeout=5)
         response.raise_for_status()
         platos = response.json().get('data', [])
-    except Exception:
+    except Exception as e:
+        logger.warning(f"No se pudieron cargar platos: {e}")
         platos = []
 
 

@@ -1,4 +1,5 @@
 import os
+import logging
 from flask import Flask
 from dotenv import load_dotenv
 from flask_mail import Mail
@@ -18,6 +19,8 @@ from umai.constants import (
 )
 
 load_dotenv()
+
+logging.basicConfig(level=logging.DEBUG, format='%(levelname)s - %(name)s - %(message)s')
 
 app = Flask(__name__,
             template_folder='templates',
