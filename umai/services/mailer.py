@@ -52,7 +52,7 @@ def enviar_reserva_creada(
 
 
 def enviar_reserva_confirmada(destinatario: str, nombre: str, uuid_codigo: str) -> None:
-    resena_url = f'{PUBLIC_URL}reseñas/?codigo={quote(destinatario)}'
+    resena_url = f'{PUBLIC_URL}resenas/?codigo={quote(destinatario)}'
 
     _enviar(
         asunto='¿Cómo estuvo tu visita en UMAI!?',

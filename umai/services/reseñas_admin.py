@@ -8,7 +8,7 @@ API_BASE = os.environ.get('UMAI_API_URL', 'http://127.0.0.1:5000').rstrip('/')
 FALLBACK_RESEÑAS = []
 def obtener_reseñas_pendientes():
     try:  
-        url = f"{API_BASE}/reseñas"
+        url = f"{API_BASE}/resenas"
 
         response = requests.get(url, params={'estado': False}) 
         response.raise_for_status()
@@ -33,7 +33,7 @@ def obtener_reseñas_pendientes():
 def obtener_reseñas_publicadas():
     try:
 
-        url = f"{API_BASE}/reseñas"
+        url = f"{API_BASE}/resenas"
         
         response = requests.get(url, params={'estado': True})
         response.raise_for_status()
@@ -78,7 +78,7 @@ def obtener_rating_promedio(reseñas):
 
 def cambiar_estado_reseña_api(resena_id, nuevo_estado):
     try:
-        url = f"{API_BASE}/reseñas/{resena_id}"
+        url = f"{API_BASE}/resenas/{resena_id}"
         
         if nuevo_estado is True:
             # Si es True, aprobamos usando PATCH (modificar el estado a True)

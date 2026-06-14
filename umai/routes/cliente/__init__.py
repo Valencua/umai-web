@@ -6,5 +6,5 @@ from umai.routes.cliente.cancelar_reserva import cancelar_bp
 cliente_bp = Blueprint('cliente', __name__)
 
 cliente_bp.register_blueprint(index_bp)
-cliente_bp.register_blueprint(reseñas_bp, url_prefix=f'/reseñas')
+cliente_bp.register_blueprint(reseñas_bp, url_prefix=f'/resenas')
 cliente_bp.register_blueprint(cancelar_bp)

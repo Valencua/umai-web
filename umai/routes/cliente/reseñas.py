@@ -25,7 +25,7 @@ def crear_resena():
         "descripcion": comentario,
     }
 
-    url_api = f"{UMAI_API_URL}/reseñas/"
+    url_api = f"{UMAI_API_URL}/resenas/"
 
     try:
         respuesta = requests.post(url_api, json=paquete_datos, params={"email": codigo})
