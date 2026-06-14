@@ -2,7 +2,7 @@ import requests
 from umai.constants import UMAI_API_URL
 
 def enviar_resena(email, rating, descripcion):  
-    url = f"{UMAI_API_URL}/reseñas/"
+    url = f"{UMAI_API_URL}/resenas/"
 
     paquete_datos = {
         "email": email,
