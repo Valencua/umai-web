@@ -18,8 +18,6 @@ def obtener_servicios() -> list:
         if isinstance(payload, list):
             return payload
         return []
-    except (requests.exceptions.Timeout, requests.exceptions.ConnectionError):
-        return []
     except requests.exceptions.RequestException:
         return []
     except ValueError:

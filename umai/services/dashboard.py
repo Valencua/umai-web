@@ -24,10 +24,6 @@ def obtener_metricas() -> dict:
         resp = requests.get(f'{UMAI_API_URL}/metricas/dashboard', timeout=40)
         resp.raise_for_status()
         return resp.json()
-    except requests.exceptions.Timeout:
-        return _FALLBACK_METRICAS
-    except requests.exceptions.ConnectionError:
-        return _FALLBACK_METRICAS
     except requests.exceptions.RequestException:
         return _FALLBACK_METRICAS
 
@@ -37,9 +33,5 @@ def obtener_ultimas_reservas(limit: int = 3) -> list:
         resp = requests.get(f'{UMAI_API_URL}/reservas/', params={'limit': limit}, timeout=5)
         resp.raise_for_status()
         return resp.json().get('data', [])
-    except requests.exceptions.Timeout:
-        return []
-    except requests.exceptions.ConnectionError:
-        return []
     except requests.exceptions.RequestException:
         return []

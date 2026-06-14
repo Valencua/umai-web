@@ -15,10 +15,5 @@ def autenticar(usuario: str, contrasena: str) -> tuple[bool, dict | str]:
         errores = resp.json().get('errors', [])
         mensaje = errores[0].get('description', 'Credenciales inválidas.') if errores else 'Credenciales inválidas.'
         return False, mensaje
-
-    except requests.exceptions.ConnectionError:
-        return False, 'No se pudo conectar con el servidor.'
-    except requests.exceptions.Timeout:
-        return False, 'El servidor tardó demasiado en responder.'
     except requests.exceptions.RequestException:
         return False, 'No se pudo conectar con el servidor.'

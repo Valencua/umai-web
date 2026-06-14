@@ -33,15 +33,5 @@ def confirmar_reserva_en_api(uuid_codigo: str) -> tuple[bool, str]:
             return True, 'Reserva confirmada'
 
         return False, _mensaje_desde_error_api(resp.text)
-
-    except requests.exceptions.ConnectionError:
-        return False, (
-            f'No se pudo conectar con la API ({UMAI_API_URL}). '
-            'Verificá que umai-api esté corriendo en el puerto 5000.'
-        )
-
-    except requests.exceptions.Timeout:
-        return False, 'La API tardó demasiado en responder. Intentá de nuevo.'
-
     except requests.exceptions.RequestException:
         return False, 'No se pudo confirmar la reserva.'

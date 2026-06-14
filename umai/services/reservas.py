@@ -49,13 +49,6 @@ def crear_reserva_en_api(
         if resp.status_code == 201:
             return True, ''
         return False, _mensaje_desde_error_api(resp.text)
-    except requests.exceptions.ConnectionError:
-        return False, (
-            f'No se pudo conectar con la API ({UMAI_API_URL}). '
-            'Verificá que umai-api esté corriendo en el puerto 5000.'
-        )
-    except requests.exceptions.Timeout:
-        return False, 'La API tardó demasiado en responder. Intentá de nuevo.'
     except requests.exceptions.RequestException:
         return False, 'No se pudo crear la reserva.'
 
@@ -105,16 +98,6 @@ def cancelar_reserva_en_api(uuid_codigo: str) -> tuple[bool, str]:
             return True, 'Tu reserva fue cancelada correctamente.'
 
         return False, _mensaje_error_cancelar(resp.text)
-
-    except requests.exceptions.ConnectionError:
-        return False, (
-            f'No se pudo conectar con la API ({UMAI_API_URL}). '
-            'Verificá que umai-api esté corriendo en el puerto 5000.'
-        )
-
-    except requests.exceptions.Timeout:
-        return False, 'La API tardó demasiado en responder. Intentá de nuevo.'
-
     except requests.exceptions.RequestException:
         return False, 'No se pudo cancelar la reserva.'
 
@@ -158,12 +141,5 @@ def obtener_disponibilidad_en_api(
         if resp.status_code == 200:
             return True, resp.json().get('data', [])
         return False, _mensaje_desde_error_api(resp.text)
-    except requests.exceptions.ConnectionError:
-        return False, (
-            f'No se pudo conectar con la API ({UMAI_API_URL}). '
-            'Verificá que umai-api esté corriendo en el puerto 5000.'
-        )
-    except requests.exceptions.Timeout:
-        return False, 'La API tardó demasiado en responder. Intentá de nuevo.'
     except requests.exceptions.RequestException:
         return False, 'No se pudieron cargar los horarios.'
