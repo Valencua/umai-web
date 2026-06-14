@@ -8,7 +8,7 @@ function getSlides(){
     return document.querySelectorAll('.slide')
 }
 
-function actualizarSlider(){
+function actualizarSliderMenu(){
     slider.style.transform = `translateX(-${index * 100}%)`;
 
 }
@@ -17,13 +17,13 @@ next.addEventListener('click', () => {
     const slides =getSlides();
     if(index < slides.length - 1){
         index++;
-        actualizarSlider();
+        actualizarSliderMenu();
     }
 });
 
 prev.addEventListener('click', () => {
     if(index > 0){
         index--;
-        actualizarSlider();
+        actualizarSliderMenu();
     }
 });
