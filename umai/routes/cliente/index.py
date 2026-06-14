@@ -61,6 +61,7 @@ def index():
         response = requests.get(f'{UMAI_API_URL}/platos/', timeout=5)
         response.raise_for_status()
         platos = response.json().get('data', [])
+        platos = formatear_precios_ars(platos)
     except Exception as e:
         logger.warning(f"No se pudieron cargar platos: {e}")
         platos = []
