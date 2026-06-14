@@ -5,7 +5,7 @@ const prev_reseñas = document.querySelector(".prev-resenas");
 
 let index_reseñas = 0;
 
-function actualizarSlider() {
+function actualizarSliderResenas() {
   slider_reseñas.style.transform = `translateX(-${index_reseñas * 100}%)`;
 }
 
@@ -13,7 +13,7 @@ next_reseñas.addEventListener("click", () => {
   if (index_reseñas < slides_reseñas.length - 1) {
     index_reseñas++;
 
-    actualizarSlider();
+    actualizarSliderResenas();
   }
 });
 
@@ -21,6 +21,6 @@ prev_reseñas.addEventListener("click", () => {
   if (index_reseñas > 0) {
     index_reseñas--;
 
-    actualizarSlider();
+    actualizarSliderResenas();
   }
 });
