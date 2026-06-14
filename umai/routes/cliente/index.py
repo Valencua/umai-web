@@ -18,6 +18,11 @@ logger = logging.getLogger(__name__)
 
 index_bp = Blueprint('index', __name__)
 
+def formatear_precios_ars(platos):
+    for plato in platos:
+        plato['precio'] = f"{plato['precio']:,.0f}".replace(',', '.')
+    return platos
+
 @index_bp.route('/disponibilidad', methods=['GET'])
 def disponibilidad():
     fecha = request.args.get('fecha', '').strip()
