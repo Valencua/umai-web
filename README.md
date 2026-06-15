@@ -91,13 +91,6 @@ La app queda disponible en **http://127.0.0.1:5001**.
 
 ```
 umai-web/
-├── app.py                  # Punto de entrada: crea la app Flask y registra los Blueprints
-├── requirements.txt        # Dependencias de Python
-├── package.json            # Dependencias de Node (TailwindCSS)
-├── tailwind.config.js      # Configuración de TailwindCSS
-├── setup.sh                # Script de instalación y ejecución
-├── .env.example            # Plantilla de variables de entorno
-├── .gitignore
 ├── static/
 │   ├── css/                # Estilos (incluye el CSS generado por Tailwind)
 │   ├── img/
@@ -109,6 +102,13 @@ umai-web/
     ├── utils.py            # Utilidades generales
     ├── routes/             # Blueprints: cliente y admin
     └── services/           # Comunicación con la API umai-api
+├── app.py                  # Punto de entrada: crea la app Flask y registra los Blueprints
+├── requirements.txt        # Dependencias de Python
+├── setup.sh                # Script de instalación y ejecución
+├── README.md               # Este archivo
+├── LICENSE
+├── vercel.json           
+└── .gitignore              # Archivos elegidos que no se subirán al repositorio
 ```
 
 ---
