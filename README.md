@@ -54,7 +54,6 @@ cp .env.example .env
 ```bash
 git clone https://github.com/Valencua/umai-web.git
 cd umai-web
-git switch develop-cliente
 ```
 
 ### 2️⃣ Ejecutar el setup
