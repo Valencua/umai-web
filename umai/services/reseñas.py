@@ -3,7 +3,6 @@ import requests
 
 API_BASE = os.environ.get('UMAI_API_URL', 'http://127.0.0.1:5000').rstrip('/')
 
-
 def obtener_reseñas() -> list:
     try:
         resp = requests.get(
