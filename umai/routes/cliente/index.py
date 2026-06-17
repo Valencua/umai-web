@@ -37,10 +37,6 @@ def disponibilidad():
         'status': 'error',
     }), 400
 
-def mostrar_resenas():
-    data = obtener_reseñas()
-    return render_template('cliente/index.html', reseñas=data)
-
 
 def _datos_formulario():
     return {
