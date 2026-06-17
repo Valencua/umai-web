@@ -33,7 +33,7 @@
               {% endfor %}
             </div>
           </div>
-          <span class="fecha-reserva">{{ reseña.creado_en }}</span>
+          <span class="fecha-reserva">{{ reseña.creado_en[:10] }}</span>
           <p class="texto-reseña">{{ reseña.descripcion }}</p>
 
           <div class="acciones-reseña">
@@ -116,7 +116,7 @@
               {% endfor %}
             </div>
           </div>
-          <span class="fecha-reserva">{{ reseña.creado_en }}</span>
+          <span class="fecha-reserva">{{ reseña.creado_en[:10] }}</span>
           <p class="texto-reseña">{{ reseña.descripcion }}</p>
         </div>
         {% endfor %} {% else %}
